@@ -17,8 +17,11 @@ def credentials_from_ini(db_credentials: Path) -> DbCredentiails:
     return DbCredentiails(**dict(config.items(section="DATABASE")))
 
 
+def url_obj(db_credentials: DbCredentiails):
+    return URL.create(**attrs.asdict(db_credentials))
+
 
 def engine(db_credentials: DbCredentiails, echo: bool=False) -> Engine:
-    return create_engine(URL.create(**attrs.asdict(db_credentials)), echo=echo)
+    return create_engine(url_obj(db_credentials), echo=echo)
 
 
