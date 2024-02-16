@@ -1,5 +1,5 @@
 def hello():
-    return "hello"
+    return "Hello"
 
 def goodbye():
     return "bye"
