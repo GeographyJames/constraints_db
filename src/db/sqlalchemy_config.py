@@ -14,6 +14,8 @@ class DbCredentiails:
     drivername: str = "postgresql"
 
 def credentials_from_ini(db_credentials: Path, password: str = None) -> DbCredentiails:
+    """Builds database credentials from an ini file."""
+    
     config = configparser.ConfigParser()
     config.read(db_credentials)
     try:
