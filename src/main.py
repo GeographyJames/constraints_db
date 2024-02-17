@@ -1,4 +1,5 @@
 def hello():
+    """A simple function that says hello."""
     return "Hello"
 
 def goodbye():
