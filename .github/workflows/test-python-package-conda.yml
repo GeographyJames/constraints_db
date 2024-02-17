@@ -1,7 +1,10 @@
 name: Test Python Package using Conda
 
-on: [push]
-pull_request: [main]
+on:
+  [push, pull_request] 
+  pull_request:
+    branches:
+      - main
 
 
 
