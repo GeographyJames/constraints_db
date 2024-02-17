@@ -37,9 +37,10 @@ jobs:
         pytest
     - name: Build Docs
       run: |
-        make -C docs html
+        warnings=$(make -C docs html 2>1 >/dev/null)
         if [ $? -ne 0 ]; then
-          echo "Sphinx build failed"
+          echo "$warnings"
+          echo "Sphinx build failed warnings"
           exit 1
         fi
 
