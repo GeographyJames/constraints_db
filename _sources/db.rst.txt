@@ -1,0 +1,37 @@
+db package
+==========
+
+Submodules
+----------
+
+db.exceptions module
+--------------------
+
+.. automodule:: db.exceptions
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+db.sqlalchemy\_config module
+----------------------------
+
+.. automodule:: db.sqlalchemy_config
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+db.test module
+--------------
+
+.. automodule:: db.test
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: db
+   :members:
+   :undoc-members:
+   :show-inheritance:
