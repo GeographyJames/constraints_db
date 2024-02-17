@@ -2,9 +2,7 @@ from pathlib import Path
 import attrs
 from sqlalchemy import URL, create_engine, Engine
 import configparser
-import os
-import logging
-from .exceptions import DatabaseError
+from .exceptions import CredentialsError
 
 
 @attrs.define
@@ -18,13 +16,16 @@ class DbCredentiails:
 def credentials_from_ini(db_credentials: Path, password: str = None) -> DbCredentiails:
     config = configparser.ConfigParser()
     config.read(db_credentials)
-    db_dict = dict(config.items(section="DATABASE"))
+    try:
+        db_dict = dict(config.items(section="DATABASE"))
+    except configparser.NoSectionError as e:
+        raise CredentialsError(f"Error with database credentials ini file: {e}")
     if "password" not in db_dict.keys():
         db_dict["password"] = password
     try:
         return DbCredentiails(**db_dict)
     except TypeError as e:
-        raise DatabaseError(e)
+        raise CredentialsError(f"Error with database credentials: {e}")
 
 
 def url_obj(db_credentials: DbCredentiails):

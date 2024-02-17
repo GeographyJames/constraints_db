@@ -2,22 +2,23 @@ from src.db import sqlalchemy_config
 from pathlib import Path
 from sqlalchemy import text
 import pytest
-from src.db.exceptions import DatabaseError
+from src.db.exceptions import CredentialsError
 import os
 
 db_credentials_ini = Path("db_credentials.ini")
 
-def test_should_return_database_credentials_from_ini() -> None:
-    db_credentials_ini = Path("tests/db_tests/test_data/test_db_credentials1.ini")
-    assert db_credentials_ini.is_file()
-    assert isinstance(sqlalchemy_config.credentials_from_ini(db_credentials_ini), sqlalchemy_config.DbCredentiails)
+class TestCredentialsFromIni:
+
+    def test_should_return_database_credentials(self) -> None:
+        assert isinstance(sqlalchemy_config.credentials_from_ini(Path("tests/db_tests/test_data/test_db_credentials_correct.ini")), sqlalchemy_config.DbCredentiails)
+
+    def test_should_raise_credentials_error(self) -> None:
+        with pytest.raises(CredentialsError):
+            sqlalchemy_config.credentials_from_ini("tests/db_tests/test_data/test_db_credentials_error.ini")
+        with pytest.raises(CredentialsError):
+            sqlalchemy_config.credentials_from_ini(Path("fake/path.ini"))
 
 
-def test_credentials_from_ini_should_raise_database_error() -> None:
-    db_credentials_ini = Path("tests/db_tests/test_data/test_db_credentials2.ini")
-    assert db_credentials_ini.is_file()
-    with pytest.raises(DatabaseError) as e_info:
-        sqlalchemy_config.credentials_from_ini(db_credentials_ini)
 
 
 @pytest.mark.db
