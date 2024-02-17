@@ -37,12 +37,7 @@ jobs:
         pytest
     - name: Build Docs
       run: |
-        warnings=$(make -C docs html 2>1 >/dev/null)
-        if [ $? -ne 0 ]; then
-          echo "$warnings"
-          echo "Sphinx build failed warnings"
-          exit 1
-        fi
+        make -C docs html
 
     - name: Deploy Docs
       uses: peaceiris/actions-gh-pages@v3
