@@ -6,14 +6,14 @@
 import pathlib
 import sys
 
-path = pathlib.Path(__file__).parents[2].resolve().as_posix() / pathlib.Path("src")
+#path = pathlib.Path(__file__).parents[2].resolve().as_posix() / pathlib.Path("src")
 #print(path)
 #print(path.is_dir())
-sys.path.insert(0, path)
+#sys.path.insert(0, path)
 
-#import os
-#import sys
-#sys.path.insert(0, os.path.abspath(os.path.join('..', '..', 'src')))
+import os
+import sys
+sys.path.insert(0, os.path.abspath(os.path.join('..', '..', 'src')))
 
 
 
