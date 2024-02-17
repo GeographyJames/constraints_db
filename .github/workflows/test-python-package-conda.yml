@@ -38,6 +38,11 @@ jobs:
     - name: Build Docs
       run: |
         make -C docs html
+        if [ $? -ne 0 ]; then
+          echo "Sphinx build failed"
+          exit 1
+        fi
+
     - name: Deploy Docs
       uses: peaceiris/actions-gh-pages@v3
       if: github.ref == 'refs/heads/main'
