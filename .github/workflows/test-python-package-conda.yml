@@ -37,7 +37,7 @@ jobs:
         pytest
     - name: Build Docs
       run: |
-        make -C docs html
+        sphinx-build -M html docs/source docs/build -W
 
     - name: Deploy Docs
       uses: peaceiris/actions-gh-pages@v3
