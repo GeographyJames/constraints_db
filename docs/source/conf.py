@@ -43,4 +43,4 @@ exclude_patterns = []
 html_theme = 'furo'
 #html_static_path = ['_static']
 
-nitpick_ingnore = [("py:class", "db.models.Base")]
+nitpick_ignore = [("py:class", "db.models.Base.metadata")]
