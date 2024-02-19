@@ -22,12 +22,16 @@ author = 'James Campbell'
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = ['sphinx.ext.autodoc', 'sphinx.ext.napoleon']
+extensions = ['sphinx.ext.autodoc', 'sphinx.ext.napoleon', 'sphinx.ext.intersphinx']
+
+
+# Mappings to other python module documentation.
+intersphinx_mapping = {'sqlalchemy': ('https://docs.sqlalchemy.org/en/20/', None)}
 
 templates_path = ['_templates']
 exclude_patterns = []
 
-suppress_warnings = ['ref.ref']
+#suppress_warnings = ['ref.ref'] # This will suppress warnings for all missing ref
 
 
 # -- Options for HTML output -------------------------------------------------

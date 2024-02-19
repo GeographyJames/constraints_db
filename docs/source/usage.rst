@@ -4,7 +4,7 @@ Usage
 Guide
 -----
 
-To use the database follow this guide.sssstsssssssssss
+To use the database follow this guide.
 
 .. code-block:: python
 
