@@ -12,18 +12,18 @@ db.exceptions module
    :undoc-members:
    :show-inheritance:
 
-db.sqlalchemy\_config module
-----------------------------
+db.models module
+----------------
 
-.. automodule:: db.sqlalchemy_config
+.. automodule:: db.models
    :members:
    :undoc-members:
    :show-inheritance:
 
-db.test module
---------------
+db.sqlalchemy\_config module
+----------------------------
 
-.. automodule:: db.test
+.. automodule:: db.sqlalchemy_config
    :members:
    :undoc-members:
    :show-inheritance:
