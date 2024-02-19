@@ -9,7 +9,7 @@ Welcome to Constraints Database's documentation!
 
    This project is under devlopment
 
-Chech out the :doc:`usage` section for further information.
+Chech out the :doc:`usages` section for further information.
 
 .. toctree::
    :maxdepth: 2
