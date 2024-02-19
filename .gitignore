@@ -162,5 +162,5 @@ cython_debug/
 # Database Credentials
 db_credentials.ini
 
-# Alembic versions
-alembic/versions/
+# Alembic migration versions
+alembic/versions
