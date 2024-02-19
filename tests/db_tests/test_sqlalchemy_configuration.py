@@ -14,9 +14,10 @@ class TestCredentialsFromIni:
 
     def test_should_raise_credentials_error(self) -> None:
         with pytest.raises(CredentialsError):
-            sqlalchemy_config.credentials_from_ini("tests/db_tests/test_data/test_db_credentials_error.ini")
-        with pytest.raises(CredentialsError):
+            sqlalchemy_config.credentials_from_ini(Path("tests/db_tests/test_data/test_db_credentials_error.ini"))
+        with pytest.raises(CredentialsError, match="Unable to locate credentials .ini file"):
             sqlalchemy_config.credentials_from_ini(Path("fake/path.ini"))
+
 
 
 
@@ -24,7 +25,7 @@ class TestCredentialsFromIni:
 @pytest.mark.db
 def test_should_return_database_connection() -> None:
     engine = sqlalchemy_config.engine(sqlalchemy_config.credentials_from_ini(
-        db_credentials_ini, os.environ.get("POSTGRESQL")))
+        db_credentials_ini,))
     with engine.connect() as conn:
         assert conn.scalar(text("SELECT 'hello world'")) == "hello world"
 
