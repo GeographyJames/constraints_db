@@ -5,16 +5,19 @@
 
 import pathlib
 import sys
+import os
 
-#path = pathlib.Path(__file__).parents[2].resolve().as_posix() / pathlib.Path("src")
-#print(path)
+
+path1 = str(pathlib.Path(__file__).parents[2].resolve().as_posix() / pathlib.Path("src"))
+#print("path1 :", path1)
 #print(path.is_dir())
 #sys.path.insert(0, path)
-
-import os
-import sys
-sys.path.insert(0, os.path.abspath(os.path.join('..', '..', 'src')))
-
+#path2 = os.path.abspath(os.path.join('..', '..', 'src'))
+#print("path2 :", path2)
+sys.path.insert(0, path1)
+#sys.path.insert(0, path2)
+#assert sys.path[0] == sys.path[1]
+print(sys.path)
 
 
 # -- Project information -----------------------------------------------------
@@ -38,4 +41,4 @@ exclude_patterns = []
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 html_theme = 'furo'
-html_static_path = ['_static']
+#html_static_path = ['_static']
