@@ -5,12 +5,19 @@
 
 Welcome to Constraints Database's documentation!
 ================================================
+.. note::
+
+   This project is under devlopment
+
+Chech out the :doc:`usage` section for further information.
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
    modules
+   usage
+ 
 
 
 
