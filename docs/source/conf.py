@@ -8,16 +8,8 @@ import sys
 import os
 
 
-path1 = str(pathlib.Path(__file__).parents[2].resolve().as_posix() / pathlib.Path("src"))
-#print("path1 :", path1)
-#print(path.is_dir())
-#sys.path.insert(0, path)
-#path2 = os.path.abspath(os.path.join('..', '..', 'src'))
-#print("path2 :", path2)
-sys.path.insert(0, path1)
-#sys.path.insert(0, path2)
-#assert sys.path[0] == sys.path[1]
-print(sys.path)
+path = str(pathlib.Path(__file__).parents[2].resolve().as_posix() / pathlib.Path("src"))
+sys.path.insert(0, path)
 
 
 # -- Project information -----------------------------------------------------
@@ -35,12 +27,13 @@ extensions = ['sphinx.ext.autodoc', 'sphinx.ext.napoleon']
 templates_path = ['_templates']
 exclude_patterns = []
 
+suppress_warnings = ['ref.ref']
 
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
+nitpicky = False
 html_theme = 'furo'
 #html_static_path = ['_static']
-
-nitpick_ignore = [("py:class", "db.models.Base.metadata")]
+nitpick_ignore = [("doc", "usages"),("ref", "orm_declarative_metadata")] # Only works if nitpicky set to True.
