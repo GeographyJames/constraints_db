@@ -24,6 +24,8 @@ author = 'James Campbell'
 
 extensions = ['sphinx.ext.autodoc', 'sphinx.ext.napoleon', 'sphinx.ext.intersphinx']
 
+
+# Mappings to other python module documentation.
 intersphinx_mapping = {'sqlalchemy': ('https://docs.sqlalchemy.org/en/20/', None)}
 
 templates_path = ['_templates']
