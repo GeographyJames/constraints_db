@@ -70,6 +70,8 @@ instance/
 
 # Sphinx documentation
 docs/build/
+docs/source/db.rst
+docs/source/modules.rst
 
 
 # PyBuilder
