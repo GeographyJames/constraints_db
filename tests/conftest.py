@@ -1,25 +1,26 @@
 # This file must be in a directory above db_tests for reasons yet unknown.
 
+from typing import Any
 import pytest
 
 
 @pytest.fixture()
-def my_fixture():
+def my_fixture() -> str:
     return "some stuff"
 
 
-def pytest_addoption(parser):
+def pytest_addoption(parser: Any) -> None:
     parser.addoption(
         "--dbtests", action="store_true", default=False, help="Run tests that require database connection."
     )
 
 
-def pytest_configure(config):
+def pytest_configure(config: Any) -> None:
     config.addinivalue_line(
         "markers", "db: Mark test as requiring database connection.")
 
 
-def pytest_collection_modifyitems(config, items):
+def pytest_collection_modifyitems(config: Any, items: Any) -> None:
     if config.getoption("--dbtests"):
         return
     skip_db_tests = pytest.mark.skip(reason="Need --dbtests option to run.")
