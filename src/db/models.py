@@ -81,3 +81,30 @@ class PriorityLevel(Base):
         back_populates="onshore_wind_priority_level")
     solar_constraints: Mapped[List["DevelopmentConstraint"]] = relationship(
         back_populates="solar_priority_level")
+
+
+class DataPublisher(Base):
+    __tablename__ = "data_publishers"
+
+    id: Mapped[int] = mapped_column(Identity(), primary_key=True)
+    name: Mapped[str] = mapped_column(unique=True)
+    abbreviation: Mapped[Optional[str]]
+    description: Mapped[Optional[str]]
+    created: Mapped[datetime] = mapped_column(server_default=func.now())
+    created_by: Mapped[str] = mapped_column(server_default=func.current_user())
+    last_updated: Mapped[datetime] = mapped_column(server_default=func.now())
+    last_updated_by: Mapped[str] = mapped_column(
+        server_default=func.current_user())
+
+
+class DataLicense(Base):
+    __tablename__ = "data_licenses"
+
+    id: Mapped[int] = mapped_column(Identity(), primary_key=True)
+    name: Mapped[str] = mapped_column(unique=True)
+    description: Mapped[Optional[str]]
+    created: Mapped[datetime] = mapped_column(server_default=func.now())
+    created_by: Mapped[str] = mapped_column(server_default=func.current_user())
+    last_updated: Mapped[datetime] = mapped_column(server_default=func.now())
+    last_updated_by: Mapped[str] = mapped_column(
+        server_default=func.current_user())
