@@ -35,6 +35,11 @@ jobs:
       run: |
         conda install pytest
         pytest
+
+    - name: Run MyPy
+      run: |
+        conda install mypy
+        mypy src --strict
     - name: Build Docs
       run: |
         sphinx-apidoc -o docs/source src/db

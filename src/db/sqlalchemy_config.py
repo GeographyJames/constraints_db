@@ -14,7 +14,7 @@ class DbCredentiails:
     database: str
     drivername: str = "postgresql"
 
-def credentials_from_ini(db_credentials: Path, password: str = None) -> DbCredentiails:
+def credentials_from_ini(db_credentials: Path, password: str | None = None) -> DbCredentiails:
     """Builds database credentials from an ini file."""
 
     if not db_credentials.is_file():
@@ -39,7 +39,7 @@ def credentials_from_ini(db_credentials: Path, password: str = None) -> DbCreden
         raise CredentialsError(f"Error with database credentials: {e}")
 
 
-def url_obj(db_credentials: DbCredentiails):
+def url_obj(db_credentials: DbCredentiails) -> URL:
     return URL.create(**attrs.asdict(db_credentials))
 
 
