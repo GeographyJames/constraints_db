@@ -28,6 +28,22 @@ db.sqlalchemy\_config module
    :undoc-members:
    :show-inheritance:
 
+db.test module
+--------------
+
+.. automodule:: db.test
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+db.triggers module
+------------------
+
+.. automodule:: db.triggers
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Module contents
 ---------------
 

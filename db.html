@@ -481,6 +481,34 @@ for new <code class="xref py py-class docutils literal notranslate"><span class=
 <dd></dd></dl>
 
 </section>
+<section id="module-db.test">
+<span id="db-test-module"></span><h2>db.test module<a class="headerlink" href="#module-db.test" title="Link to this heading">#</a></h2>
+</section>
+<section id="module-db.triggers">
+<span id="db-triggers-module"></span><h2>db.triggers module<a class="headerlink" href="#module-db.triggers" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="db.triggers.Table">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">db.triggers.</span></span><span class="sig-name descname"><span class="pre">Table</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">schema</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#db.triggers.Table" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="db.triggers.Table.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#db.triggers.Table.name" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="db.triggers.Table.schema">
+<span class="sig-name descname"><span class="pre">schema</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#db.triggers.Table.schema" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="db.triggers.create_triggers">
+<span class="sig-prename descclassname"><span class="pre">db.triggers.</span></span><span class="sig-name descname"><span class="pre">create_triggers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">conn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.sqlalchemy.org/en/20/core/connections.html#sqlalchemy.engine.Connection" title="(in SQLAlchemy v2.0)"><span class="pre">Connection</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">tables</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#db.triggers.Table" title="db.triggers.Table"><span class="pre">Table</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#db.triggers.create_triggers" title="Link to this definition">#</a></dt>
+<dd><p>Function to create database triggers to update database tables with</p>
+</dd></dl>
+
+</section>
 <section id="module-db">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-db" title="Link to this heading">#</a></h2>
 </section>
@@ -611,6 +639,16 @@ for new <code class="xref py py-class docutils literal notranslate"><span class=
 <li><a class="reference internal" href="#db.sqlalchemy_config.credentials_from_ini"><code class="docutils literal notranslate"><span class="pre">credentials_from_ini()</span></code></a></li>
 <li><a class="reference internal" href="#db.sqlalchemy_config.engine"><code class="docutils literal notranslate"><span class="pre">engine()</span></code></a></li>
 <li><a class="reference internal" href="#db.sqlalchemy_config.url_obj"><code class="docutils literal notranslate"><span class="pre">url_obj()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-db.test">db.test module</a></li>
+<li><a class="reference internal" href="#module-db.triggers">db.triggers module</a><ul>
+<li><a class="reference internal" href="#db.triggers.Table"><code class="docutils literal notranslate"><span class="pre">Table</span></code></a><ul>
+<li><a class="reference internal" href="#db.triggers.Table.name"><code class="docutils literal notranslate"><span class="pre">Table.name</span></code></a></li>
+<li><a class="reference internal" href="#db.triggers.Table.schema"><code class="docutils literal notranslate"><span class="pre">Table.schema</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#db.triggers.create_triggers"><code class="docutils literal notranslate"><span class="pre">create_triggers()</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-db">Module contents</a></li>
