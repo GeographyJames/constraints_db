@@ -257,8 +257,13 @@ for new <code class="xref py py-class docutils literal notranslate"><span class=
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">db.models.</span></span><span class="sig-name descname"><span class="pre">ConstraintCategory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#db.models.ConstraintCategory" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#db.models.Base" title="db.models.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">Base</span></code></a></p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="db.models.ConstraintCategory.constraint_categories">
-<span class="sig-name descname"><span class="pre">constraint_categories</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#db.models.DevelopmentConstraint" title="db.models.DevelopmentConstraint"><span class="pre">DevelopmentConstraint</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.ConstraintCategory.constraint_categories" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="db.models.ConstraintCategory.created">
+<span class="sig-name descname"><span class="pre">created</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">datetime</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.ConstraintCategory.created" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="db.models.ConstraintCategory.created_by">
+<span class="sig-name descname"><span class="pre">created_by</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.ConstraintCategory.created_by" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -267,8 +272,23 @@ for new <code class="xref py py-class docutils literal notranslate"><span class=
 <dd></dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="db.models.ConstraintCategory.development_constraints">
+<span class="sig-name descname"><span class="pre">development_constraints</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#db.models.DevelopmentConstraint" title="db.models.DevelopmentConstraint"><span class="pre">DevelopmentConstraint</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.ConstraintCategory.development_constraints" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="db.models.ConstraintCategory.id">
 <span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.ConstraintCategory.id" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="db.models.ConstraintCategory.last_updated">
+<span class="sig-name descname"><span class="pre">last_updated</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">datetime</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.ConstraintCategory.last_updated" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="db.models.ConstraintCategory.last_updated_by">
+<span class="sig-name descname"><span class="pre">last_updated_by</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.ConstraintCategory.last_updated_by" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -298,6 +318,16 @@ for new <code class="xref py py-class docutils literal notranslate"><span class=
 <dd></dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="db.models.DevelopmentConstraint.created">
+<span class="sig-name descname"><span class="pre">created</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">datetime</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.DevelopmentConstraint.created" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="db.models.DevelopmentConstraint.created_by">
+<span class="sig-name descname"><span class="pre">created_by</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.DevelopmentConstraint.created_by" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="db.models.DevelopmentConstraint.description">
 <span class="sig-name descname"><span class="pre">description</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.DevelopmentConstraint.description" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
@@ -308,6 +338,16 @@ for new <code class="xref py py-class docutils literal notranslate"><span class=
 <dd></dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="db.models.DevelopmentConstraint.last_updated">
+<span class="sig-name descname"><span class="pre">last_updated</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">datetime</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.DevelopmentConstraint.last_updated" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="db.models.DevelopmentConstraint.last_updated_by">
+<span class="sig-name descname"><span class="pre">last_updated_by</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.DevelopmentConstraint.last_updated_by" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="db.models.DevelopmentConstraint.name">
 <span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.DevelopmentConstraint.name" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
@@ -315,6 +355,77 @@ for new <code class="xref py py-class docutils literal notranslate"><span class=
 <dl class="py attribute">
 <dt class="sig sig-object py" id="db.models.DevelopmentConstraint.notes">
 <span class="sig-name descname"><span class="pre">notes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.DevelopmentConstraint.notes" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="db.models.DevelopmentConstraint.onshore_wind_priority_level">
+<span class="sig-name descname"><span class="pre">onshore_wind_priority_level</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#db.models.PriorityLevel" title="db.models.PriorityLevel"><span class="pre">PriorityLevel</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.DevelopmentConstraint.onshore_wind_priority_level" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="db.models.DevelopmentConstraint.onshore_wind_priority_level_id">
+<span class="sig-name descname"><span class="pre">onshore_wind_priority_level_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.DevelopmentConstraint.onshore_wind_priority_level_id" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="db.models.DevelopmentConstraint.solar_priority_level">
+<span class="sig-name descname"><span class="pre">solar_priority_level</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#db.models.PriorityLevel" title="db.models.PriorityLevel"><span class="pre">PriorityLevel</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.DevelopmentConstraint.solar_priority_level" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="db.models.DevelopmentConstraint.solar_priority_level_id">
+<span class="sig-name descname"><span class="pre">solar_priority_level_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.DevelopmentConstraint.solar_priority_level_id" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="db.models.PriorityLevel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">db.models.</span></span><span class="sig-name descname"><span class="pre">PriorityLevel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#db.models.PriorityLevel" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#db.models.Base" title="db.models.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">Base</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="db.models.PriorityLevel.created">
+<span class="sig-name descname"><span class="pre">created</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">datetime</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.PriorityLevel.created" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="db.models.PriorityLevel.created_by">
+<span class="sig-name descname"><span class="pre">created_by</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.PriorityLevel.created_by" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="db.models.PriorityLevel.description">
+<span class="sig-name descname"><span class="pre">description</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.PriorityLevel.description" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="db.models.PriorityLevel.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.PriorityLevel.id" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="db.models.PriorityLevel.last_updated">
+<span class="sig-name descname"><span class="pre">last_updated</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">datetime</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.PriorityLevel.last_updated" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="db.models.PriorityLevel.last_updated_by">
+<span class="sig-name descname"><span class="pre">last_updated_by</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.PriorityLevel.last_updated_by" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="db.models.PriorityLevel.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.PriorityLevel.name" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="db.models.PriorityLevel.onshore_wind_constraints">
+<span class="sig-name descname"><span class="pre">onshore_wind_constraints</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#db.models.DevelopmentConstraint" title="db.models.DevelopmentConstraint"><span class="pre">DevelopmentConstraint</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.PriorityLevel.onshore_wind_constraints" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="db.models.PriorityLevel.solar_constraints">
+<span class="sig-name descname"><span class="pre">solar_constraints</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#db.models.DevelopmentConstraint" title="db.models.DevelopmentConstraint"><span class="pre">DevelopmentConstraint</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.PriorityLevel.solar_constraints" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -446,9 +557,13 @@ for new <code class="xref py py-class docutils literal notranslate"><span class=
 </ul>
 </li>
 <li><a class="reference internal" href="#db.models.ConstraintCategory"><code class="docutils literal notranslate"><span class="pre">ConstraintCategory</span></code></a><ul>
-<li><a class="reference internal" href="#db.models.ConstraintCategory.constraint_categories"><code class="docutils literal notranslate"><span class="pre">ConstraintCategory.constraint_categories</span></code></a></li>
+<li><a class="reference internal" href="#db.models.ConstraintCategory.created"><code class="docutils literal notranslate"><span class="pre">ConstraintCategory.created</span></code></a></li>
+<li><a class="reference internal" href="#db.models.ConstraintCategory.created_by"><code class="docutils literal notranslate"><span class="pre">ConstraintCategory.created_by</span></code></a></li>
 <li><a class="reference internal" href="#db.models.ConstraintCategory.description"><code class="docutils literal notranslate"><span class="pre">ConstraintCategory.description</span></code></a></li>
+<li><a class="reference internal" href="#db.models.ConstraintCategory.development_constraints"><code class="docutils literal notranslate"><span class="pre">ConstraintCategory.development_constraints</span></code></a></li>
 <li><a class="reference internal" href="#db.models.ConstraintCategory.id"><code class="docutils literal notranslate"><span class="pre">ConstraintCategory.id</span></code></a></li>
+<li><a class="reference internal" href="#db.models.ConstraintCategory.last_updated"><code class="docutils literal notranslate"><span class="pre">ConstraintCategory.last_updated</span></code></a></li>
+<li><a class="reference internal" href="#db.models.ConstraintCategory.last_updated_by"><code class="docutils literal notranslate"><span class="pre">ConstraintCategory.last_updated_by</span></code></a></li>
 <li><a class="reference internal" href="#db.models.ConstraintCategory.name"><code class="docutils literal notranslate"><span class="pre">ConstraintCategory.name</span></code></a></li>
 </ul>
 </li>
@@ -456,10 +571,30 @@ for new <code class="xref py py-class docutils literal notranslate"><span class=
 <li><a class="reference internal" href="#db.models.DevelopmentConstraint.abbreviation"><code class="docutils literal notranslate"><span class="pre">DevelopmentConstraint.abbreviation</span></code></a></li>
 <li><a class="reference internal" href="#db.models.DevelopmentConstraint.constraint_category"><code class="docutils literal notranslate"><span class="pre">DevelopmentConstraint.constraint_category</span></code></a></li>
 <li><a class="reference internal" href="#db.models.DevelopmentConstraint.constraint_category_id"><code class="docutils literal notranslate"><span class="pre">DevelopmentConstraint.constraint_category_id</span></code></a></li>
+<li><a class="reference internal" href="#db.models.DevelopmentConstraint.created"><code class="docutils literal notranslate"><span class="pre">DevelopmentConstraint.created</span></code></a></li>
+<li><a class="reference internal" href="#db.models.DevelopmentConstraint.created_by"><code class="docutils literal notranslate"><span class="pre">DevelopmentConstraint.created_by</span></code></a></li>
 <li><a class="reference internal" href="#db.models.DevelopmentConstraint.description"><code class="docutils literal notranslate"><span class="pre">DevelopmentConstraint.description</span></code></a></li>
 <li><a class="reference internal" href="#db.models.DevelopmentConstraint.id"><code class="docutils literal notranslate"><span class="pre">DevelopmentConstraint.id</span></code></a></li>
+<li><a class="reference internal" href="#db.models.DevelopmentConstraint.last_updated"><code class="docutils literal notranslate"><span class="pre">DevelopmentConstraint.last_updated</span></code></a></li>
+<li><a class="reference internal" href="#db.models.DevelopmentConstraint.last_updated_by"><code class="docutils literal notranslate"><span class="pre">DevelopmentConstraint.last_updated_by</span></code></a></li>
 <li><a class="reference internal" href="#db.models.DevelopmentConstraint.name"><code class="docutils literal notranslate"><span class="pre">DevelopmentConstraint.name</span></code></a></li>
 <li><a class="reference internal" href="#db.models.DevelopmentConstraint.notes"><code class="docutils literal notranslate"><span class="pre">DevelopmentConstraint.notes</span></code></a></li>
+<li><a class="reference internal" href="#db.models.DevelopmentConstraint.onshore_wind_priority_level"><code class="docutils literal notranslate"><span class="pre">DevelopmentConstraint.onshore_wind_priority_level</span></code></a></li>
+<li><a class="reference internal" href="#db.models.DevelopmentConstraint.onshore_wind_priority_level_id"><code class="docutils literal notranslate"><span class="pre">DevelopmentConstraint.onshore_wind_priority_level_id</span></code></a></li>
+<li><a class="reference internal" href="#db.models.DevelopmentConstraint.solar_priority_level"><code class="docutils literal notranslate"><span class="pre">DevelopmentConstraint.solar_priority_level</span></code></a></li>
+<li><a class="reference internal" href="#db.models.DevelopmentConstraint.solar_priority_level_id"><code class="docutils literal notranslate"><span class="pre">DevelopmentConstraint.solar_priority_level_id</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#db.models.PriorityLevel"><code class="docutils literal notranslate"><span class="pre">PriorityLevel</span></code></a><ul>
+<li><a class="reference internal" href="#db.models.PriorityLevel.created"><code class="docutils literal notranslate"><span class="pre">PriorityLevel.created</span></code></a></li>
+<li><a class="reference internal" href="#db.models.PriorityLevel.created_by"><code class="docutils literal notranslate"><span class="pre">PriorityLevel.created_by</span></code></a></li>
+<li><a class="reference internal" href="#db.models.PriorityLevel.description"><code class="docutils literal notranslate"><span class="pre">PriorityLevel.description</span></code></a></li>
+<li><a class="reference internal" href="#db.models.PriorityLevel.id"><code class="docutils literal notranslate"><span class="pre">PriorityLevel.id</span></code></a></li>
+<li><a class="reference internal" href="#db.models.PriorityLevel.last_updated"><code class="docutils literal notranslate"><span class="pre">PriorityLevel.last_updated</span></code></a></li>
+<li><a class="reference internal" href="#db.models.PriorityLevel.last_updated_by"><code class="docutils literal notranslate"><span class="pre">PriorityLevel.last_updated_by</span></code></a></li>
+<li><a class="reference internal" href="#db.models.PriorityLevel.name"><code class="docutils literal notranslate"><span class="pre">PriorityLevel.name</span></code></a></li>
+<li><a class="reference internal" href="#db.models.PriorityLevel.onshore_wind_constraints"><code class="docutils literal notranslate"><span class="pre">PriorityLevel.onshore_wind_constraints</span></code></a></li>
+<li><a class="reference internal" href="#db.models.PriorityLevel.solar_constraints"><code class="docutils literal notranslate"><span class="pre">PriorityLevel.solar_constraints</span></code></a></li>
 </ul>
 </li>
 </ul>
