@@ -39,7 +39,7 @@ def credentials_from_ini(db_credentials: Path, password: str | None = None) -> D
         raise CredentialsError(f"Error with database credentials: {e}")
 
 
-def url_obj(db_credentials: DbCredentiails):
+def url_obj(db_credentials: DbCredentiails) -> URL:
     return URL.create(**attrs.asdict(db_credentials))
 
 
