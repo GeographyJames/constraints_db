@@ -11,7 +11,8 @@ def my_fixture() -> str:
 
 def pytest_addoption(parser: Any) -> None:
     parser.addoption(
-        "--dbtests", action="store_true", default=False, help="Run tests that require database connection."
+        "--dbtests", action="store_true",
+        default=False, help="Run tests that require database connection."
     )
 
 
