@@ -46,6 +46,9 @@ class DevelopmentConstraint(Base):
     solar_priority_level: Mapped["PriorityLevel"] = relationship(
         back_populates="solar_constrints")
 
+    def __repr__(self):
+        return f"<development constraint: {self.id}, {self.name}>"
+
 
 class ConstraintCategory(Base):
     __tablename__ = "constraint_categories"
@@ -62,6 +65,9 @@ class ConstraintCategory(Base):
     development_constraints: Mapped[
         List["DevelopmentConstraint"]] = relationship(
         back_populates="constraint_category")
+
+    def __repr__(self):
+        return f"<constraint category: {self.id}, {self.name}>"
 
 
 class PriorityLevel(Base):
@@ -82,6 +88,9 @@ class PriorityLevel(Base):
     solar_constraints: Mapped[List["DevelopmentConstraint"]] = relationship(
         back_populates="solar_priority_level")
 
+    def __repr__(self):
+        return f"<priority level: {self.id}, {self.name}>"
+
 
 class DataPublisher(Base):
     __tablename__ = "data_publishers"
@@ -96,6 +105,9 @@ class DataPublisher(Base):
     last_updated_by: Mapped[str] = mapped_column(
         server_default=func.current_user())
 
+    def __repr__(self):
+        return f"<data publisher: {self.id}, {self.name}>"
+
 
 class DataLicense(Base):
     __tablename__ = "data_licenses"
@@ -108,3 +120,22 @@ class DataLicense(Base):
     last_updated: Mapped[datetime] = mapped_column(server_default=func.now())
     last_updated_by: Mapped[str] = mapped_column(
         server_default=func.current_user())
+
+    def __repr__(self):
+        return f"<data licenses: {self.id}, {self.name}>"
+
+
+class AdminLevel(Base):
+    __tablename__ = 'admin_levels'
+
+    id: Mapped[int] = mapped_column(Identity(), primary_key=True)
+    name: Mapped[str] = mapped_column(unique=True)
+    level: Mapped[int]
+    created: Mapped[datetime] = mapped_column(server_default=func.now())
+    created_by: Mapped[str] = mapped_column(server_default=func.current_user())
+    last_updated: Mapped[datetime] = mapped_column(server_default=func.now())
+    last_updated_by: Mapped[str] = mapped_column(
+        server_default=func.current_user())
+
+    def __repr__(self):
+        return f"<admin level: {self.id}, {self.name}>"

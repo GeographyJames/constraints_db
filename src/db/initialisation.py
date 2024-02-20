@@ -2,7 +2,7 @@ from .sqlalchemy_config import engine, credentials_from_ini
 from pathlib import Path
 from sqlalchemy import Connection, text
 
-files_to_load = [Path("data_publishers.sql")]
+files_to_load = [Path("admin_levels.sql")]
 
 
 def initialise_db_entries(conn: Connection) -> None:
