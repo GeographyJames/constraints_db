@@ -5,10 +5,10 @@
 
 import pathlib
 import sys
-import os
 
 
-path = str(pathlib.Path(__file__).parents[2].resolve().as_posix() / pathlib.Path("src"))
+path = str(pathlib.Path(__file__).parents[2].resolve(
+).as_posix() / pathlib.Path("src"))
 sys.path.insert(0, path)
 
 
@@ -22,16 +22,19 @@ author = 'James Campbell'
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = ['sphinx.ext.autodoc', 'sphinx.ext.napoleon', 'sphinx.ext.intersphinx']
+extensions = ['sphinx.ext.autodoc',
+              'sphinx.ext.napoleon', 'sphinx.ext.intersphinx']
 
 
 # Mappings to other python module documentation.
-intersphinx_mapping = {'sqlalchemy': ('https://docs.sqlalchemy.org/en/20/', None)}
+intersphinx_mapping = {'sqlalchemy': (
+    'https://docs.sqlalchemy.org/en/20/', None)}
 
 templates_path = ['_templates']
 exclude_patterns = []
 
-#suppress_warnings = ['ref.ref'] # This will suppress warnings for all missing ref
+# suppress_warnings = ['ref.ref']
+# This will suppress warnings for all missing ref
 
 
 # -- Options for HTML output -------------------------------------------------
@@ -39,5 +42,6 @@ exclude_patterns = []
 
 nitpicky = False
 html_theme = 'furo'
-#html_static_path = ['_static']
-nitpick_ignore = [("doc", "usages"),("ref", "orm_declarative_metadata")] # Only works if nitpicky set to True.
+# html_static_path = ['_static']
+# Only works if nitpicky set to True.
+nitpick_ignore = [("doc", "usages"), ("ref", "orm_declarative_metadata")]
