@@ -46,7 +46,7 @@ class DevelopmentConstraint(Base):
     solar_priority_level: Mapped["PriorityLevel"] = relationship(
         back_populates="solar_constrints")
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"<development constraint: {self.id}, {self.name}>"
 
 
@@ -66,7 +66,7 @@ class ConstraintCategory(Base):
         List["DevelopmentConstraint"]] = relationship(
         back_populates="constraint_category")
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"<constraint category: {self.id}, {self.name}>"
 
 
@@ -88,7 +88,7 @@ class PriorityLevel(Base):
     solar_constraints: Mapped[List["DevelopmentConstraint"]] = relationship(
         back_populates="solar_priority_level")
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"<priority level: {self.id}, {self.name}>"
 
 
@@ -105,7 +105,7 @@ class DataPublisher(Base):
     last_updated_by: Mapped[str] = mapped_column(
         server_default=func.current_user())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"<data publisher: {self.id}, {self.name}>"
 
 
@@ -121,7 +121,7 @@ class DataLicense(Base):
     last_updated_by: Mapped[str] = mapped_column(
         server_default=func.current_user())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"<data licenses: {self.id}, {self.name}>"
 
 
@@ -137,5 +137,5 @@ class AdminLevel(Base):
     last_updated_by: Mapped[str] = mapped_column(
         server_default=func.current_user())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"<admin level: {self.id}, {self.name}>"
