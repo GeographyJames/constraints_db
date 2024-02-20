@@ -41,10 +41,9 @@ def create_triggers(conn: Connection, tables: List[Table]) -> None:
         )
         conn.execute(func)
         conn.execute(trigger)
-        conn.commit()
 
 
 if __name__ == "__main__":
     with engine(credentials_from_ini(
-            pathlib.Path("db_credentials.ini")), echo=True).connect() as conn:
+            pathlib.Path("db_credentials.ini")), echo=True).begin() as conn:
         create_triggers(conn, tables)
