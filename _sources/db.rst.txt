@@ -12,6 +12,14 @@ db.exceptions module
    :undoc-members:
    :show-inheritance:
 
+db.initialisation module
+------------------------
+
+.. automodule:: db.initialisation
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 db.models module
 ----------------
 
@@ -24,14 +32,6 @@ db.sqlalchemy\_config module
 ----------------------------
 
 .. automodule:: db.sqlalchemy_config
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-db.test module
---------------
-
-.. automodule:: db.test
    :members:
    :undoc-members:
    :show-inheritance:
