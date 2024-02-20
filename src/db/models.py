@@ -22,7 +22,7 @@ class Base(DeclarativeBase):
 class DevelopmentConstraint(Base):
     __tablename__ = "development_constraints"
 
-    id: Mapped[int] = mapped_column(Identity(always=True), primary_key=True)
+    id: Mapped[int] = mapped_column(Identity(), primary_key=True)
     constraint_category_id: Mapped[int] = mapped_column(
         ForeignKey("constraint_categories.id"))
     name: Mapped[str] = mapped_column(unique=True)
@@ -50,7 +50,7 @@ class DevelopmentConstraint(Base):
 class ConstraintCategory(Base):
     __tablename__ = "constraint_categories"
 
-    id: Mapped[int] = mapped_column(Identity(always=True), primary_key=True)
+    id: Mapped[int] = mapped_column(Identity(), primary_key=True)
     name: Mapped[str] = mapped_column(unique=True)
     description: Mapped[Optional[str]]
     created: Mapped[datetime] = mapped_column(server_default=func.now())
@@ -67,7 +67,7 @@ class ConstraintCategory(Base):
 class PriorityLevel(Base):
     __tablename__ = "priority_levels"
 
-    id: Mapped[int] = mapped_column(Identity(always=True), primary_key=True)
+    id: Mapped[int] = mapped_column(Identity(), primary_key=True)
     name: Mapped[str] = mapped_column(unique=True)
     description: Mapped[Optional[str]]
     created: Mapped[datetime] = mapped_column(server_default=func.now())

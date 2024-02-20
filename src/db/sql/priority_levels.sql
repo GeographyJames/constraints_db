@@ -1,0 +1,10 @@
+INSERT INTO priority_levels (id, name, description) VALUES (1, '1', NULL);
+INSERT INTO priority_levels (id, name, description) VALUES (2, '2', NULL);
+INSERT INTO priority_levels (id, name, description) VALUES (3, '3', NULL);
+INSERT INTO priority_levels (id, name, description) VALUES (4, 'Addvisory', NULL);
+INSERT INTO priority_levels (id, name, description) VALUES (5, 'TBC', NULL);
+INSERT INTO priority_levels (id, name, description) VALUES (6, 'Superseded/Expired', NULL);
+INSERT INTO priority_levels (id, name, description) VALUES (7, 'Land use classification', NULL);
+INSERT INTO priority_levels (id, name, description) VALUES (8, 'Not applicable', NULL);
+INSERT INTO priority_levels (id, name, description) VALUES (9, 'Administrative', NULL);
+INSERT INTO priority_levels (id, name, description) VALUES (10, 'Other', NULL);
