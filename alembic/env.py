@@ -42,7 +42,9 @@ def run_migrations_offline() -> None:
     script output.
 
     """
-    url = config.get_main_option("sqlalchemy.url")
+    url = sqlalchemy_config.url_obj(
+        sqlalchemy_config.credentials_from_ini(Path("db_credentials.ini"))
+    ).render_as_string()
     context.configure(
         url=url,
         target_metadata=target_metadata,
@@ -62,7 +64,9 @@ def run_migrations_online() -> None:
 
     """
     connectable = create_engine(sqlalchemy_config.url_obj(
-        sqlalchemy_config.credentials_from_ini(Path("db_credentials.ini"))),   poolclass=pool.NullPool)
+        sqlalchemy_config.credentials_from_ini(Path("db_credentials.ini"))),
+        poolclass=pool.NullPool,
+        echo=False)
 
     with connectable.connect() as connection:
         context.configure(

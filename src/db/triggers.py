@@ -13,12 +13,15 @@ class Table:
 
 tables = [Table("public", "development_constraints"),
           Table("public", "constraint_categories"),
-          Table("public", "priority_levels")]
+          Table("public", "priority_levels"),
+          Table("public", "data_publishers"),
+          Table("public", "data_licenses"),
+          Table("public", "admin_levels")]
 
 
 def create_triggers(conn: Connection, tables: List[Table]) -> None:
-    """Function to create database triggers to update database tables with"""
-    """current time and database user when updating a table row."""
+    """Function to create database triggers to update database tables with
+    current time and database user when updating a table row."""
     for table in tables:
         func = DDL(
             f"CREATE OR REPLACE FUNCTION "

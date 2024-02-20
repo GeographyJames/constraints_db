@@ -22,7 +22,7 @@ class Base(DeclarativeBase):
 class DevelopmentConstraint(Base):
     __tablename__ = "development_constraints"
 
-    id: Mapped[int] = mapped_column(Identity(always=True), primary_key=True)
+    id: Mapped[int] = mapped_column(Identity(), primary_key=True)
     constraint_category_id: Mapped[int] = mapped_column(
         ForeignKey("constraint_categories.id"))
     name: Mapped[str] = mapped_column(unique=True)
@@ -46,11 +46,14 @@ class DevelopmentConstraint(Base):
     solar_priority_level: Mapped["PriorityLevel"] = relationship(
         back_populates="solar_constrints")
 
+    def __repr__(self) -> str:
+        return f"<development constraint: {self.id}, {self.name}>"
+
 
 class ConstraintCategory(Base):
     __tablename__ = "constraint_categories"
 
-    id: Mapped[int] = mapped_column(Identity(always=True), primary_key=True)
+    id: Mapped[int] = mapped_column(Identity(), primary_key=True)
     name: Mapped[str] = mapped_column(unique=True)
     description: Mapped[Optional[str]]
     created: Mapped[datetime] = mapped_column(server_default=func.now())
@@ -63,11 +66,14 @@ class ConstraintCategory(Base):
         List["DevelopmentConstraint"]] = relationship(
         back_populates="constraint_category")
 
+    def __repr__(self) -> str:
+        return f"<constraint category: {self.id}, {self.name}>"
+
 
 class PriorityLevel(Base):
     __tablename__ = "priority_levels"
 
-    id: Mapped[int] = mapped_column(Identity(always=True), primary_key=True)
+    id: Mapped[int] = mapped_column(Identity(), primary_key=True)
     name: Mapped[str] = mapped_column(unique=True)
     description: Mapped[Optional[str]]
     created: Mapped[datetime] = mapped_column(server_default=func.now())
@@ -81,3 +87,55 @@ class PriorityLevel(Base):
         back_populates="onshore_wind_priority_level")
     solar_constraints: Mapped[List["DevelopmentConstraint"]] = relationship(
         back_populates="solar_priority_level")
+
+    def __repr__(self) -> str:
+        return f"<priority level: {self.id}, {self.name}>"
+
+
+class DataPublisher(Base):
+    __tablename__ = "data_publishers"
+
+    id: Mapped[int] = mapped_column(Identity(), primary_key=True)
+    name: Mapped[str] = mapped_column(unique=True)
+    abbreviation: Mapped[Optional[str]]
+    description: Mapped[Optional[str]]
+    created: Mapped[datetime] = mapped_column(server_default=func.now())
+    created_by: Mapped[str] = mapped_column(server_default=func.current_user())
+    last_updated: Mapped[datetime] = mapped_column(server_default=func.now())
+    last_updated_by: Mapped[str] = mapped_column(
+        server_default=func.current_user())
+
+    def __repr__(self) -> str:
+        return f"<data publisher: {self.id}, {self.name}>"
+
+
+class DataLicense(Base):
+    __tablename__ = "data_licenses"
+
+    id: Mapped[int] = mapped_column(Identity(), primary_key=True)
+    name: Mapped[str] = mapped_column(unique=True)
+    description: Mapped[Optional[str]]
+    created: Mapped[datetime] = mapped_column(server_default=func.now())
+    created_by: Mapped[str] = mapped_column(server_default=func.current_user())
+    last_updated: Mapped[datetime] = mapped_column(server_default=func.now())
+    last_updated_by: Mapped[str] = mapped_column(
+        server_default=func.current_user())
+
+    def __repr__(self) -> str:
+        return f"<data licenses: {self.id}, {self.name}>"
+
+
+class AdminLevel(Base):
+    __tablename__ = 'admin_levels'
+
+    id: Mapped[int] = mapped_column(Identity(), primary_key=True)
+    name: Mapped[str] = mapped_column(unique=True)
+    level: Mapped[int]
+    created: Mapped[datetime] = mapped_column(server_default=func.now())
+    created_by: Mapped[str] = mapped_column(server_default=func.current_user())
+    last_updated: Mapped[datetime] = mapped_column(server_default=func.now())
+    last_updated_by: Mapped[str] = mapped_column(
+        server_default=func.current_user())
+
+    def __repr__(self) -> str:
+        return f"<admin level: {self.id}, {self.name}>"
