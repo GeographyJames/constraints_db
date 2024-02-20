@@ -17,7 +17,7 @@ tables = [Table("public", "development_constraints"),
 
 
 def create_triggers(conn: Connection, tables: List[Table]) -> None:
-    """Function to create database triggers to update databas tables with"""
+    """Function to create database triggers to update database tables with"""
     """current time and database user when updating a table row."""
     for table in tables:
         func = DDL(
