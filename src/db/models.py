@@ -3,7 +3,7 @@ from sqlalchemy.sql.expression import func
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 from sqlalchemy.dialects.postgresql import TEXT
 from typing import Optional, List
-from datetime import datetime
+from datetime import datetime, date
 from geoalchemy2 import WKBElement, Geometry
 
 
@@ -47,6 +47,8 @@ class DevelopmentConstraint(Base):
         back_populates="onshore_wind_constraints")
     solar_priority_level: Mapped["PriorityLevel"] = relationship(
         back_populates="solar_constrints")
+    constraint_layers: Mapped[List["ConstraintLayer"]] = relationship(
+        back_populates="development_constraint")
 
     def __repr__(self) -> str:
         return f"<development constraint: {self.id}, {self.name}>"
@@ -107,6 +109,9 @@ class DataPublisher(Base):
     last_updated_by: Mapped[str] = mapped_column(
         server_default=func.current_user())
 
+    constraint_layers: Mapped[List["ConstraintLayer"]] = relationship(
+        back_populates="data_publisher")
+
     def __repr__(self) -> str:
         return f"<data publisher: {self.id}, {self.name}>"
 
@@ -122,6 +127,9 @@ class DataLicense(Base):
     last_updated: Mapped[datetime] = mapped_column(server_default=func.now())
     last_updated_by: Mapped[str] = mapped_column(
         server_default=func.current_user())
+
+    constraint_layers: Mapped[List["ConstraintLayer"]] = relationship(
+        back_populates="data_license")
 
     def __repr__(self) -> str:
         return f"<data licenses: {self.id}, {self.name}>"
@@ -141,6 +149,8 @@ class AdministrativeLevel(Base):
 
     administrative_areas: Mapped[list["AdministrativeArea"]] = relationship(
         back_populates="administrative_levele")
+    constraint_layers: Mapped[List["ConstraintLayer"]] = relationship(
+        back_populates="administrative_level")
 
     def __repr__(self) -> str:
         return f"<admin level: {self.id}, {self.name}>"
@@ -169,6 +179,53 @@ class AdministrativeArea(Base):
         back_populates="child_areas")
     child_areas: Mapped[List["AdministrativeArea"]
                         ] = relationship(back_populates="parent_area")
+    constraint_layers: Mapped[List["ConstraintLayer"]] = relationship(
+        back_populates="administrative_area")
 
     def __repr__(self) -> str:
         return f"<geographical_areas: {self.id}, {self.name}>"
+
+
+class ConstraintLayer(Base):
+    __tablename__ = "constraint_layers"
+
+    id: Mapped[int] = mapped_column(Identity(), primary_key=True)
+    name: Mapped[str] = mapped_column(unique=True)
+    development_constraint_id: Mapped[int] = mapped_column(
+        ForeignKey("development_constraints.id"))
+    administrative_level_id: Mapped[int] = mapped_column(
+        ForeignKey("administrative_levels.id"))
+    administrative_area_id: Mapped[int] = mapped_column(
+        ForeignKey("administrative_areas.id"))
+    data_publisher_id: Mapped[int] = mapped_column(
+        ForeignKey("data_publishers.id"))
+    data_license_id: Mapped[Optional[int]] = mapped_column(
+        ForeignKey("data_licenses.id"))
+    data_source: Mapped[Optional[str]]
+    update_cycle: Mapped[Optional[str]]
+
+    data_accessed_or_created: Mapped[Optional[date]]
+    data_last_updated: Mapped[Optional[date]]
+    data_next_updated: Mapped[Optional[date]]
+    data_expires: Mapped[Optional[date]]
+    notes: Mapped[Optional[str]]
+
+    created: Mapped[datetime] = mapped_column(server_default=func.now())
+    created_by: Mapped[str] = mapped_column(server_default=func.current_user())
+    last_updated: Mapped[datetime] = mapped_column(server_default=func.now())
+    last_updated_by: Mapped[str] = mapped_column(
+        server_default=func.current_user())
+
+    development_constraint: Mapped["DevelopmentConstraint"] = relationship(
+        back_populates="constraint_layers")
+    administrative_level: Mapped["AdministrativeLevel"] = relationship(
+        back_populates="constraint_layers")
+    administrative_area: Mapped["AdministrativeArea"] = relationship(
+        back_populates="constraint_layers")
+    data_publisher: Mapped["DataPublisher"] = relationship(
+        back_populates="constraint_layers")
+    data_license: Mapped["DataLicense"] = relationship(
+        back_populates="constraint_layers")
+
+    def __repr__(self) -> str:
+        return f"<constraint layer: {self.id}, {self.name}>"
