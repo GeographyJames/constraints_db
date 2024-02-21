@@ -1,7 +1,8 @@
 from sqlalchemy import Identity, ForeignKey, MetaData
+
 from sqlalchemy.sql.expression import func
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
-from sqlalchemy.dialects.postgresql import TEXT
+from sqlalchemy.dialects.postgresql import TEXT, JSONB
 from typing import Optional, List
 from datetime import datetime, date
 from geoalchemy2 import WKBElement, Geometry
@@ -229,3 +230,25 @@ class ConstraintLayer(Base):
 
     def __repr__(self) -> str:
         return f"<constraint layer: {self.id}, {self.name}>"
+
+
+class ConstraintObject(Base):
+    __tablename__ = "constraint_objects"
+    __table_args__ = {"porstgresql_partition_by": "LIST(GeometryType(geom))"}
+
+    id: Mapped[int] = mapped_column(Identity())
+    name: Mapped[str]
+    status: Mapped[Optional[str]]
+    constraint_layer_id: Mapped[int] = mapped_column(
+        ForeignKey("constraint_layers.id"))
+    created: Mapped[datetime] = mapped_column(server_default=func.now())
+    created_by: Mapped[str] = mapped_column(server_default=func.current_user())
+    last_updated: Mapped[datetime] = mapped_column(server_default=func.now())
+    last_updated_by: Mapped[str] = mapped_column(
+        server_default=func.current_user())
+    geom: Mapped[WKBElement] = mapped_column(Geometry(srid=27700))
+    other_attributes: Mapped[Optional[JSONB]]
+
+class ConstraintMultiPolgon(Base):
+    __tablename__ = "constraint_multipolygon"
+    
