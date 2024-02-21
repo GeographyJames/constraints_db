@@ -247,8 +247,8 @@ class ConstraintObject(Base):
     last_updated_by: Mapped[str] = mapped_column(
         server_default=func.current_user())
     geom: Mapped[WKBElement] = mapped_column(Geometry(srid=27700))
-    other_attributes: Mapped[Optional[JSONB]]
+    #other_attributes: Mapped[Optional[JSONB]]
 
 class ConstraintMultiPolgon(Base):
     __tablename__ = "constraint_multipolygon"
-    
+
