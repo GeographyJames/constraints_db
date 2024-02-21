@@ -170,5 +170,5 @@ class AdministrativeArea(Base):
     child_areas: Mapped[List["AdministrativeArea"]
                         ] = relationship(back_populates="parent_area")
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"<geographical_areas: {self.id}, {self.name}>"
