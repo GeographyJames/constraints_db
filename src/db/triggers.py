@@ -16,7 +16,8 @@ tables = [Table("public", "development_constraints"),
           Table("public", "priority_levels"),
           Table("public", "data_publishers"),
           Table("public", "data_licenses"),
-          Table("public", "admin_levels")]
+          Table("public", "administrative_levels"),
+          Table("public", "administrative_areas")]
 
 
 def create_triggers(conn: Connection, tables: List[Table]) -> None:
