@@ -195,7 +195,7 @@
           
 <section class="genindex-section">
   <h1 id="index">Index</h1>
-  <div class="genindex-jumpbox"><a href="#A"><strong>A</strong></a> | <a href="#B"><strong>B</strong></a> | <a href="#C"><strong>C</strong></a> | <a href="#D"><strong>D</strong></a> | <a href="#E"><strong>E</strong></a> | <a href="#H"><strong>H</strong></a> | <a href="#I"><strong>I</strong></a> | <a href="#L"><strong>L</strong></a> | <a href="#M"><strong>M</strong></a> | <a href="#N"><strong>N</strong></a> | <a href="#O"><strong>O</strong></a> | <a href="#P"><strong>P</strong></a> | <a href="#R"><strong>R</strong></a> | <a href="#S"><strong>S</strong></a> | <a href="#T"><strong>T</strong></a> | <a href="#U"><strong>U</strong></a></div>
+  <div class="genindex-jumpbox"><a href="#A"><strong>A</strong></a> | <a href="#B"><strong>B</strong></a> | <a href="#C"><strong>C</strong></a> | <a href="#D"><strong>D</strong></a> | <a href="#E"><strong>E</strong></a> | <a href="#G"><strong>G</strong></a> | <a href="#H"><strong>H</strong></a> | <a href="#I"><strong>I</strong></a> | <a href="#L"><strong>L</strong></a> | <a href="#M"><strong>M</strong></a> | <a href="#N"><strong>N</strong></a> | <a href="#O"><strong>O</strong></a> | <a href="#P"><strong>P</strong></a> | <a href="#R"><strong>R</strong></a> | <a href="#S"><strong>S</strong></a> | <a href="#T"><strong>T</strong></a> | <a href="#U"><strong>U</strong></a></div>
 </section>
 <section id="A" class="genindex-section">
   <h2>A</h2>
@@ -207,9 +207,17 @@
           <li><a href="db.html#db.models.DevelopmentConstraint.abbreviation">(db.models.DevelopmentConstraint attribute)</a>
 </li>
         </ul></li>
+        <li><a href="db.html#db.models.AdministrativeLevel.administrative_areas">administrative_areas (db.models.AdministrativeLevel attribute)</a>
+</li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="db.html#db.models.AdminLevel">AdminLevel (class in db.models)</a>
+        <li><a href="db.html#db.models.AdministrativeArea.administrative_level">administrative_level (db.models.AdministrativeArea attribute)</a>
+</li>
+        <li><a href="db.html#db.models.AdministrativeArea.administrative_level_id">administrative_level_id (db.models.AdministrativeArea attribute)</a>
+</li>
+        <li><a href="db.html#db.models.AdministrativeArea">AdministrativeArea (class in db.models)</a>
+</li>
+        <li><a href="db.html#db.models.AdministrativeLevel">AdministrativeLevel (class in db.models)</a>
 </li>
     </ul></td>
   </tr></table>
@@ -229,6 +237,8 @@
   <h2>C</h2>
   <table style="width: 100%" class="indextable genindextable"><tr>
     <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="db.html#db.models.AdministrativeArea.child_areas">child_areas (db.models.AdministrativeArea attribute)</a>
+</li>
         <li><a href="db.html#db.models.DevelopmentConstraint.constraint_category">constraint_category (db.models.DevelopmentConstraint attribute)</a>
 </li>
         <li><a href="db.html#db.models.DevelopmentConstraint.constraint_category_id">constraint_category_id (db.models.DevelopmentConstraint attribute)</a>
@@ -237,9 +247,11 @@
 </li>
         <li><a href="db.html#db.triggers.create_triggers">create_triggers() (in module db.triggers)</a>
 </li>
-        <li><a href="db.html#db.models.AdminLevel.created">created (db.models.AdminLevel attribute)</a>
+        <li><a href="db.html#db.models.AdministrativeArea.created">created (db.models.AdministrativeArea attribute)</a>
 
         <ul>
+          <li><a href="db.html#db.models.AdministrativeLevel.created">(db.models.AdministrativeLevel attribute)</a>
+</li>
           <li><a href="db.html#db.models.ConstraintCategory.created">(db.models.ConstraintCategory attribute)</a>
 </li>
           <li><a href="db.html#db.models.DataLicense.created">(db.models.DataLicense attribute)</a>
@@ -253,9 +265,11 @@
         </ul></li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="db.html#db.models.AdminLevel.created_by">created_by (db.models.AdminLevel attribute)</a>
+        <li><a href="db.html#db.models.AdministrativeArea.created_by">created_by (db.models.AdministrativeArea attribute)</a>
 
         <ul>
+          <li><a href="db.html#db.models.AdministrativeLevel.created_by">(db.models.AdministrativeLevel attribute)</a>
+</li>
           <li><a href="db.html#db.models.ConstraintCategory.created_by">(db.models.ConstraintCategory attribute)</a>
 </li>
           <li><a href="db.html#db.models.DataLicense.created_by">(db.models.DataLicense attribute)</a>
@@ -365,6 +379,16 @@
   </tr></table>
 </section>
 
+<section id="G" class="genindex-section">
+  <h2>G</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="db.html#db.models.AdministrativeArea.geom">geom (db.models.AdministrativeArea attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
 <section id="H" class="genindex-section">
   <h2>H</h2>
   <table style="width: 100%" class="indextable genindextable"><tr>
@@ -379,9 +403,11 @@
   <h2>I</h2>
   <table style="width: 100%" class="indextable genindextable"><tr>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="db.html#db.models.AdminLevel.id">id (db.models.AdminLevel attribute)</a>
+        <li><a href="db.html#db.models.AdministrativeArea.id">id (db.models.AdministrativeArea attribute)</a>
 
         <ul>
+          <li><a href="db.html#db.models.AdministrativeLevel.id">(db.models.AdministrativeLevel attribute)</a>
+</li>
           <li><a href="db.html#db.models.ConstraintCategory.id">(db.models.ConstraintCategory attribute)</a>
 </li>
           <li><a href="db.html#db.models.DataLicense.id">(db.models.DataLicense attribute)</a>
@@ -395,6 +421,8 @@
         </ul></li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="db.html#db.initialisation.initialise_db">initialise_db() (in module db.initialisation)</a>
+</li>
         <li><a href="db.html#db.initialisation.initialise_db_entries">initialise_db_entries() (in module db.initialisation)</a>
 </li>
     </ul></td>
@@ -405,9 +433,11 @@
   <h2>L</h2>
   <table style="width: 100%" class="indextable genindextable"><tr>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="db.html#db.models.AdminLevel.last_updated">last_updated (db.models.AdminLevel attribute)</a>
+        <li><a href="db.html#db.models.AdministrativeArea.last_updated">last_updated (db.models.AdministrativeArea attribute)</a>
 
         <ul>
+          <li><a href="db.html#db.models.AdministrativeLevel.last_updated">(db.models.AdministrativeLevel attribute)</a>
+</li>
           <li><a href="db.html#db.models.ConstraintCategory.last_updated">(db.models.ConstraintCategory attribute)</a>
 </li>
           <li><a href="db.html#db.models.DataLicense.last_updated">(db.models.DataLicense attribute)</a>
@@ -421,9 +451,11 @@
         </ul></li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="db.html#db.models.AdminLevel.last_updated_by">last_updated_by (db.models.AdminLevel attribute)</a>
+        <li><a href="db.html#db.models.AdministrativeArea.last_updated_by">last_updated_by (db.models.AdministrativeArea attribute)</a>
 
         <ul>
+          <li><a href="db.html#db.models.AdministrativeLevel.last_updated_by">(db.models.AdministrativeLevel attribute)</a>
+</li>
           <li><a href="db.html#db.models.ConstraintCategory.last_updated_by">(db.models.ConstraintCategory attribute)</a>
 </li>
           <li><a href="db.html#db.models.DataLicense.last_updated_by">(db.models.DataLicense attribute)</a>
@@ -435,7 +467,7 @@
           <li><a href="db.html#db.models.PriorityLevel.last_updated_by">(db.models.PriorityLevel attribute)</a>
 </li>
         </ul></li>
-        <li><a href="db.html#db.models.AdminLevel.level">level (db.models.AdminLevel attribute)</a>
+        <li><a href="db.html#db.models.AdministrativeLevel.level">level (db.models.AdministrativeLevel attribute)</a>
 </li>
     </ul></td>
   </tr></table>
@@ -474,9 +506,11 @@
   <h2>N</h2>
   <table style="width: 100%" class="indextable genindextable"><tr>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="db.html#db.models.AdminLevel.name">name (db.models.AdminLevel attribute)</a>
+        <li><a href="db.html#db.models.AdministrativeArea.name">name (db.models.AdministrativeArea attribute)</a>
 
         <ul>
+          <li><a href="db.html#db.models.AdministrativeLevel.name">(db.models.AdministrativeLevel attribute)</a>
+</li>
           <li><a href="db.html#db.models.ConstraintCategory.name">(db.models.ConstraintCategory attribute)</a>
 </li>
           <li><a href="db.html#db.models.DataLicense.name">(db.models.DataLicense attribute)</a>
@@ -518,10 +552,14 @@
   <h2>P</h2>
   <table style="width: 100%" class="indextable genindextable"><tr>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="db.html#db.sqlalchemy_config.DbCredentiails.password">password (db.sqlalchemy_config.DbCredentiails attribute)</a>
+        <li><a href="db.html#db.models.AdministrativeArea.parent_area">parent_area (db.models.AdministrativeArea attribute)</a>
+</li>
+        <li><a href="db.html#db.models.AdministrativeArea.parent_area_id">parent_area_id (db.models.AdministrativeArea attribute)</a>
 </li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="db.html#db.sqlalchemy_config.DbCredentiails.password">password (db.sqlalchemy_config.DbCredentiails attribute)</a>
+</li>
         <li><a href="db.html#db.models.PriorityLevel">PriorityLevel (class in db.models)</a>
 </li>
     </ul></td>

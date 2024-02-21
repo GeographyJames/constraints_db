@@ -207,18 +207,35 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="db.html#module-db.initialisation">db.initialisation module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="db.html#db.initialisation.initialise_db"><code class="docutils literal notranslate"><span class="pre">initialise_db()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="db.html#db.initialisation.initialise_db_entries"><code class="docutils literal notranslate"><span class="pre">initialise_db_entries()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="db.html#module-db.models">db.models module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="db.html#db.models.AdminLevel"><code class="docutils literal notranslate"><span class="pre">AdminLevel</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="db.html#db.models.AdminLevel.created"><code class="docutils literal notranslate"><span class="pre">AdminLevel.created</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="db.html#db.models.AdminLevel.created_by"><code class="docutils literal notranslate"><span class="pre">AdminLevel.created_by</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="db.html#db.models.AdminLevel.id"><code class="docutils literal notranslate"><span class="pre">AdminLevel.id</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="db.html#db.models.AdminLevel.last_updated"><code class="docutils literal notranslate"><span class="pre">AdminLevel.last_updated</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="db.html#db.models.AdminLevel.last_updated_by"><code class="docutils literal notranslate"><span class="pre">AdminLevel.last_updated_by</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="db.html#db.models.AdminLevel.level"><code class="docutils literal notranslate"><span class="pre">AdminLevel.level</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="db.html#db.models.AdminLevel.name"><code class="docutils literal notranslate"><span class="pre">AdminLevel.name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="db.html#db.models.AdministrativeArea"><code class="docutils literal notranslate"><span class="pre">AdministrativeArea</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="db.html#db.models.AdministrativeArea.administrative_level"><code class="docutils literal notranslate"><span class="pre">AdministrativeArea.administrative_level</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="db.html#db.models.AdministrativeArea.administrative_level_id"><code class="docutils literal notranslate"><span class="pre">AdministrativeArea.administrative_level_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="db.html#db.models.AdministrativeArea.child_areas"><code class="docutils literal notranslate"><span class="pre">AdministrativeArea.child_areas</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="db.html#db.models.AdministrativeArea.created"><code class="docutils literal notranslate"><span class="pre">AdministrativeArea.created</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="db.html#db.models.AdministrativeArea.created_by"><code class="docutils literal notranslate"><span class="pre">AdministrativeArea.created_by</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="db.html#db.models.AdministrativeArea.geom"><code class="docutils literal notranslate"><span class="pre">AdministrativeArea.geom</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="db.html#db.models.AdministrativeArea.id"><code class="docutils literal notranslate"><span class="pre">AdministrativeArea.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="db.html#db.models.AdministrativeArea.last_updated"><code class="docutils literal notranslate"><span class="pre">AdministrativeArea.last_updated</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="db.html#db.models.AdministrativeArea.last_updated_by"><code class="docutils literal notranslate"><span class="pre">AdministrativeArea.last_updated_by</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="db.html#db.models.AdministrativeArea.name"><code class="docutils literal notranslate"><span class="pre">AdministrativeArea.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="db.html#db.models.AdministrativeArea.parent_area"><code class="docutils literal notranslate"><span class="pre">AdministrativeArea.parent_area</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="db.html#db.models.AdministrativeArea.parent_area_id"><code class="docutils literal notranslate"><span class="pre">AdministrativeArea.parent_area_id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="db.html#db.models.AdministrativeLevel"><code class="docutils literal notranslate"><span class="pre">AdministrativeLevel</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="db.html#db.models.AdministrativeLevel.administrative_areas"><code class="docutils literal notranslate"><span class="pre">AdministrativeLevel.administrative_areas</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="db.html#db.models.AdministrativeLevel.created"><code class="docutils literal notranslate"><span class="pre">AdministrativeLevel.created</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="db.html#db.models.AdministrativeLevel.created_by"><code class="docutils literal notranslate"><span class="pre">AdministrativeLevel.created_by</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="db.html#db.models.AdministrativeLevel.id"><code class="docutils literal notranslate"><span class="pre">AdministrativeLevel.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="db.html#db.models.AdministrativeLevel.last_updated"><code class="docutils literal notranslate"><span class="pre">AdministrativeLevel.last_updated</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="db.html#db.models.AdministrativeLevel.last_updated_by"><code class="docutils literal notranslate"><span class="pre">AdministrativeLevel.last_updated_by</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="db.html#db.models.AdministrativeLevel.level"><code class="docutils literal notranslate"><span class="pre">AdministrativeLevel.level</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="db.html#db.models.AdministrativeLevel.name"><code class="docutils literal notranslate"><span class="pre">AdministrativeLevel.name</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="db.html#db.models.Base"><code class="docutils literal notranslate"><span class="pre">Base</span></code></a><ul>
