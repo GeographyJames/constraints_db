@@ -4,6 +4,7 @@ from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 from sqlalchemy.dialects.postgresql import TEXT
 from typing import Optional, List
 from datetime import datetime
+from geoalchemy2 import WKBElement, Geometry
 
 
 class Base(DeclarativeBase):
@@ -20,6 +21,7 @@ class Base(DeclarativeBase):
 
 
 class DevelopmentConstraint(Base):
+    """This defines the table of development constraints."""
     __tablename__ = "development_constraints"
 
     id: Mapped[int] = mapped_column(Identity(), primary_key=True)
@@ -125,8 +127,8 @@ class DataLicense(Base):
         return f"<data licenses: {self.id}, {self.name}>"
 
 
-class AdminLevel(Base):
-    __tablename__ = 'admin_levels'
+class AdministrativeLevel(Base):
+    __tablename__ = "administrative_levels"
 
     id: Mapped[int] = mapped_column(Identity(), primary_key=True)
     name: Mapped[str] = mapped_column(unique=True)
@@ -137,5 +139,36 @@ class AdminLevel(Base):
     last_updated_by: Mapped[str] = mapped_column(
         server_default=func.current_user())
 
+    administrative_areas: Mapped[list["AdministrativeArea"]] = relationship(
+        back_populates="administrative_levele")
+
     def __repr__(self) -> str:
         return f"<admin level: {self.id}, {self.name}>"
+
+
+class AdministrativeArea(Base):
+    __tablename__ = "administrative_areas"
+
+    id: Mapped[int] = mapped_column(Identity(), primary_key=True)
+    name: Mapped[str] = mapped_column(unique=True)
+    parent_area_id: Mapped[Optional[int]] = mapped_column(
+        ForeignKey("administrative_areas.id"))
+    administrative_level_id: Mapped[int] = mapped_column(
+        ForeignKey("administrative_levels.id"))
+    created: Mapped[datetime] = mapped_column(server_default=func.now())
+    created_by: Mapped[str] = mapped_column(server_default=func.current_user())
+    last_updated: Mapped[datetime] = mapped_column(server_default=func.now())
+    last_updated_by: Mapped[str] = mapped_column(
+        server_default=func.current_user())
+    geom: Mapped[WKBElement] = mapped_column(
+        Geometry(geometry_type="MULTIPOLYGON", srid=27700))
+
+    administrative_level: Mapped["AdministrativeLevel"] = relationship(
+        back_populates="administrative_areas")
+    parent_area: Mapped["AdministrativeArea"] = relationship(
+        back_populates="child_areas")
+    child_areas: Mapped[List["AdministrativeArea"]
+                        ] = relationship(back_populates="parent_area")
+
+    def __repr__(self) -> str:
+        return f"<geographical_areas: {self.id}, {self.name}>"

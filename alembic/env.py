@@ -5,6 +5,7 @@ from sqlalchemy import create_engine
 from sqlalchemy import pool
 
 from alembic import context
+from geoalchemy2 import alembic_helpers
 
 from src.db import sqlalchemy_config, models
 
@@ -56,6 +57,13 @@ def run_migrations_offline() -> None:
         context.run_migrations()
 
 
+def include_name(name, type_, parent_names):
+    if type_ == "table":
+        return name in target_metadata.tables
+    else:
+        return True
+
+
 def run_migrations_online() -> None:
     """Run migrations in 'online' mode.
 
@@ -70,7 +78,13 @@ def run_migrations_online() -> None:
 
     with connectable.connect() as connection:
         context.configure(
-            connection=connection, target_metadata=target_metadata
+            connection=connection,
+            target_metadata=target_metadata,
+            compare_server_default=True,
+            include_name=include_name,
+            render_item=alembic_helpers.render_item,
+            include_object=alembic_helpers.include_object,
+            process_revision_directives=alembic_helpers.writer
         )
 
         with context.begin_transaction():
