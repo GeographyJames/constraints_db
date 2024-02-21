@@ -74,7 +74,7 @@ def run_migrations_online() -> None:
     connectable = create_engine(sqlalchemy_config.url_obj(
         sqlalchemy_config.credentials_from_ini(Path("db_credentials.ini"))),
         poolclass=pool.NullPool,
-        echo=False)
+        echo=True)
 
     with connectable.connect() as connection:
         context.configure(

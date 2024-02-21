@@ -1,11 +1,12 @@
-from sqlalchemy import Identity, ForeignKey, MetaData
-
+from sqlalchemy import Identity, ForeignKey, MetaData, Table,  Column, Integer, Connection, DateTime
 from sqlalchemy.sql.expression import func
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 from sqlalchemy.dialects.postgresql import TEXT, JSONB
 from typing import Optional, List
 from datetime import datetime, date
 from geoalchemy2 import WKBElement, Geometry
+from .sqlalchemy_config import engine, credentials_from_ini
+from pathlib import Path
 
 
 class Base(DeclarativeBase):
@@ -232,23 +233,36 @@ class ConstraintLayer(Base):
         return f"<constraint layer: {self.id}, {self.name}>"
 
 
-class ConstraintObject(Base):
-    __tablename__ = "constraint_objects"
-    __table_args__ = {"porstgresql_partition_by": "LIST(GeometryType(geom))"}
+constraint_objects_table = Table(
+    "constraint_objects",
+    Base.metadata,
 
-    id: Mapped[int] = mapped_column(Identity())
-    name: Mapped[str]
-    status: Mapped[Optional[str]]
-    constraint_layer_id: Mapped[int] = mapped_column(
-        ForeignKey("constraint_layers.id"))
-    created: Mapped[datetime] = mapped_column(server_default=func.now())
-    created_by: Mapped[str] = mapped_column(server_default=func.current_user())
-    last_updated: Mapped[datetime] = mapped_column(server_default=func.now())
-    last_updated_by: Mapped[str] = mapped_column(
-        server_default=func.current_user())
-    geom: Mapped[WKBElement] = mapped_column(Geometry(srid=27700))
-    #other_attributes: Mapped[Optional[JSONB]]
+    Column("id", Integer, Identity()),
+    Column("name", TEXT, nullable=False),
+    Column("status", TEXT),
+    Column("constraint_layer_id", Integer,  ForeignKey(
+        "constraint_layers.id"), nullable=False,),
+    Column("created", DateTime, server_default=func.now(), nullable=False),
+    Column("created_by", TEXT, server_default=func.current_user(), nullable=False),
+    Column("last_updated", DateTime, server_default=func.now(), nullable=False),
+    Column("geom", Geometry(srid=27700), nullable=False,),
 
+    postgresql_partition_by="LIST(GeometryType(geom))",
+)
+"""
 class ConstraintMultiPolgon(Base):
     __tablename__ = "constraint_multipolygon"
+"""
 
+
+def create_prtitioned_tables(tables: List[Table]) -> None:
+    """To my current knowledge, Alembic does not support table partitioning.
+    Therefore to create the prtitioned tables, run this function.
+    """
+    for table in tables:
+        table.create(engine(credentials_from_ini(Path("db_credentials.ini")),
+                            echo=True))
+
+
+if __name__ == "__main__":
+    create_prtitioned_tables([constraint_objects_table])
