@@ -15,8 +15,9 @@ Chech out the :doc:`usage` section for further information.
    :maxdepth: 2
    :caption: Contents:
 
-   modules
    usage
+   modules
+   
  
 
 
