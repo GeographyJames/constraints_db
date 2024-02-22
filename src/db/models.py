@@ -1,8 +1,16 @@
-from sqlalchemy import Identity, ForeignKey, MetaData, Table,  Column, Integer, Connection, DateTime, text
+from sqlalchemy import (Identity,
+                        ForeignKey,
+                        MetaData,
+                        Table,
+                        Column,
+                        Integer,
+                        Connection,
+                        DateTime,
+                        text)
 from sqlalchemy.sql.expression import func
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
-from sqlalchemy.dialects.postgresql import TEXT, JSONB, ENUM
-from typing import Optional, List, Tuple
+from sqlalchemy.dialects.postgresql import TEXT
+from typing import Optional, List
 from datetime import datetime, date
 from geoalchemy2 import WKBElement, Geometry
 from .sqlalchemy_config import engine, credentials_from_ini
