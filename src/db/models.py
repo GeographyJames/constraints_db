@@ -244,8 +244,10 @@ constraint_objects_table = Table(
     Column("constraint_layer_id", Integer,  ForeignKey(
         "constraint_layers.id"), nullable=False,),
     Column("created", DateTime, server_default=func.now(), nullable=False),
-    Column("created_by", TEXT, server_default=func.current_user(), nullable=False),
-    Column("last_updated", DateTime, server_default=func.now(), nullable=False),
+    Column("created_by", TEXT, server_default=func.current_user(),
+           nullable=False),
+    Column("last_updated", DateTime, server_default=func.now(),
+           nullable=False),
     Column("last_updated_by", TEXT, nullable=False,
            server_default=func.current_user()),
     Column("geom", Geometry(srid=27700), nullable=False,),
@@ -253,12 +255,12 @@ constraint_objects_table = Table(
 )
 
 
-"""
-
- def create_prtitioned_tables(conn: Connection, parent_table: Base, child_tables: List[Tuple[str, GeomType]]) -> None:
-    To my current knowledge, Alembic does not support table partitioning.
+def create_prtitioned_tables(conn: Connection, parent_table: Table,
+                             child_tables: List[Tuple[str, GeomType]]) -> None:
+    """To my current knowledge, Alembic does not support table partitioning.
     Therefore to create the prtitioned tables, run this function.
-    
+
+    """
     for (table_name, value) in child_tables:
         conn.execute(text(
             f"CREATE TABLE IF NOT EXISTS {table_name} "
@@ -269,7 +271,7 @@ constraint_objects_table = Table(
 
 
 if __name__ == "__main__":
-    with engine(credentials_from_ini(Path("db_credentials.ini")), echo=True).connect() as conn:
-        create_prtitioned_tables(conn, ConstraintObject, [(
+    with engine(credentials_from_ini(Path("db_credentials.ini")),
+                echo=True).connect() as conn:
+        create_prtitioned_tables(conn, constraint_objects_table, [(
             "constraint_object_multipolygon", GeomType.MULTIPOLYGON)])
-"""
