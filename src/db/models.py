@@ -258,7 +258,7 @@ constraint_objects_table = Table(
            nullable=False),
     Column("last_updated_by", TEXT, nullable=False,
            server_default=func.current_user()),
-    Column("geom", Geometry(srid=27700), nullable=False,),
+    #Column("geom", Geometry(srid=27700), nullable=False,),
     postgresql_partition_by="LIST(GeometryType(geom))",
 )
 
@@ -268,10 +268,13 @@ def create_prtitioned_tables(conn: Connection, parent_table: Table) -> None:
     Therefore to create the partitioned tables, run this function.
     """
     for geometry_type in GeomType:
+        child_table_name = f"{parent_table.name}_{geometry_type}"
         conn.execute(text(
-            f"CREATE TABLE IF NOT EXISTS {parent_table}_{geometry_type} "
+            f"CREATE TABLE IF NOT EXISTS {child_table_name} "
             f"  PARTITION OF {parent_table.name} "
+            f"  (CONSTRAINT pk_{child_table_name} PRIMARY KEY (id)) "
             f"  FOR VALUES IN ('{geometry_type.name}') "
+
         ))
 
 
