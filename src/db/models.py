@@ -1,12 +1,13 @@
-from sqlalchemy import Identity, ForeignKey, MetaData, Table,  Column, Integer, Connection, DateTime
+from sqlalchemy import Identity, ForeignKey, MetaData, Table,  Column, Integer, Connection, DateTime, text
 from sqlalchemy.sql.expression import func
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
-from sqlalchemy.dialects.postgresql import TEXT, JSONB
-from typing import Optional, List
+from sqlalchemy.dialects.postgresql import TEXT, JSONB, ENUM
+from typing import Optional, List, Tuple
 from datetime import datetime, date
 from geoalchemy2 import WKBElement, Geometry
 from .sqlalchemy_config import engine, credentials_from_ini
 from pathlib import Path
+from .enums import GeomType
 
 
 class Base(DeclarativeBase):
@@ -245,24 +246,30 @@ constraint_objects_table = Table(
     Column("created", DateTime, server_default=func.now(), nullable=False),
     Column("created_by", TEXT, server_default=func.current_user(), nullable=False),
     Column("last_updated", DateTime, server_default=func.now(), nullable=False),
+    Column("last_updated_by", TEXT, nullable=False,
+           server_default=func.current_user()),
     Column("geom", Geometry(srid=27700), nullable=False,),
-
     postgresql_partition_by="LIST(GeometryType(geom))",
 )
-"""
-class ConstraintMultiPolgon(Base):
-    __tablename__ = "constraint_multipolygon"
-"""
 
 
-def create_prtitioned_tables(tables: List[Table]) -> None:
-    """To my current knowledge, Alembic does not support table partitioning.
+"""
+
+ def create_prtitioned_tables(conn: Connection, parent_table: Base, child_tables: List[Tuple[str, GeomType]]) -> None:
+    To my current knowledge, Alembic does not support table partitioning.
     Therefore to create the prtitioned tables, run this function.
-    """
-    for table in tables:
-        table.create(engine(credentials_from_ini(Path("db_credentials.ini")),
-                            echo=True))
+    
+    for (table_name, value) in child_tables:
+        conn.execute(text(
+            f"CREATE TABLE IF NOT EXISTS {table_name} "
+            f"  PARTITION OF {parent_table.__tablename__} "
+            f"  FOR VALUES IN ('{value.name}') "
+            f"  CHECK"
+        ))
 
 
 if __name__ == "__main__":
-    create_prtitioned_tables([constraint_objects_table])
+    with engine(credentials_from_ini(Path("db_credentials.ini")), echo=True).connect() as conn:
+        create_prtitioned_tables(conn, ConstraintObject, [(
+            "constraint_object_multipolygon", GeomType.MULTIPOLYGON)])
+"""
