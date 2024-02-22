@@ -255,23 +255,19 @@ constraint_objects_table = Table(
 )
 
 
-def create_prtitioned_tables(conn: Connection, parent_table: Table,
-                             child_tables: List[Tuple[str, GeomType]]) -> None:
+def create_prtitioned_tables(conn: Connection, parent_table: Table) -> None:
     """To my current knowledge, Alembic does not support table partitioning.
-    Therefore to create the prtitioned tables, run this function.
-
+    Therefore to create the partitioned tables, run this function.
     """
-    for (table_name, value) in child_tables:
+    for geometry_type in GeomType:
         conn.execute(text(
-            f"CREATE TABLE IF NOT EXISTS {table_name} "
-            f"  PARTITION OF {parent_table.__tablename__} "
-            f"  FOR VALUES IN ('{value.name}') "
-            f"  CHECK"
+            f"CREATE TABLE IF NOT EXISTS {parent_table}_{geometry_type} "
+            f"  PARTITION OF {parent_table.name} "
+            f"  FOR VALUES IN ('{geometry_type.name}') "
         ))
 
 
 if __name__ == "__main__":
     with engine(credentials_from_ini(Path("db_credentials.ini")),
-                echo=True).connect() as conn:
-        create_prtitioned_tables(conn, constraint_objects_table, [(
-            "constraint_object_multipolygon", GeomType.MULTIPOLYGON)])
+                echo=True).begin() as conn:
+        create_prtitioned_tables(conn, constraint_objects_table)
