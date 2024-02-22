@@ -200,6 +200,30 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">#</a></h2>
 </section>
+<section id="module-db.enums">
+<span id="db-enums-module"></span><h2>db.enums module<a class="headerlink" href="#module-db.enums" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="db.enums.GeomType">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">db.enums.</span></span><span class="sig-name descname"><span class="pre">GeomType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#db.enums.GeomType" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">StrEnum</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="db.enums.GeomType.LINESTRING">
+<span class="sig-name descname"><span class="pre">LINESTRING</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'linestring'</span></em><a class="headerlink" href="#db.enums.GeomType.LINESTRING" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="db.enums.GeomType.MULTIPOLYGON">
+<span class="sig-name descname"><span class="pre">MULTIPOLYGON</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'multipolygon'</span></em><a class="headerlink" href="#db.enums.GeomType.MULTIPOLYGON" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="db.enums.GeomType.POINT">
+<span class="sig-name descname"><span class="pre">POINT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'point'</span></em><a class="headerlink" href="#db.enums.GeomType.POINT" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
 <section id="module-db.exceptions">
 <span id="db-exceptions-module"></span><h2>db.exceptions module<a class="headerlink" href="#module-db.exceptions" title="Link to this heading">#</a></h2>
 <dl class="py exception">
@@ -790,18 +814,11 @@ for new <code class="xref py py-class docutils literal notranslate"><span class=
 
 </dd></dl>
 
-<dl class="py data">
-<dt class="sig sig-object py" id="db.models.constraint_objects_table">
-<span class="sig-prename descclassname"><span class="pre">db.models.</span></span><span class="sig-name descname"><span class="pre">constraint_objects_table</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Table('constraint_objects',</span> <span class="pre">MetaData(),</span> <span class="pre">Column('id',</span> <span class="pre">Integer(),</span> <span class="pre">table=&lt;constraint_objects&gt;,</span> <span class="pre">nullable=False,</span> <span class="pre">server_default=Identity()),</span> <span class="pre">Column('name',</span> <span class="pre">TEXT(),</span> <span class="pre">table=&lt;constraint_objects&gt;,</span> <span class="pre">nullable=False),</span> <span class="pre">Column('status',</span> <span class="pre">TEXT(),</span> <span class="pre">table=&lt;constraint_objects&gt;),</span> <span class="pre">Column('constraint_layer_id',</span> <span class="pre">Integer(),</span> <span class="pre">ForeignKey('constraint_layers.id'),</span> <span class="pre">table=&lt;constraint_objects&gt;,</span> <span class="pre">nullable=False),</span> <span class="pre">Column('created',</span> <span class="pre">DateTime(),</span> <span class="pre">table=&lt;constraint_objects&gt;,</span> <span class="pre">nullable=False,</span> <span class="pre">server_default=DefaultClause(&lt;sqlalchemy.sql.functions.now</span> <span class="pre">at</span> <span class="pre">0x7fe9a9b88cb0;</span> <span class="pre">now&gt;,</span> <span class="pre">for_update=False)),</span> <span class="pre">Column('created_by',</span> <span class="pre">TEXT(),</span> <span class="pre">table=&lt;constraint_objects&gt;,</span> <span class="pre">nullable=False,</span> <span class="pre">server_default=DefaultClause(&lt;sqlalchemy.sql.functions.current_user</span> <span class="pre">at</span> <span class="pre">0x7fe9a9b88da0;</span> <span class="pre">current_user&gt;,</span> <span class="pre">for_update=False)),</span> <span class="pre">Column('last_updated',</span> <span class="pre">DateTime(),</span> <span class="pre">table=&lt;constraint_objects&gt;,</span> <span class="pre">nullable=False,</span> <span class="pre">server_default=DefaultClause(&lt;sqlalchemy.sql.functions.now</span> <span class="pre">at</span> <span class="pre">0x7fe9a9b88ef0;</span> <span class="pre">now&gt;,</span> <span class="pre">for_update=False)),</span> <span class="pre">Column('geom',</span> <span class="pre">Geometry(srid=27700,</span> <span class="pre">from_text='ST_GeomFromEWKT',</span> <span class="pre">name='geometry',</span> <span class="pre">nullable=False),</span> <span class="pre">table=&lt;constraint_objects&gt;,</span> <span class="pre">nullable=False),</span> <span class="pre">schema=None)</span></em><a class="headerlink" href="#db.models.constraint_objects_table" title="Link to this definition">#</a></dt>
-<dd><p>class ConstraintMultiPolgon(Base):
-__tablename__ = “constraint_multipolygon”</p>
-</dd></dl>
-
 <dl class="py function">
 <dt class="sig sig-object py" id="db.models.create_prtitioned_tables">
-<span class="sig-prename descclassname"><span class="pre">db.models.</span></span><span class="sig-name descname"><span class="pre">create_prtitioned_tables</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tables</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Table" title="(in SQLAlchemy v2.0)"><span class="pre">Table</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#db.models.create_prtitioned_tables" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">db.models.</span></span><span class="sig-name descname"><span class="pre">create_prtitioned_tables</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">conn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.sqlalchemy.org/en/20/core/connections.html#sqlalchemy.engine.Connection" title="(in SQLAlchemy v2.0)"><span class="pre">Connection</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent_table</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Table" title="(in SQLAlchemy v2.0)"><span class="pre">Table</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#db.models.create_prtitioned_tables" title="Link to this definition">#</a></dt>
 <dd><p>To my current knowledge, Alembic does not support table partitioning.
-Therefore to create the prtitioned tables, run this function.</p>
+Therefore to create the partitioned tables, run this function.</p>
 </dd></dl>
 
 </section>
@@ -935,6 +952,15 @@ current time and database user when updating a table row.</p>
             <ul>
 <li><a class="reference internal" href="#">db package</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-db.enums">db.enums module</a><ul>
+<li><a class="reference internal" href="#db.enums.GeomType"><code class="docutils literal notranslate"><span class="pre">GeomType</span></code></a><ul>
+<li><a class="reference internal" href="#db.enums.GeomType.LINESTRING"><code class="docutils literal notranslate"><span class="pre">GeomType.LINESTRING</span></code></a></li>
+<li><a class="reference internal" href="#db.enums.GeomType.MULTIPOLYGON"><code class="docutils literal notranslate"><span class="pre">GeomType.MULTIPOLYGON</span></code></a></li>
+<li><a class="reference internal" href="#db.enums.GeomType.POINT"><code class="docutils literal notranslate"><span class="pre">GeomType.POINT</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a class="reference internal" href="#module-db.exceptions">db.exceptions module</a><ul>
 <li><a class="reference internal" href="#db.exceptions.CredentialsError"><code class="docutils literal notranslate"><span class="pre">CredentialsError</span></code></a></li>
 <li><a class="reference internal" href="#db.exceptions.DatabaseError"><code class="docutils literal notranslate"><span class="pre">DatabaseError</span></code></a></li>
@@ -1072,7 +1098,6 @@ current time and database user when updating a table row.</p>
 <li><a class="reference internal" href="#db.models.PriorityLevel.solar_constraints"><code class="docutils literal notranslate"><span class="pre">PriorityLevel.solar_constraints</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#db.models.constraint_objects_table"><code class="docutils literal notranslate"><span class="pre">constraint_objects_table</span></code></a></li>
 <li><a class="reference internal" href="#db.models.create_prtitioned_tables"><code class="docutils literal notranslate"><span class="pre">create_prtitioned_tables()</span></code></a></li>
 </ul>
 </li>

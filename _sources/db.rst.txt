@@ -4,6 +4,14 @@ db package
 Submodules
 ----------
 
+db.enums module
+---------------
+
+.. automodule:: db.enums
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 db.exceptions module
 --------------------
 
