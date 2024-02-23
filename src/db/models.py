@@ -263,7 +263,7 @@ constraint_objects_table = Table(
            nullable=False),
     Column("last_updated_by", TEXT, nullable=False,
            server_default=func.current_user()),
-    # Column("geom", Geometry(srid=27700), nullable=False,),
+    Column("geom", Geometry(srid=27700), nullable=False,),
     postgresql_partition_by="LIST(GeometryType(geom))",
 )
 
