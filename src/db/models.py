@@ -55,9 +55,11 @@ class DevelopmentConstraint(Base):
     constraint_category: Mapped["ConstraintCategory"] = relationship(
         back_populates="development_constraints")
     onshore_wind_priority_level: Mapped["PriorityLevel"] = relationship(
-        back_populates="onshore_wind_constraints")
+        #        back_populates="onshore_wind_constraints",
+        foreign_keys=[onshore_wind_priority_level_id])
     solar_priority_level: Mapped["PriorityLevel"] = relationship(
-        back_populates="solar_constrints")
+        #        back_populates="solar_constraints",
+        foreign_keys=[solar_priority_level_id])
     constraint_layers: Mapped[List["ConstraintLayer"]] = relationship(
         back_populates="development_constraint")
 
@@ -97,6 +99,8 @@ class PriorityLevel(Base):
     last_updated_by: Mapped[str] = mapped_column(
         server_default=func.current_user())
 
+
+"""
     onshore_wind_constraints: Mapped[
         List["DevelopmentConstraint"]] = relationship(
         back_populates="onshore_wind_priority_level")
@@ -105,6 +109,7 @@ class PriorityLevel(Base):
 
     def __repr__(self) -> str:
         return f"<priority level: {self.id}, {self.name}>"
+"""
 
 
 class DataPublisher(Base):
@@ -159,7 +164,7 @@ class AdministrativeLevel(Base):
         server_default=func.current_user())
 
     administrative_areas: Mapped[list["AdministrativeArea"]] = relationship(
-        back_populates="administrative_levele")
+        back_populates="administrative_level")
     constraint_layers: Mapped[List["ConstraintLayer"]] = relationship(
         back_populates="administrative_level")
 
@@ -187,7 +192,7 @@ class AdministrativeArea(Base):
     administrative_level: Mapped["AdministrativeLevel"] = relationship(
         back_populates="administrative_areas")
     parent_area: Mapped["AdministrativeArea"] = relationship(
-        back_populates="child_areas")
+        back_populates="child_areas", remote_side=[id])
     child_areas: Mapped[List["AdministrativeArea"]
                         ] = relationship(back_populates="parent_area")
     constraint_layers: Mapped[List["ConstraintLayer"]] = relationship(
@@ -258,7 +263,7 @@ constraint_objects_table = Table(
            nullable=False),
     Column("last_updated_by", TEXT, nullable=False,
            server_default=func.current_user()),
-    #Column("geom", Geometry(srid=27700), nullable=False,),
+    # Column("geom", Geometry(srid=27700), nullable=False,),
     postgresql_partition_by="LIST(GeometryType(geom))",
 )
 
