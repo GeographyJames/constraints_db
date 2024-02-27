@@ -151,27 +151,6 @@ class DataLicense(Base):
         return f"<data licenses: {self.id}, {self.name}>"
 
 
-class AdministrativeLevel(Base):
-    __tablename__ = "administrative_levels"
-
-    id: Mapped[int] = mapped_column(Identity(), primary_key=True)
-    name: Mapped[str] = mapped_column(unique=True)
-    level: Mapped[int]
-    created: Mapped[datetime] = mapped_column(server_default=func.now())
-    created_by: Mapped[str] = mapped_column(server_default=func.current_user())
-    last_updated: Mapped[datetime] = mapped_column(server_default=func.now())
-    last_updated_by: Mapped[str] = mapped_column(
-        server_default=func.current_user())
-
-    administrative_areas: Mapped[list["AdministrativeArea"]] = relationship(
-        back_populates="administrative_level")
-    constraint_layers: Mapped[List["ConstraintLayer"]] = relationship(
-        back_populates="administrative_level")
-
-    def __repr__(self) -> str:
-        return f"<admin level: {self.id}, {self.name}>"
-
-
 class AdministrativeArea(Base):
     __tablename__ = "administrative_areas"
 
@@ -189,8 +168,6 @@ class AdministrativeArea(Base):
     geom: Mapped[WKBElement] = mapped_column(
         Geometry(geometry_type="MULTIPOLYGON", srid=27700))
 
-    administrative_level: Mapped["AdministrativeLevel"] = relationship(
-        back_populates="administrative_areas")
     parent_area: Mapped["AdministrativeArea"] = relationship(
         back_populates="child_areas", remote_side=[id])
     child_areas: Mapped[List["AdministrativeArea"]
@@ -209,8 +186,6 @@ class ConstraintLayer(Base):
     name: Mapped[str] = mapped_column(unique=True)
     development_constraint_id: Mapped[int] = mapped_column(
         ForeignKey("development_constraints.id"))
-    administrative_level_id: Mapped[int] = mapped_column(
-        ForeignKey("administrative_levels.id"))
     administrative_area_id: Mapped[int] = mapped_column(
         ForeignKey("administrative_areas.id"))
     data_publisher_id: Mapped[int] = mapped_column(
@@ -233,8 +208,6 @@ class ConstraintLayer(Base):
         server_default=func.current_user())
 
     development_constraint: Mapped["DevelopmentConstraint"] = relationship(
-        back_populates="constraint_layers")
-    administrative_level: Mapped["AdministrativeLevel"] = relationship(
         back_populates="constraint_layers")
     administrative_area: Mapped["AdministrativeArea"] = relationship(
         back_populates="constraint_layers")
