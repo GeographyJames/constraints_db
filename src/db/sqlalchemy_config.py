@@ -21,8 +21,8 @@ def credentials_from_ini(
 
     if not db_credentials.is_file():
         raise CredentialsError(
-            f"Unable to locate credentials .ini file ({
-                db_credentials}). Check file path is valid file.")
+            f"Unable to locate credentials .ini file ({db_credentials}). "
+            f"Check file path is valid file.")
 
     config = configparser.ConfigParser()
     config.read(db_credentials)
