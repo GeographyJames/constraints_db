@@ -158,8 +158,6 @@ class AdministrativeArea(Base):
     name: Mapped[str] = mapped_column(unique=True)
     parent_area_id: Mapped[Optional[int]] = mapped_column(
         ForeignKey("administrative_areas.id"))
-    administrative_level_id: Mapped[int] = mapped_column(
-        ForeignKey("administrative_levels.id"))
     created: Mapped[datetime] = mapped_column(server_default=func.now())
     created_by: Mapped[str] = mapped_column(server_default=func.current_user())
     last_updated: Mapped[datetime] = mapped_column(server_default=func.now())
