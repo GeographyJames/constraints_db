@@ -193,7 +193,7 @@ class ConstraintLayer(Base):
     data_source: Mapped[Optional[str]]
     update_cycle: Mapped[Optional[str]]
 
-    data_accessed_or_created: Mapped[Optional[date]]
+    data_accessed_or_created: Mapped[date]
     data_last_updated: Mapped[Optional[date]]
     data_next_updated: Mapped[Optional[date]]
     data_expires: Mapped[Optional[date]]
@@ -248,9 +248,10 @@ def create_prtitioned_tables(conn: Connection, parent_table: Table) -> None:
         conn.execute(text(
             f"CREATE TABLE IF NOT EXISTS {child_table_name} "
             f"  PARTITION OF {parent_table.name} "
-            f"  (CONSTRAINT pk_{child_table_name} PRIMARY KEY (id)) "
+            f"  (CONSTRAINT pk_{child_table_name} "
+            f"      PRIMARY KEY (id, constraint_layer_id)) "
             f"  FOR VALUES IN ('{geometry_type.name}') "
-
+            f"  PARTITION BY LIST (constraint_layer_id) "
         ))
 
 
