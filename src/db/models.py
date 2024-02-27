@@ -268,12 +268,10 @@ def create_constraint_layer_table(conn: Connection, geometry_type: GeomType, con
     stmt2 = (
         f"  ALTER COLUNM constraint_layer_id "
         f"  SET DEFAULT {constraint_layer_id}")
-    return stmt1, stmt2
 
 
 if __name__ == "__main__":
     with engine(credentials_from_ini(Path("db_credentials.ini")),
                 echo=True).connect() as conn:
         #    create_prtitioned_tables(conn, constraint_objects_table)
-        res = create_constraint_layer_table(conn, GeomType.MULTIPOLYGON, 1)
-    print(res)
+        create_constraint_layer_table(conn, GeomType.MULTIPOLYGON, 1)
