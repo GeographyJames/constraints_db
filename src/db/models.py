@@ -7,7 +7,7 @@ from sqlalchemy import (Identity,
                         Connection,
                         DateTime,
                         text,
-                        select)
+                        )
 from sqlalchemy.sql.expression import func
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 from sqlalchemy.dialects.postgresql import TEXT
@@ -157,6 +157,7 @@ class AdministrativeArea(Base):
 
     id: Mapped[int] = mapped_column(Identity(), primary_key=True)
     name: Mapped[str] = mapped_column(unique=True)
+    abbreviation: Mapped[Optional[str]] = mapped_column(unique=True)
     parent_area_id: Mapped[Optional[int]] = mapped_column(
         ForeignKey("administrative_areas.id"))
     created: Mapped[datetime] = mapped_column(server_default=func.now())
@@ -256,22 +257,24 @@ def create_prtitioned_tables(conn: Connection, parent_table: Table) -> None:
         ))
 
 
-def create_constraint_layer_table(conn: Connection, geometry_type: GeomType, constraint_layer_id: int) -> None:
-    layer_name = conn.scalar(select(ConstraintLayer.name).where(
-        ConstraintLayer.id == constraint_layer_id))
+def create_constraint_layer_table(constraint_layer_name: str,
+                                  geometry_type: GeomType,
+                                  constraint_layer_id: int) -> None:
+
     parent_table_name = f"{constraint_objects_table.name}_{geometry_type}"
     stmt1 = (
-        f"CREATE TABLE IF NOT EXISTS constraints.{layer_name} "
+        f"CREATE TABLE IF NOT EXISTS constraints.{constraint_layer_name} "
         f"  PARTITION OF {parent_table_name} "
-        f"  FOR VALUES IN ({constraint_layer_id}) "
-        f"ALTER TABLE constraints.{layer_name} ")
+        f"  FOR VALUES IN ({constraint_layer_id})")
     stmt2 = (
-        f"  ALTER COLUNM constraint_layer_id "
+        f"ALTER TABLE constraints.{constraint_layer_name} "
+        f"  ALTER COLUMN constraint_layer_id "
         f"  SET DEFAULT {constraint_layer_id}")
+    return (stmt1, stmt2)
 
 
 if __name__ == "__main__":
     with engine(credentials_from_ini(Path("db_credentials.ini")),
                 echo=True).connect() as conn:
-        #    create_prtitioned_tables(conn, constraint_objects_table)
-        create_constraint_layer_table(conn, GeomType.MULTIPOLYGON, 1)
+        create_prtitioned_tables(conn, constraint_objects_table)
+        conn.commit()
