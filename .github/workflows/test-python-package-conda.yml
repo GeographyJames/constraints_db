@@ -27,6 +27,7 @@ jobs:
     - name: Lint with flake8
       run: |
         conda install flake8
+        conda install -n base conda-libmamba-solver --solver=classic
         # stop the build if there are Python syntax errors or undefined names
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
@@ -39,7 +40,6 @@ jobs:
 
     - name: Run MyPy
       run: |
-        conda install -n base conda-libmamba-solver --solver=classic
         conda install mypy
         mypy src --strict
 
