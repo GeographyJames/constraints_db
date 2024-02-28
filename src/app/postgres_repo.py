@@ -61,10 +61,9 @@ class PostGresRepo:
         with Session(self.engine) as session:
             session.add(sql_layer)
             session.commit()
-            stmt1, stmt2 = create_constraint_layer_table(
+            for stmt in create_constraint_layer_table(
                 constraint_layer_name=layer.name(),
                 geometry_type=layer.geom_type,
-                constraint_layer_id=sql_layer.id)
-            session.execute(text(stmt1))
-            session.execute(text(stmt2))
+                constraint_layer_id=sql_layer.id):
+                session.execute(text(stmt))
             session.commit()

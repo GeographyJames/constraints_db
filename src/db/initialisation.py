@@ -16,12 +16,13 @@ def initialise_db_entries(conn: Connection, files_to_load: List[Path]) -> None:
 
 
 if __name__ == "__main__":
-    files_to_load = [Path("administrative_levels.sql"),
+    files_to_load = [
                      Path("priority_levels.sql"),
                      Path("constraint_categories.sql"),
                      Path("data_licenses.sql"),
                      Path("data_publishers.sql"),
                      Path("development_constraints.sql"),
+                     Path("administrative_areas.sql")
                      ]
 
     with engine(credentials_from_ini(Path("db_credentials.ini")),

@@ -45,8 +45,8 @@ class DevelopmentConstraint(Base):
     notes: Mapped[Optional[str]]
     created: Mapped[datetime] = mapped_column(server_default=func.now())
     created_by: Mapped[str] = mapped_column(server_default=func.current_user())
-    last_updated: Mapped[datetime] = mapped_column(server_default=func.now())
-    last_updated_by: Mapped[str] = mapped_column(
+    last_update: Mapped[datetime] = mapped_column(server_default=func.now())
+    last_update_by: Mapped[str] = mapped_column(
         server_default=func.current_user())
     onshore_wind_priority_level_id: Mapped[int] = mapped_column(
         ForeignKey("priority_levels.id"))
@@ -76,8 +76,8 @@ class ConstraintCategory(Base):
     description: Mapped[Optional[str]]
     created: Mapped[datetime] = mapped_column(server_default=func.now())
     created_by: Mapped[str] = mapped_column(server_default=func.current_user())
-    last_updated: Mapped[datetime] = mapped_column(server_default=func.now())
-    last_updated_by: Mapped[str] = mapped_column(
+    last_update: Mapped[datetime] = mapped_column(server_default=func.now())
+    last_update_by: Mapped[str] = mapped_column(
         server_default=func.current_user())
 
     development_constraints: Mapped[
@@ -96,8 +96,8 @@ class PriorityLevel(Base):
     description: Mapped[Optional[str]]
     created: Mapped[datetime] = mapped_column(server_default=func.now())
     created_by: Mapped[str] = mapped_column(server_default=func.current_user())
-    last_updated: Mapped[datetime] = mapped_column(server_default=func.now())
-    last_updated_by: Mapped[str] = mapped_column(
+    last_update: Mapped[datetime] = mapped_column(server_default=func.now())
+    last_update_by: Mapped[str] = mapped_column(
         server_default=func.current_user())
 
 
@@ -122,8 +122,8 @@ class DataPublisher(Base):
     description: Mapped[Optional[str]]
     created: Mapped[datetime] = mapped_column(server_default=func.now())
     created_by: Mapped[str] = mapped_column(server_default=func.current_user())
-    last_updated: Mapped[datetime] = mapped_column(server_default=func.now())
-    last_updated_by: Mapped[str] = mapped_column(
+    last_update: Mapped[datetime] = mapped_column(server_default=func.now())
+    last_update_by: Mapped[str] = mapped_column(
         server_default=func.current_user())
 
     constraint_layers: Mapped[List["ConstraintLayer"]] = relationship(
@@ -141,8 +141,8 @@ class DataLicense(Base):
     description: Mapped[Optional[str]]
     created: Mapped[datetime] = mapped_column(server_default=func.now())
     created_by: Mapped[str] = mapped_column(server_default=func.current_user())
-    last_updated: Mapped[datetime] = mapped_column(server_default=func.now())
-    last_updated_by: Mapped[str] = mapped_column(
+    last_update: Mapped[datetime] = mapped_column(server_default=func.now())
+    last_update_by: Mapped[str] = mapped_column(
         server_default=func.current_user())
 
     constraint_layers: Mapped[List["ConstraintLayer"]] = relationship(
@@ -157,16 +157,14 @@ class AdministrativeArea(Base):
 
     id: Mapped[int] = mapped_column(Identity(), primary_key=True)
     name: Mapped[str] = mapped_column(unique=True)
-    abbreviation: Mapped[Optional[str]] = mapped_column(unique=True)
+    abbreviation: Mapped[str] = mapped_column(unique=True)
     parent_area_id: Mapped[Optional[int]] = mapped_column(
         ForeignKey("administrative_areas.id"))
     created: Mapped[datetime] = mapped_column(server_default=func.now())
     created_by: Mapped[str] = mapped_column(server_default=func.current_user())
-    last_updated: Mapped[datetime] = mapped_column(server_default=func.now())
-    last_updated_by: Mapped[str] = mapped_column(
+    last_update: Mapped[datetime] = mapped_column(server_default=func.now())
+    last_update_by: Mapped[str] = mapped_column(
         server_default=func.current_user())
-    geom: Mapped[WKBElement] = mapped_column(
-        Geometry(geometry_type="MULTIPOLYGON", srid=27700))
 
     parent_area: Mapped["AdministrativeArea"] = relationship(
         back_populates="child_areas", remote_side=[id])
@@ -203,8 +201,8 @@ class ConstraintLayer(Base):
 
     created: Mapped[datetime] = mapped_column(server_default=func.now())
     created_by: Mapped[str] = mapped_column(server_default=func.current_user())
-    last_updated: Mapped[datetime] = mapped_column(server_default=func.now())
-    last_updated_by: Mapped[str] = mapped_column(
+    last_update: Mapped[datetime] = mapped_column(server_default=func.now())
+    last_update_by: Mapped[str] = mapped_column(
         server_default=func.current_user())
 
     development_constraint: Mapped["DevelopmentConstraint"] = relationship(
@@ -232,9 +230,9 @@ constraint_objects_table = Table(
     Column("created", DateTime, server_default=func.now(), nullable=False),
     Column("created_by", TEXT, server_default=func.current_user(),
            nullable=False),
-    Column("last_updated", DateTime, server_default=func.now(),
+    Column("last_update", DateTime, server_default=func.now(),
            nullable=False),
-    Column("last_updated_by", TEXT, nullable=False,
+    Column("last_update_by", TEXT, nullable=False,
            server_default=func.current_user()),
     Column("geom", Geometry(srid=27700), nullable=False,),
     postgresql_partition_by="LIST(GeometryType(geom))",
@@ -270,7 +268,10 @@ def create_constraint_layer_table(constraint_layer_name: str,
         f"ALTER TABLE constraints.{constraint_layer_name} "
         f"  ALTER COLUMN constraint_layer_id "
         f"  SET DEFAULT {constraint_layer_id}")
-    return (stmt1, stmt2)
+    stmt3 = (
+        f"GRANT SELECT ON TABLE constraints.{constraint_layer_name} TO public "
+        ) 
+    return (stmt1, stmt2, stmt3)
 
 
 if __name__ == "__main__":
