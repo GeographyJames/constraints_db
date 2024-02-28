@@ -257,7 +257,7 @@ def create_prtitioned_tables(conn: Connection, parent_table: Table) -> None:
 
 def create_constraint_layer_table(constraint_layer_name: str,
                                   geometry_type: GeomType,
-                                  constraint_layer_id: int) -> tuple[str, str]:
+                                  constraint_layer_id: int) -> list[str]:
 
     parent_table_name = f"{constraint_objects_table.name}_{geometry_type}"
     stmt1 = (
@@ -271,7 +271,7 @@ def create_constraint_layer_table(constraint_layer_name: str,
     stmt3 = (
         f"GRANT SELECT ON TABLE constraints.{constraint_layer_name} TO public "
         ) 
-    return (stmt1, stmt2, stmt3)
+    return [stmt1, stmt2, stmt3]
 
 
 if __name__ == "__main__":
