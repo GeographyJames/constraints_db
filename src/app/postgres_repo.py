@@ -49,18 +49,13 @@ class PostGresRepo:
             )
         return result
 
-    def add_constraint_layer(self, layer: ConstraintLayerInputDTO):
+    def add_constraint_layer(self, layer: ConstraintLayerInputDTO) -> None:
         sql_layer = ConstraintLayer(
             name=layer.name(),
             development_constraint_id=layer.development_constraint.id,
             administrative_area_id=layer.administrative_area.id,
             data_publisher_id=layer.data_publisher_id,
             data_accessed_or_created=layer.data_accessed_or_created
-
-
-
-
-
 
         )
         with Session(self.engine) as session:

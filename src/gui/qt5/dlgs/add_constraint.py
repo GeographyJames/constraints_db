@@ -1,7 +1,7 @@
 from .qt_designer.add_constraint import Ui_AddConstraintDlg
 from PyQt5.QtWidgets import QDialog
 import logging
-from src.app.dtos import ConstraintLayerInputDTO
+from src.app.dtos import ConstraintLayerInputDTO, ConstraintLayerFormOptionsDTO
 from src.app.postgres_repo import PostGresRepo
 from PyQt5.QtCore import QDate
 from src.db.enums import GeomType
@@ -22,17 +22,23 @@ class AddConstraintDlg(QDialog,  # type: ignore
         self.AdministrativeAreaCB.currentIndexChanged.connect(
             self.update_layer_name
         )
+        self.form_options: None | ConstraintLayerFormOptionsDTO = None
 
     def update_combo_boxes(self) -> None:
         self.form_options = self.repo.get_constraint_layer_form_options()
-        for key, value in self.form_options.administrative_areas.items():
-            self.AdministrativeAreaCB.addItem(value.name, key)
-        for key, value in self.form_options.data_licenses.items():
-            self.LicenseCB.addItem(value, key)
-        for key, value in self.form_options.data_publishers.items():
-            self.DataPublisherCB.addItem(value, key)
-        for key, value in self.form_options.development_constraints.items():
-            self.DevelopmentConstraintCB.addItem(value.name, key)
+        for area in self.form_options.administrative_areas.values():
+            self.AdministrativeAreaCB.addItem(area.name, area.id)
+
+        for id, name in self.form_options.data_licenses.items():
+            self.LicenseCB.addItem(name, id)
+
+        for id, name in self.form_options.data_publishers.items():
+            self.DataPublisherCB.addItem(name, id)
+
+        for constraint in self.form_options.development_constraints.values():
+            self.DevelopmentConstraintCB.addItem(
+                constraint.name, constraint.id)
+
         for value in GeomType.__members__:
             self.GeomTypeCB.addItem(value)
 
@@ -43,6 +49,8 @@ class AddConstraintDlg(QDialog,  # type: ignore
         self.ExpiresDE.setDate(QDate.currentDate())
 
     def populate_input_dto(self) -> ConstraintLayerInputDTO:
+        if not self.form_options:
+            raise Exception
         return ConstraintLayerInputDTO(
             development_constraint=self.form_options.development_constraints[
                 self.DevelopmentConstraintCB.currentData()],
@@ -66,7 +74,7 @@ class AddConstraintDlg(QDialog,  # type: ignore
             geom_type=GeomType[self.GeomTypeCB.currentText()]
         )
 
-    def update_layer_name(self):
+    def update_layer_name(self) -> None:
         self.LayerNameLE.setText(self.populate_input_dto().name())
 
     def add_layer(self) -> None:

@@ -259,7 +259,7 @@ def create_prtitioned_tables(conn: Connection, parent_table: Table) -> None:
 
 def create_constraint_layer_table(constraint_layer_name: str,
                                   geometry_type: GeomType,
-                                  constraint_layer_id: int) -> None:
+                                  constraint_layer_id: int) -> tuple[str, str]:
 
     parent_table_name = f"{constraint_objects_table.name}_{geometry_type}"
     stmt1 = (

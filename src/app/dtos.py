@@ -41,7 +41,7 @@ class ConstraintLayerInputDTO:
     notes: str | None
     geom_type: GeomType
 
-    def name(self):
+    def name(self) -> str:
         administrative_area = self.administrative_area.abbreviation if \
             self.administrative_area.abbreviation else \
             self.administrative_area.name

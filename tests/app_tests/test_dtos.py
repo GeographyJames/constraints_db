@@ -2,6 +2,7 @@ from src.app.dtos import (ConstraintLayerInputDTO,
                           DevelopmentConstraintOutputDTO,
                           AdministrativeAreaOutputDTO)
 from datetime import date
+from src.db.enums import GeomType
 
 
 def test_should_retun_layer_name():
@@ -19,5 +20,6 @@ def test_should_retun_layer_name():
         data_last_updated=None,
         data_expires=None,
         data_next_updated=None,
-        notes=None)
-    assert layer.name() == "2-aa-al"
+        notes=None,
+        geom_type=GeomType.MULTIPOLYGON)
+    assert layer.name() == "sco_sssi"
