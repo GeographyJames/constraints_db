@@ -261,13 +261,8 @@
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">db.models.</span></span><span class="sig-name descname"><span class="pre">AdministrativeArea</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#db.models.AdministrativeArea" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#db.models.Base" title="db.models.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">Base</span></code></a></p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="db.models.AdministrativeArea.administrative_level">
-<span class="sig-name descname"><span class="pre">administrative_level</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#db.models.AdministrativeLevel" title="db.models.AdministrativeLevel"><span class="pre">AdministrativeLevel</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.AdministrativeArea.administrative_level" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="db.models.AdministrativeArea.administrative_level_id">
-<span class="sig-name descname"><span class="pre">administrative_level_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.AdministrativeArea.administrative_level_id" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="db.models.AdministrativeArea.abbreviation">
+<span class="sig-name descname"><span class="pre">abbreviation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.AdministrativeArea.abbreviation" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -323,57 +318,6 @@
 <dl class="py attribute">
 <dt class="sig sig-object py" id="db.models.AdministrativeArea.parent_area_id">
 <span class="sig-name descname"><span class="pre">parent_area_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.AdministrativeArea.parent_area_id" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="db.models.AdministrativeLevel">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">db.models.</span></span><span class="sig-name descname"><span class="pre">AdministrativeLevel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#db.models.AdministrativeLevel" title="Link to this definition">#</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#db.models.Base" title="db.models.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">Base</span></code></a></p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="db.models.AdministrativeLevel.administrative_areas">
-<span class="sig-name descname"><span class="pre">administrative_areas</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#db.models.AdministrativeArea" title="db.models.AdministrativeArea"><span class="pre">AdministrativeArea</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.AdministrativeLevel.administrative_areas" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="db.models.AdministrativeLevel.constraint_layers">
-<span class="sig-name descname"><span class="pre">constraint_layers</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#db.models.ConstraintLayer" title="db.models.ConstraintLayer"><span class="pre">ConstraintLayer</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.AdministrativeLevel.constraint_layers" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="db.models.AdministrativeLevel.created">
-<span class="sig-name descname"><span class="pre">created</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">datetime</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.AdministrativeLevel.created" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="db.models.AdministrativeLevel.created_by">
-<span class="sig-name descname"><span class="pre">created_by</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.AdministrativeLevel.created_by" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="db.models.AdministrativeLevel.id">
-<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.AdministrativeLevel.id" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="db.models.AdministrativeLevel.last_updated">
-<span class="sig-name descname"><span class="pre">last_updated</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">datetime</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.AdministrativeLevel.last_updated" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="db.models.AdministrativeLevel.last_updated_by">
-<span class="sig-name descname"><span class="pre">last_updated_by</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.AdministrativeLevel.last_updated_by" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="db.models.AdministrativeLevel.level">
-<span class="sig-name descname"><span class="pre">level</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.AdministrativeLevel.level" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="db.models.AdministrativeLevel.name">
-<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.AdministrativeLevel.name" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -473,16 +417,6 @@ for new <code class="xref py py-class docutils literal notranslate"><span class=
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="db.models.ConstraintLayer.administrative_level">
-<span class="sig-name descname"><span class="pre">administrative_level</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#db.models.AdministrativeLevel" title="db.models.AdministrativeLevel"><span class="pre">AdministrativeLevel</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.ConstraintLayer.administrative_level" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="db.models.ConstraintLayer.administrative_level_id">
-<span class="sig-name descname"><span class="pre">administrative_level_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.ConstraintLayer.administrative_level_id" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
 <dt class="sig sig-object py" id="db.models.ConstraintLayer.created">
 <span class="sig-name descname"><span class="pre">created</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">datetime</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.ConstraintLayer.created" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
@@ -494,7 +428,7 @@ for new <code class="xref py py-class docutils literal notranslate"><span class=
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="db.models.ConstraintLayer.data_accessed_or_created">
-<span class="sig-name descname"><span class="pre">data_accessed_or_created</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">date</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.ConstraintLayer.data_accessed_or_created" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">data_accessed_or_created</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">date</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.ConstraintLayer.data_accessed_or_created" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -805,6 +739,11 @@ for new <code class="xref py py-class docutils literal notranslate"><span class=
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="db.models.create_constraint_layer_table">
+<span class="sig-prename descclassname"><span class="pre">db.models.</span></span><span class="sig-name descname"><span class="pre">create_constraint_layer_table</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">constraint_layer_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geometry_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#db.enums.GeomType" title="db.enums.GeomType"><span class="pre">GeomType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">constraint_layer_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#db.models.create_constraint_layer_table" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="db.models.create_prtitioned_tables">
 <span class="sig-prename descclassname"><span class="pre">db.models.</span></span><span class="sig-name descname"><span class="pre">create_prtitioned_tables</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">conn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.sqlalchemy.org/en/20/core/connections.html#sqlalchemy.engine.Connection" title="(in SQLAlchemy v2.0)"><span class="pre">Connection</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent_table</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Table" title="(in SQLAlchemy v2.0)"><span class="pre">Table</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#db.models.create_prtitioned_tables" title="Link to this definition">#</a></dt>
 <dd><p>To my current knowledge, Alembic does not support table partitioning.
@@ -963,8 +902,7 @@ current time and database user when updating a table row.</p>
 </li>
 <li><a class="reference internal" href="#module-db.models">db.models module</a><ul>
 <li><a class="reference internal" href="#db.models.AdministrativeArea"><code class="docutils literal notranslate"><span class="pre">AdministrativeArea</span></code></a><ul>
-<li><a class="reference internal" href="#db.models.AdministrativeArea.administrative_level"><code class="docutils literal notranslate"><span class="pre">AdministrativeArea.administrative_level</span></code></a></li>
-<li><a class="reference internal" href="#db.models.AdministrativeArea.administrative_level_id"><code class="docutils literal notranslate"><span class="pre">AdministrativeArea.administrative_level_id</span></code></a></li>
+<li><a class="reference internal" href="#db.models.AdministrativeArea.abbreviation"><code class="docutils literal notranslate"><span class="pre">AdministrativeArea.abbreviation</span></code></a></li>
 <li><a class="reference internal" href="#db.models.AdministrativeArea.child_areas"><code class="docutils literal notranslate"><span class="pre">AdministrativeArea.child_areas</span></code></a></li>
 <li><a class="reference internal" href="#db.models.AdministrativeArea.constraint_layers"><code class="docutils literal notranslate"><span class="pre">AdministrativeArea.constraint_layers</span></code></a></li>
 <li><a class="reference internal" href="#db.models.AdministrativeArea.created"><code class="docutils literal notranslate"><span class="pre">AdministrativeArea.created</span></code></a></li>
@@ -976,18 +914,6 @@ current time and database user when updating a table row.</p>
 <li><a class="reference internal" href="#db.models.AdministrativeArea.name"><code class="docutils literal notranslate"><span class="pre">AdministrativeArea.name</span></code></a></li>
 <li><a class="reference internal" href="#db.models.AdministrativeArea.parent_area"><code class="docutils literal notranslate"><span class="pre">AdministrativeArea.parent_area</span></code></a></li>
 <li><a class="reference internal" href="#db.models.AdministrativeArea.parent_area_id"><code class="docutils literal notranslate"><span class="pre">AdministrativeArea.parent_area_id</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#db.models.AdministrativeLevel"><code class="docutils literal notranslate"><span class="pre">AdministrativeLevel</span></code></a><ul>
-<li><a class="reference internal" href="#db.models.AdministrativeLevel.administrative_areas"><code class="docutils literal notranslate"><span class="pre">AdministrativeLevel.administrative_areas</span></code></a></li>
-<li><a class="reference internal" href="#db.models.AdministrativeLevel.constraint_layers"><code class="docutils literal notranslate"><span class="pre">AdministrativeLevel.constraint_layers</span></code></a></li>
-<li><a class="reference internal" href="#db.models.AdministrativeLevel.created"><code class="docutils literal notranslate"><span class="pre">AdministrativeLevel.created</span></code></a></li>
-<li><a class="reference internal" href="#db.models.AdministrativeLevel.created_by"><code class="docutils literal notranslate"><span class="pre">AdministrativeLevel.created_by</span></code></a></li>
-<li><a class="reference internal" href="#db.models.AdministrativeLevel.id"><code class="docutils literal notranslate"><span class="pre">AdministrativeLevel.id</span></code></a></li>
-<li><a class="reference internal" href="#db.models.AdministrativeLevel.last_updated"><code class="docutils literal notranslate"><span class="pre">AdministrativeLevel.last_updated</span></code></a></li>
-<li><a class="reference internal" href="#db.models.AdministrativeLevel.last_updated_by"><code class="docutils literal notranslate"><span class="pre">AdministrativeLevel.last_updated_by</span></code></a></li>
-<li><a class="reference internal" href="#db.models.AdministrativeLevel.level"><code class="docutils literal notranslate"><span class="pre">AdministrativeLevel.level</span></code></a></li>
-<li><a class="reference internal" href="#db.models.AdministrativeLevel.name"><code class="docutils literal notranslate"><span class="pre">AdministrativeLevel.name</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#db.models.Base"><code class="docutils literal notranslate"><span class="pre">Base</span></code></a><ul>
@@ -1011,8 +937,6 @@ current time and database user when updating a table row.</p>
 <li><a class="reference internal" href="#db.models.ConstraintLayer"><code class="docutils literal notranslate"><span class="pre">ConstraintLayer</span></code></a><ul>
 <li><a class="reference internal" href="#db.models.ConstraintLayer.administrative_area"><code class="docutils literal notranslate"><span class="pre">ConstraintLayer.administrative_area</span></code></a></li>
 <li><a class="reference internal" href="#db.models.ConstraintLayer.administrative_area_id"><code class="docutils literal notranslate"><span class="pre">ConstraintLayer.administrative_area_id</span></code></a></li>
-<li><a class="reference internal" href="#db.models.ConstraintLayer.administrative_level"><code class="docutils literal notranslate"><span class="pre">ConstraintLayer.administrative_level</span></code></a></li>
-<li><a class="reference internal" href="#db.models.ConstraintLayer.administrative_level_id"><code class="docutils literal notranslate"><span class="pre">ConstraintLayer.administrative_level_id</span></code></a></li>
 <li><a class="reference internal" href="#db.models.ConstraintLayer.created"><code class="docutils literal notranslate"><span class="pre">ConstraintLayer.created</span></code></a></li>
 <li><a class="reference internal" href="#db.models.ConstraintLayer.created_by"><code class="docutils literal notranslate"><span class="pre">ConstraintLayer.created_by</span></code></a></li>
 <li><a class="reference internal" href="#db.models.ConstraintLayer.data_accessed_or_created"><code class="docutils literal notranslate"><span class="pre">ConstraintLayer.data_accessed_or_created</span></code></a></li>
@@ -1086,6 +1010,7 @@ current time and database user when updating a table row.</p>
 <li><a class="reference internal" href="#db.models.PriorityLevel.name"><code class="docutils literal notranslate"><span class="pre">PriorityLevel.name</span></code></a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#db.models.create_constraint_layer_table"><code class="docutils literal notranslate"><span class="pre">create_constraint_layer_table()</span></code></a></li>
 <li><a class="reference internal" href="#db.models.create_prtitioned_tables"><code class="docutils literal notranslate"><span class="pre">create_prtitioned_tables()</span></code></a></li>
 </ul>
 </li>
