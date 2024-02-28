@@ -1,6 +1,5 @@
 from .qt_designer.add_constraint import Ui_AddConstraintDlg
 from PyQt5.QtWidgets import QDialog
-import logging
 from src.app.dtos import ConstraintLayerInputDTO, ConstraintLayerFormOptionsDTO
 from src.app.postgres_repo import PostGresRepo
 from PyQt5.QtCore import QDate
@@ -10,7 +9,6 @@ from src.db.enums import GeomType
 class AddConstraintDlg(QDialog,  # type: ignore
                        Ui_AddConstraintDlg):
     def __init__(self, repo: PostGresRepo) -> None:
-        logging.info("Initiating add constraint dlg")
         super().__init__()
         self.repo = repo
         self.setupUi(self)  # type: ignore
@@ -78,10 +76,5 @@ class AddConstraintDlg(QDialog,  # type: ignore
         self.LayerNameLE.setText(self.populate_input_dto().name())
 
     def add_layer(self) -> None:
-        logging.info("submit button pressed")
-        print(self.LayerNameLE.text(), type(self.LayerNameLE.text())),
-        print(self.NotesTE.document().toPlainText()), type(
-            self.NotesTE.document().toPlainText())
         input_dto = self.populate_input_dto()
         self.repo.add_constraint_layer(input_dto)
-        logging.info(input_dto)
