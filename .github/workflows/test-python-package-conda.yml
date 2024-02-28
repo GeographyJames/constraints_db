@@ -39,6 +39,7 @@ jobs:
 
     - name: Run MyPy
       run: |
+        conda install -n base conda-libmamba-solver --solver=classic
         conda install mypy
         mypy src --strict
 
