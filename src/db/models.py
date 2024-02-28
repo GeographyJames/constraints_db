@@ -6,7 +6,8 @@ from sqlalchemy import (Identity,
                         Integer,
                         Connection,
                         DateTime,
-                        text)
+                        text,
+                        )
 from sqlalchemy.sql.expression import func
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 from sqlalchemy.dialects.postgresql import TEXT
@@ -151,36 +152,14 @@ class DataLicense(Base):
         return f"<data licenses: {self.id}, {self.name}>"
 
 
-class AdministrativeLevel(Base):
-    __tablename__ = "administrative_levels"
-
-    id: Mapped[int] = mapped_column(Identity(), primary_key=True)
-    name: Mapped[str] = mapped_column(unique=True)
-    level: Mapped[int]
-    created: Mapped[datetime] = mapped_column(server_default=func.now())
-    created_by: Mapped[str] = mapped_column(server_default=func.current_user())
-    last_updated: Mapped[datetime] = mapped_column(server_default=func.now())
-    last_updated_by: Mapped[str] = mapped_column(
-        server_default=func.current_user())
-
-    administrative_areas: Mapped[list["AdministrativeArea"]] = relationship(
-        back_populates="administrative_level")
-    constraint_layers: Mapped[List["ConstraintLayer"]] = relationship(
-        back_populates="administrative_level")
-
-    def __repr__(self) -> str:
-        return f"<admin level: {self.id}, {self.name}>"
-
-
 class AdministrativeArea(Base):
     __tablename__ = "administrative_areas"
 
     id: Mapped[int] = mapped_column(Identity(), primary_key=True)
     name: Mapped[str] = mapped_column(unique=True)
+    abbreviation: Mapped[Optional[str]] = mapped_column(unique=True)
     parent_area_id: Mapped[Optional[int]] = mapped_column(
         ForeignKey("administrative_areas.id"))
-    administrative_level_id: Mapped[int] = mapped_column(
-        ForeignKey("administrative_levels.id"))
     created: Mapped[datetime] = mapped_column(server_default=func.now())
     created_by: Mapped[str] = mapped_column(server_default=func.current_user())
     last_updated: Mapped[datetime] = mapped_column(server_default=func.now())
@@ -189,8 +168,6 @@ class AdministrativeArea(Base):
     geom: Mapped[WKBElement] = mapped_column(
         Geometry(geometry_type="MULTIPOLYGON", srid=27700))
 
-    administrative_level: Mapped["AdministrativeLevel"] = relationship(
-        back_populates="administrative_areas")
     parent_area: Mapped["AdministrativeArea"] = relationship(
         back_populates="child_areas", remote_side=[id])
     child_areas: Mapped[List["AdministrativeArea"]
@@ -209,8 +186,6 @@ class ConstraintLayer(Base):
     name: Mapped[str] = mapped_column(unique=True)
     development_constraint_id: Mapped[int] = mapped_column(
         ForeignKey("development_constraints.id"))
-    administrative_level_id: Mapped[int] = mapped_column(
-        ForeignKey("administrative_levels.id"))
     administrative_area_id: Mapped[int] = mapped_column(
         ForeignKey("administrative_areas.id"))
     data_publisher_id: Mapped[int] = mapped_column(
@@ -220,7 +195,7 @@ class ConstraintLayer(Base):
     data_source: Mapped[Optional[str]]
     update_cycle: Mapped[Optional[str]]
 
-    data_accessed_or_created: Mapped[Optional[date]]
+    data_accessed_or_created: Mapped[date]
     data_last_updated: Mapped[Optional[date]]
     data_next_updated: Mapped[Optional[date]]
     data_expires: Mapped[Optional[date]]
@@ -233,8 +208,6 @@ class ConstraintLayer(Base):
         server_default=func.current_user())
 
     development_constraint: Mapped["DevelopmentConstraint"] = relationship(
-        back_populates="constraint_layers")
-    administrative_level: Mapped["AdministrativeLevel"] = relationship(
         back_populates="constraint_layers")
     administrative_area: Mapped["AdministrativeArea"] = relationship(
         back_populates="constraint_layers")
@@ -277,13 +250,31 @@ def create_prtitioned_tables(conn: Connection, parent_table: Table) -> None:
         conn.execute(text(
             f"CREATE TABLE IF NOT EXISTS {child_table_name} "
             f"  PARTITION OF {parent_table.name} "
-            f"  (CONSTRAINT pk_{child_table_name} PRIMARY KEY (id)) "
+            f"  (CONSTRAINT pk_{child_table_name} "
+            f"      PRIMARY KEY (id, constraint_layer_id)) "
             f"  FOR VALUES IN ('{geometry_type.name}') "
-
+            f"  PARTITION BY LIST (constraint_layer_id) "
         ))
+
+
+def create_constraint_layer_table(constraint_layer_name: str,
+                                  geometry_type: GeomType,
+                                  constraint_layer_id: int) -> tuple[str, str]:
+
+    parent_table_name = f"{constraint_objects_table.name}_{geometry_type}"
+    stmt1 = (
+        f"CREATE TABLE IF NOT EXISTS constraints.{constraint_layer_name} "
+        f"  PARTITION OF {parent_table_name} "
+        f"  FOR VALUES IN ({constraint_layer_id})")
+    stmt2 = (
+        f"ALTER TABLE constraints.{constraint_layer_name} "
+        f"  ALTER COLUMN constraint_layer_id "
+        f"  SET DEFAULT {constraint_layer_id}")
+    return (stmt1, stmt2)
 
 
 if __name__ == "__main__":
     with engine(credentials_from_ini(Path("db_credentials.ini")),
-                echo=True).begin() as conn:
+                echo=True).connect() as conn:
         create_prtitioned_tables(conn, constraint_objects_table)
+        conn.commit()
