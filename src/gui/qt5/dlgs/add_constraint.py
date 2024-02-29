@@ -6,6 +6,7 @@ from PyQt5.QtCore import QDate
 from src.db.enums import GeomType
 from slugify import slugify
 
+
 class AddConstraintDlg(QDialog,  # type: ignore
                        Ui_AddConstraintDlg):
     def __init__(self, repo: PostGresRepo) -> None:
@@ -25,7 +26,8 @@ class AddConstraintDlg(QDialog,  # type: ignore
     def update_combo_boxes(self) -> None:
         self.form_options = self.repo.get_constraint_layer_form_options()
         for area in self.form_options.administrative_areas.values():
-            self.AdministrativeAreaCB.addItem(f"{area.name} ({area.abbreviation})", area.id)
+            self.AdministrativeAreaCB.addItem(
+                f"{area.name} ({area.abbreviation})", area.id)
 
         for id, name in self.form_options.data_licenses.items():
             self.LicenseCB.addItem(name, id)
@@ -74,7 +76,13 @@ class AddConstraintDlg(QDialog,  # type: ignore
         )
 
     def update_layer_name(self) -> None:
-        self.LayerNameLE.setText(self.populate_input_dto().generate_name())
+        self.LayerNameLE.setText(ConstraintLayerInputDTO.generate_name(
+            administrative_area=self.form_options.administrative_areas[
+                self.AdministrativeAreaCB.currentData()],
+            development_constraint=self.form_options.development_constraints[
+                self.DevelopmentConstraintCB.currentData()]
+
+        ))
 
     def add_layer(self) -> None:
         input_dto = self.populate_input_dto()

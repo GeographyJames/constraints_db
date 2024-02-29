@@ -42,5 +42,7 @@ class ConstraintLayerInputDTO:
     notes: str | None
     geom_type: GeomType
 
-    def generate_name(self) -> str:
-        return slugify(f"{self.administrative_area.abbreviation}-{self.development_constraint.name}").replace("-", "_")
+
+    @staticmethod
+    def generate_name(administrative_area: AdministrativeAreaOutputDTO, development_constraint: DevelopmentConstraintOutputDTO) -> str:
+        return slugify(f"{administrative_area.abbreviation}-{development_constraint.name}").replace("-", "_")
