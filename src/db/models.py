@@ -101,17 +101,6 @@ class PriorityLevel(Base):
         server_default=func.current_user())
 
 
-"""
-    onshore_wind_constraints: Mapped[
-        List["DevelopmentConstraint"]] = relationship(
-        back_populates="onshore_wind_priority_level")
-    solar_constraints: Mapped[List["DevelopmentConstraint"]] = relationship(
-        back_populates="solar_priority_level")
-
-    def __repr__(self) -> str:
-        return f"<priority level: {self.id}, {self.name}>"
-"""
-
 
 class DataPublisher(Base):
     __tablename__ = "data_publishers"
