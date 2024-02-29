@@ -76,6 +76,8 @@ class AddConstraintDlg(QDialog,  # type: ignore
         )
 
     def update_layer_name(self) -> None:
+        if not self.form_options:
+            raise Exception
         self.LayerNameLE.setText(ConstraintLayerInputDTO.generate_name(
             administrative_area=self.form_options.administrative_areas[
                 self.AdministrativeAreaCB.currentData()],
