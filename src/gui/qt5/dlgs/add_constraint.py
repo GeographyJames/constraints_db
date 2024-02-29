@@ -25,7 +25,7 @@ class AddConstraintDlg(QDialog,  # type: ignore
     def update_combo_boxes(self) -> None:
         self.form_options = self.repo.get_constraint_layer_form_options()
         for area in self.form_options.administrative_areas.values():
-            self.AdministrativeAreaCB.addItem(area.name, area.id)
+            self.AdministrativeAreaCB.addItem(f"{area.name} ({area.abbreviation})", area.id)
 
         for id, name in self.form_options.data_licenses.items():
             self.LicenseCB.addItem(name, id)
