@@ -4,7 +4,7 @@ from src.app.dtos import ConstraintLayerInputDTO, ConstraintLayerFormOptionsDTO
 from src.app.postgres_repo import PostGresRepo
 from PyQt5.QtCore import QDate
 from src.db.enums import GeomType
-
+from slugify import slugify
 
 class AddConstraintDlg(QDialog,  # type: ignore
                        Ui_AddConstraintDlg):
@@ -50,6 +50,7 @@ class AddConstraintDlg(QDialog,  # type: ignore
         if not self.form_options:
             raise Exception
         return ConstraintLayerInputDTO(
+            name=slugify(self.LayerNameLE.text()).replace("-", "_").lower(),
             development_constraint=self.form_options.development_constraints[
                 self.DevelopmentConstraintCB.currentData()],
             administrative_area=self.form_options.administrative_areas[
@@ -73,8 +74,23 @@ class AddConstraintDlg(QDialog,  # type: ignore
         )
 
     def update_layer_name(self) -> None:
-        self.LayerNameLE.setText(self.populate_input_dto().name())
+        self.LayerNameLE.setText(self.populate_input_dto().generate_name())
 
     def add_layer(self) -> None:
         input_dto = self.populate_input_dto()
         self.repo.add_constraint_layer(input_dto)
+
+
+if __name__ == "__main__":
+    from PyQt5.QtWidgets import QApplication
+    from src.app.postgres_repo import PostGresRepo
+    from src.db.sqlalchemy_config import engine, credentials_from_ini
+    from pathlib import Path
+
+    if __name__ == "__main__":
+        app = QApplication([])
+        dlg = AddConstraintDlg(repo=PostGresRepo(
+            engine(credentials_from_ini(Path("db_credentials.ini")),
+                   echo=True), testing=True))
+        dlg.show()
+        exitcode = app.exec()

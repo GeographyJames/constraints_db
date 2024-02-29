@@ -28,6 +28,7 @@ class ConstraintLayerFormOptionsDTO:
 
 @attrs.define
 class ConstraintLayerInputDTO:
+    name: str
     development_constraint: DevelopmentConstraintOutputDTO
     administrative_area: AdministrativeAreaOutputDTO
     data_publisher_id: int
@@ -41,11 +42,5 @@ class ConstraintLayerInputDTO:
     notes: str | None
     geom_type: GeomType
 
-    def name(self) -> str:
-        administrative_area = self.administrative_area.abbreviation if \
-            self.administrative_area.abbreviation else \
-            self.administrative_area.name
-        constraint = self.development_constraint.abbreviation \
-            if self.development_constraint.abbreviation else \
-            self.development_constraint.name
-        return slugify(f"{administrative_area}-{constraint}").replace("-", "_")
+    def generate_name(self) -> str:
+        return slugify(f"{self.administrative_area.abbreviation}-{self.development_constraint.name}").replace("-", "_")

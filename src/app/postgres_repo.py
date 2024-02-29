@@ -16,8 +16,9 @@ from typing import Any
 
 
 class PostGresRepo:
-    def __init__(self, engine: Engine) -> None:
+    def __init__(self, engine: Engine, testing: bool=False) -> None:
         self.engine = engine
+        self.testing = testing
 
     def _to_dict(self, result: CursorResult[Any]) -> dict[int, str]:
         return {row.id: row.name for row in result.all()}
@@ -51,19 +52,20 @@ class PostGresRepo:
 
     def add_constraint_layer(self, layer: ConstraintLayerInputDTO) -> None:
         sql_layer = ConstraintLayer(
-            name=layer.name(),
+            name=layer.name,
             development_constraint_id=layer.development_constraint.id,
             administrative_area_id=layer.administrative_area.id,
             data_publisher_id=layer.data_publisher_id,
             data_accessed_or_created=layer.data_accessed_or_created
 
-        )
+        )  
         with Session(self.engine) as session:
             session.add(sql_layer)
-            session.commit()
-            for stmt in create_constraint_layer_table(
-                constraint_layer_name=layer.name(),
-                geometry_type=layer.geom_type,
-                constraint_layer_id=sql_layer.id):
-                session.execute(text(stmt))
-            session.commit()
+            if not self.testing:
+                session.commit()
+                for stmt in create_constraint_layer_table(
+                    constraint_layer_name=layer.name,
+                    geometry_type=layer.geom_type,
+                    constraint_layer_id=sql_layer.id):
+                    session.execute(text(stmt))
+                session.commit()
