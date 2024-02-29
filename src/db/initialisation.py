@@ -22,7 +22,8 @@ if __name__ == "__main__":
                      Path("data_licenses.sql"),
                      Path("data_publishers.sql"),
                      Path("development_constraints.sql"),
-                     Path("administrative_areas.sql")
+                     Path("administrative_areas.sql"),
+                     Path("constraint_layers.sql")
                      ]
 
     with engine(credentials_from_ini(Path("db_credentials.ini")),
