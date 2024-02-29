@@ -12,6 +12,7 @@ class AddConstraintDlg(QDialog,  # type: ignore
         super().__init__()
         self.repo = repo
         self.setupUi(self)  # type: ignore
+        self.form_options: None | ConstraintLayerFormOptionsDTO = None
         self.update_combo_boxes()
         self.set_date_edits()
         self.buttonBox.accepted.connect(self.add_layer)
@@ -20,7 +21,6 @@ class AddConstraintDlg(QDialog,  # type: ignore
         self.AdministrativeAreaCB.currentIndexChanged.connect(
             self.update_layer_name
         )
-        self.form_options: None | ConstraintLayerFormOptionsDTO = None
 
     def update_combo_boxes(self) -> None:
         self.form_options = self.repo.get_constraint_layer_form_options()

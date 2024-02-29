@@ -2,25 +2,10 @@ from sqlalchemy import DDL, Connection
 from .sqlalchemy_config import engine, credentials_from_ini
 import pathlib
 from typing import List
-import attrs
+from .initialisation import Table
 
 
-@attrs.define
-class Table:
-    schema: str
-    name: str
 
-
-tables = [Table("public", "development_constraints"),
-          Table("public", "constraint_categories"),
-          Table("public", "priority_levels"),
-          Table("public", "data_publishers"),
-          Table("public", "data_licenses"),
-          Table("public", "administrative_levels"),
-          Table("public", "administrative_areas"),
-          Table("public", "constraint_layers"),
-          Table("public", "constraint_objects"),
-          ]
 
 
 def create_triggers(conn: Connection, tables: List[Table]) -> None:
@@ -51,6 +36,7 @@ def create_triggers(conn: Connection, tables: List[Table]) -> None:
 
 
 if __name__ == "__main__":
+    from .initialisation import tables
     with engine(credentials_from_ini(
             pathlib.Path("db_credentials.ini")), echo=True).begin() as conn:
         create_triggers(conn, tables)
