@@ -38,7 +38,7 @@ class DevelopmentConstraint(Base):
     constraint_category_id: Mapped[int] = mapped_column(
         ForeignKey("constraint_categories.id"))
     name: Mapped[str] = mapped_column(unique=True)
-    abbreviation: Mapped[Optional[str]]
+    abbreviation: Mapped[Optional[str]] = mapped_column(unique=True)
     description: Mapped[Optional[str]]
     notes: Mapped[Optional[str]]
     created: Mapped[datetime] = mapped_column(server_default=func.now())
@@ -50,7 +50,7 @@ class DevelopmentConstraint(Base):
         ForeignKey("priority_levels.id"))
     solar_priority_level_id: Mapped[int] = mapped_column(
         ForeignKey("priority_levels.id"))
-
+    table_name: Mapped[str] = mapped_column(unique=True, default=name)
     constraint_category: Mapped["ConstraintCategory"] = relationship(
         back_populates="development_constraints")
     onshore_wind_priority_level: Mapped["PriorityLevel"] = relationship(
