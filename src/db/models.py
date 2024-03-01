@@ -13,9 +13,7 @@ from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 from sqlalchemy.dialects.postgresql import TEXT
 from typing import Optional, List
 from datetime import datetime, date
-from geoalchemy2 import WKBElement, Geometry
-from .sqlalchemy_config import engine, credentials_from_ini
-from pathlib import Path
+from geoalchemy2 import Geometry
 from .enums import GeomType
 
 
@@ -99,7 +97,6 @@ class PriorityLevel(Base):
     last_update: Mapped[datetime] = mapped_column(server_default=func.now())
     last_update_by: Mapped[str] = mapped_column(
         server_default=func.current_user())
-
 
 
 class DataPublisher(Base):
@@ -228,19 +225,20 @@ constraint_objects_table = Table(
 )
 
 
-def create_prtitioned_tables(conn: Connection, parent_table: Table) -> None:
+def create_prtitioned_tables(conn: Connection) -> None:
     """To my current knowledge, Alembic does not support table partitioning.
     Therefore to create the partitioned tables, run this function.
     """
     for geometry_type in GeomType:
-        child_table_name = f"{parent_table.name}_{geometry_type}"
+        name = f"{constraint_objects_table.name}_{geometry_type}"
         conn.execute(text(
-            f"CREATE TABLE IF NOT EXISTS {child_table_name} "
-            f"  PARTITION OF {parent_table.name} "
-            f"  (CONSTRAINT pk_{child_table_name} "
+            f"CREATE TABLE IF NOT EXISTS {name} "
+            f"  PARTITION OF {constraint_objects_table.name} "
+            f"  (CONSTRAINT pk_{name} "
             f"      PRIMARY KEY (id, constraint_layer_id)) "
             f"  FOR VALUES IN ('{geometry_type.name}') "
-            f"  PARTITION BY LIST (constraint_layer_id) "
+            f"  PARTITION BY LIST (constraint_layer_id); "
+            f"GRANT SELECT ON TABLE {name} TO PUBLIC; "
         ))
 
 
@@ -259,12 +257,5 @@ def create_constraint_layer_table(constraint_layer_name: str,
         f"  SET DEFAULT {constraint_layer_id}")
     stmt3 = (
         f"GRANT SELECT ON TABLE constraints.{constraint_layer_name} TO public "
-        ) 
+    )
     return [stmt1, stmt2, stmt3]
-
-
-if __name__ == "__main__":
-    with engine(credentials_from_ini(Path("db_credentials.ini")),
-                echo=True).connect() as conn:
-        create_prtitioned_tables(conn, constraint_objects_table)
-        conn.commit()
