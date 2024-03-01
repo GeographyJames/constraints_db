@@ -51,6 +51,7 @@ def initialise_db_entries(conn: Connection, files_to_load: list[Path]) -> None:
             conn.execute(text(f.read()))
 
 
+"""
 def set_constraint_layer_names(conn: Connection,
                                layer_ids: None | list[int] = None,
                                all: bool = False) -> None:
@@ -69,6 +70,7 @@ def set_constraint_layer_names(conn: Connection,
             layer_name = slugify(f"{area}_{name}").replace("-", "_").lower()
             layer.name = layer_name
     session.commit()
+"""
 
 
 def set_table_identity_sequence(conn: Connection, tables: list[Table]) -> None:
