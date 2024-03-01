@@ -77,15 +77,15 @@ def set_table_identity_sequence(conn: Connection, tables: list[Table]) -> None:
     for table in tables:
         conn.execute(text(
             f"SELECT setval(pg_get_serial_sequence( "
-            f"'{table.schema}{table.name}', 'id'), "
+            f"'{table.schema}.{table.name}', 'id'), "
             f"coalesce(MAX(id), 1)) from {table.schema}.{table.name}"
         ))
 
 
 def initialise_constraints_tables(conn: Connection) -> None:
     conn.execute(text(
-        "CREATE SCHEMA IF NOT EXISTS constraints;"
-        "GRANT USAGE ON SHEMA constraints TO PUBLIC;"
+        "CREATE SCHEMA IF NOT EXISTS constraints; "
+        "GRANT USAGE ON SCHEMA constraints TO PUBLIC;"
     ))
     for layer in conn.execute(select(ConstraintLayer.name,
                                      ConstraintLayer.id)):
@@ -106,3 +106,4 @@ if __name__ == "__main__":
         # set_constraint_layer_names(conn, all=True)
         set_table_identity_sequence(conn, tables)
         initialise_constraints_tables(conn)
+        conn.commit()
