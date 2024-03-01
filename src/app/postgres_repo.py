@@ -31,10 +31,13 @@ class PostGresRepo:
                     row.id: DevelopmentConstraintOutputDTO(
                         id=row.id,
                         name=row.name,
+                        table_name=row.table_name,
                         abbreviation=row.abbreviation) for row in conn.execute(
                         select(DevelopmentConstraint.id,
                                DevelopmentConstraint.name,
-                               DevelopmentConstraint.abbreviation))},
+                               DevelopmentConstraint.table_name,
+                               DevelopmentConstraint.abbreviation).order_by(
+                                   DevelopmentConstraint.name))},
                 administrative_areas={
                     row.id: AdministrativeAreaOutputDTO(
                         id=row.id,
@@ -44,9 +47,10 @@ class PostGresRepo:
                                    AdministrativeArea.name,
                                    AdministrativeArea.abbreviation))},
                 data_publishers=self._to_dict(conn.execute(select(
-                    DataPublisher.id, DataPublisher.name))),
+                    DataPublisher.id, DataPublisher.name).order_by(
+                        DataPublisher.name))),
                 data_licenses=self._to_dict(conn.execute(select(
-                    DataLicense.id, DataLicense.name)))
+                    DataLicense.id, DataLicense.name).order_by(DataLicense.name)))
             )
         return result
 
@@ -64,7 +68,7 @@ class PostGresRepo:
             if not self.testing:
                 session.commit()
                 for stmt in create_constraint_layer_table(
-                    constraint_layer_name=layer.name,
+                    constraint_layer_name=layer.name(),
                     geometry_type=layer.geom_type,
                     constraint_layer_id=sql_layer.id):
                     session.execute(text(stmt))
