@@ -216,8 +216,15 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="db.html#module-db.initialisation">db.initialisation module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="db.html#db.initialisation.initialise_db"><code class="docutils literal notranslate"><span class="pre">initialise_db()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="db.html#db.initialisation.Table"><code class="docutils literal notranslate"><span class="pre">Table</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="db.html#db.initialisation.Table.name"><code class="docutils literal notranslate"><span class="pre">Table.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="db.html#db.initialisation.Table.schema"><code class="docutils literal notranslate"><span class="pre">Table.schema</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="db.html#db.initialisation.initialise_constraints_tables"><code class="docutils literal notranslate"><span class="pre">initialise_constraints_tables()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="db.html#db.initialisation.initialise_db_entries"><code class="docutils literal notranslate"><span class="pre">initialise_db_entries()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="db.html#db.initialisation.set_constraint_layer_names"><code class="docutils literal notranslate"><span class="pre">set_constraint_layer_names()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="db.html#db.initialisation.set_table_identity_sequence"><code class="docutils literal notranslate"><span class="pre">set_table_identity_sequence()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="db.html#module-db.models">db.models module</a><ul>
@@ -227,10 +234,9 @@
 <li class="toctree-l4"><a class="reference internal" href="db.html#db.models.AdministrativeArea.constraint_layers"><code class="docutils literal notranslate"><span class="pre">AdministrativeArea.constraint_layers</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="db.html#db.models.AdministrativeArea.created"><code class="docutils literal notranslate"><span class="pre">AdministrativeArea.created</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="db.html#db.models.AdministrativeArea.created_by"><code class="docutils literal notranslate"><span class="pre">AdministrativeArea.created_by</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="db.html#db.models.AdministrativeArea.geom"><code class="docutils literal notranslate"><span class="pre">AdministrativeArea.geom</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="db.html#db.models.AdministrativeArea.id"><code class="docutils literal notranslate"><span class="pre">AdministrativeArea.id</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="db.html#db.models.AdministrativeArea.last_updated"><code class="docutils literal notranslate"><span class="pre">AdministrativeArea.last_updated</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="db.html#db.models.AdministrativeArea.last_updated_by"><code class="docutils literal notranslate"><span class="pre">AdministrativeArea.last_updated_by</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="db.html#db.models.AdministrativeArea.last_update"><code class="docutils literal notranslate"><span class="pre">AdministrativeArea.last_update</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="db.html#db.models.AdministrativeArea.last_update_by"><code class="docutils literal notranslate"><span class="pre">AdministrativeArea.last_update_by</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="db.html#db.models.AdministrativeArea.name"><code class="docutils literal notranslate"><span class="pre">AdministrativeArea.name</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="db.html#db.models.AdministrativeArea.parent_area"><code class="docutils literal notranslate"><span class="pre">AdministrativeArea.parent_area</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="db.html#db.models.AdministrativeArea.parent_area_id"><code class="docutils literal notranslate"><span class="pre">AdministrativeArea.parent_area_id</span></code></a></li>
@@ -249,8 +255,8 @@
 <li class="toctree-l4"><a class="reference internal" href="db.html#db.models.ConstraintCategory.description"><code class="docutils literal notranslate"><span class="pre">ConstraintCategory.description</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="db.html#db.models.ConstraintCategory.development_constraints"><code class="docutils literal notranslate"><span class="pre">ConstraintCategory.development_constraints</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="db.html#db.models.ConstraintCategory.id"><code class="docutils literal notranslate"><span class="pre">ConstraintCategory.id</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="db.html#db.models.ConstraintCategory.last_updated"><code class="docutils literal notranslate"><span class="pre">ConstraintCategory.last_updated</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="db.html#db.models.ConstraintCategory.last_updated_by"><code class="docutils literal notranslate"><span class="pre">ConstraintCategory.last_updated_by</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="db.html#db.models.ConstraintCategory.last_update"><code class="docutils literal notranslate"><span class="pre">ConstraintCategory.last_update</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="db.html#db.models.ConstraintCategory.last_update_by"><code class="docutils literal notranslate"><span class="pre">ConstraintCategory.last_update_by</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="db.html#db.models.ConstraintCategory.name"><code class="docutils literal notranslate"><span class="pre">ConstraintCategory.name</span></code></a></li>
 </ul>
 </li>
@@ -271,8 +277,8 @@
 <li class="toctree-l4"><a class="reference internal" href="db.html#db.models.ConstraintLayer.development_constraint"><code class="docutils literal notranslate"><span class="pre">ConstraintLayer.development_constraint</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="db.html#db.models.ConstraintLayer.development_constraint_id"><code class="docutils literal notranslate"><span class="pre">ConstraintLayer.development_constraint_id</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="db.html#db.models.ConstraintLayer.id"><code class="docutils literal notranslate"><span class="pre">ConstraintLayer.id</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="db.html#db.models.ConstraintLayer.last_updated"><code class="docutils literal notranslate"><span class="pre">ConstraintLayer.last_updated</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="db.html#db.models.ConstraintLayer.last_updated_by"><code class="docutils literal notranslate"><span class="pre">ConstraintLayer.last_updated_by</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="db.html#db.models.ConstraintLayer.last_update"><code class="docutils literal notranslate"><span class="pre">ConstraintLayer.last_update</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="db.html#db.models.ConstraintLayer.last_update_by"><code class="docutils literal notranslate"><span class="pre">ConstraintLayer.last_update_by</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="db.html#db.models.ConstraintLayer.name"><code class="docutils literal notranslate"><span class="pre">ConstraintLayer.name</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="db.html#db.models.ConstraintLayer.notes"><code class="docutils literal notranslate"><span class="pre">ConstraintLayer.notes</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="db.html#db.models.ConstraintLayer.update_cycle"><code class="docutils literal notranslate"><span class="pre">ConstraintLayer.update_cycle</span></code></a></li>
@@ -284,8 +290,8 @@
 <li class="toctree-l4"><a class="reference internal" href="db.html#db.models.DataLicense.created_by"><code class="docutils literal notranslate"><span class="pre">DataLicense.created_by</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="db.html#db.models.DataLicense.description"><code class="docutils literal notranslate"><span class="pre">DataLicense.description</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="db.html#db.models.DataLicense.id"><code class="docutils literal notranslate"><span class="pre">DataLicense.id</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="db.html#db.models.DataLicense.last_updated"><code class="docutils literal notranslate"><span class="pre">DataLicense.last_updated</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="db.html#db.models.DataLicense.last_updated_by"><code class="docutils literal notranslate"><span class="pre">DataLicense.last_updated_by</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="db.html#db.models.DataLicense.last_update"><code class="docutils literal notranslate"><span class="pre">DataLicense.last_update</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="db.html#db.models.DataLicense.last_update_by"><code class="docutils literal notranslate"><span class="pre">DataLicense.last_update_by</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="db.html#db.models.DataLicense.name"><code class="docutils literal notranslate"><span class="pre">DataLicense.name</span></code></a></li>
 </ul>
 </li>
@@ -296,8 +302,8 @@
 <li class="toctree-l4"><a class="reference internal" href="db.html#db.models.DataPublisher.created_by"><code class="docutils literal notranslate"><span class="pre">DataPublisher.created_by</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="db.html#db.models.DataPublisher.description"><code class="docutils literal notranslate"><span class="pre">DataPublisher.description</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="db.html#db.models.DataPublisher.id"><code class="docutils literal notranslate"><span class="pre">DataPublisher.id</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="db.html#db.models.DataPublisher.last_updated"><code class="docutils literal notranslate"><span class="pre">DataPublisher.last_updated</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="db.html#db.models.DataPublisher.last_updated_by"><code class="docutils literal notranslate"><span class="pre">DataPublisher.last_updated_by</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="db.html#db.models.DataPublisher.last_update"><code class="docutils literal notranslate"><span class="pre">DataPublisher.last_update</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="db.html#db.models.DataPublisher.last_update_by"><code class="docutils literal notranslate"><span class="pre">DataPublisher.last_update_by</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="db.html#db.models.DataPublisher.name"><code class="docutils literal notranslate"><span class="pre">DataPublisher.name</span></code></a></li>
 </ul>
 </li>
@@ -310,8 +316,8 @@
 <li class="toctree-l4"><a class="reference internal" href="db.html#db.models.DevelopmentConstraint.created_by"><code class="docutils literal notranslate"><span class="pre">DevelopmentConstraint.created_by</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="db.html#db.models.DevelopmentConstraint.description"><code class="docutils literal notranslate"><span class="pre">DevelopmentConstraint.description</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="db.html#db.models.DevelopmentConstraint.id"><code class="docutils literal notranslate"><span class="pre">DevelopmentConstraint.id</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="db.html#db.models.DevelopmentConstraint.last_updated"><code class="docutils literal notranslate"><span class="pre">DevelopmentConstraint.last_updated</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="db.html#db.models.DevelopmentConstraint.last_updated_by"><code class="docutils literal notranslate"><span class="pre">DevelopmentConstraint.last_updated_by</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="db.html#db.models.DevelopmentConstraint.last_update"><code class="docutils literal notranslate"><span class="pre">DevelopmentConstraint.last_update</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="db.html#db.models.DevelopmentConstraint.last_update_by"><code class="docutils literal notranslate"><span class="pre">DevelopmentConstraint.last_update_by</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="db.html#db.models.DevelopmentConstraint.name"><code class="docutils literal notranslate"><span class="pre">DevelopmentConstraint.name</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="db.html#db.models.DevelopmentConstraint.notes"><code class="docutils literal notranslate"><span class="pre">DevelopmentConstraint.notes</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="db.html#db.models.DevelopmentConstraint.onshore_wind_priority_level"><code class="docutils literal notranslate"><span class="pre">DevelopmentConstraint.onshore_wind_priority_level</span></code></a></li>
@@ -325,8 +331,8 @@
 <li class="toctree-l4"><a class="reference internal" href="db.html#db.models.PriorityLevel.created_by"><code class="docutils literal notranslate"><span class="pre">PriorityLevel.created_by</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="db.html#db.models.PriorityLevel.description"><code class="docutils literal notranslate"><span class="pre">PriorityLevel.description</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="db.html#db.models.PriorityLevel.id"><code class="docutils literal notranslate"><span class="pre">PriorityLevel.id</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="db.html#db.models.PriorityLevel.last_updated"><code class="docutils literal notranslate"><span class="pre">PriorityLevel.last_updated</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="db.html#db.models.PriorityLevel.last_updated_by"><code class="docutils literal notranslate"><span class="pre">PriorityLevel.last_updated_by</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="db.html#db.models.PriorityLevel.last_update"><code class="docutils literal notranslate"><span class="pre">PriorityLevel.last_update</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="db.html#db.models.PriorityLevel.last_update_by"><code class="docutils literal notranslate"><span class="pre">PriorityLevel.last_update_by</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="db.html#db.models.PriorityLevel.name"><code class="docutils literal notranslate"><span class="pre">PriorityLevel.name</span></code></a></li>
 </ul>
 </li>
@@ -349,11 +355,6 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="db.html#module-db.triggers">db.triggers module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="db.html#db.triggers.Table"><code class="docutils literal notranslate"><span class="pre">Table</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="db.html#db.triggers.Table.name"><code class="docutils literal notranslate"><span class="pre">Table.name</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="db.html#db.triggers.Table.schema"><code class="docutils literal notranslate"><span class="pre">Table.schema</span></code></a></li>
-</ul>
-</li>
 <li class="toctree-l3"><a class="reference internal" href="db.html#db.triggers.create_triggers"><code class="docutils literal notranslate"><span class="pre">create_triggers()</span></code></a></li>
 </ul>
 </li>

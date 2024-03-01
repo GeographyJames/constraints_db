@@ -242,9 +242,25 @@
 </section>
 <section id="module-db.initialisation">
 <span id="db-initialisation-module"></span><h2>db.initialisation module<a class="headerlink" href="#module-db.initialisation" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="db.initialisation.Table">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">db.initialisation.</span></span><span class="sig-name descname"><span class="pre">Table</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">schema</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#db.initialisation.Table" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="db.initialisation.Table.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#db.initialisation.Table.name" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="db.initialisation.Table.schema">
+<span class="sig-name descname"><span class="pre">schema</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#db.initialisation.Table.schema" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 <dl class="py function">
-<dt class="sig sig-object py" id="db.initialisation.initialise_db">
-<span class="sig-prename descclassname"><span class="pre">db.initialisation.</span></span><span class="sig-name descname"><span class="pre">initialise_db</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">conn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.sqlalchemy.org/en/20/core/connections.html#sqlalchemy.engine.Connection" title="(in SQLAlchemy v2.0)"><span class="pre">Connection</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#db.initialisation.initialise_db" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="db.initialisation.initialise_constraints_tables">
+<span class="sig-prename descclassname"><span class="pre">db.initialisation.</span></span><span class="sig-name descname"><span class="pre">initialise_constraints_tables</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">engine</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.sqlalchemy.org/en/20/core/connections.html#sqlalchemy.engine.Engine" title="(in SQLAlchemy v2.0)"><span class="pre">Engine</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#db.initialisation.initialise_constraints_tables" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
@@ -252,6 +268,16 @@
 <span class="sig-prename descclassname"><span class="pre">db.initialisation.</span></span><span class="sig-name descname"><span class="pre">initialise_db_entries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">conn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.sqlalchemy.org/en/20/core/connections.html#sqlalchemy.engine.Connection" title="(in SQLAlchemy v2.0)"><span class="pre">Connection</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">files_to_load</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Path</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#db.initialisation.initialise_db_entries" title="Link to this definition">#</a></dt>
 <dd><p>This will execute a list of .sql files.</p>
 </dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="db.initialisation.set_constraint_layer_names">
+<span class="sig-prename descclassname"><span class="pre">db.initialisation.</span></span><span class="sig-name descname"><span class="pre">set_constraint_layer_names</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">engine</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.sqlalchemy.org/en/20/core/connections.html#sqlalchemy.engine.Engine" title="(in SQLAlchemy v2.0)"><span class="pre">Engine</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#db.initialisation.set_constraint_layer_names" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="db.initialisation.set_table_identity_sequence">
+<span class="sig-prename descclassname"><span class="pre">db.initialisation.</span></span><span class="sig-name descname"><span class="pre">set_table_identity_sequence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">engine</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.sqlalchemy.org/en/20/core/connections.html#sqlalchemy.engine.Engine" title="(in SQLAlchemy v2.0)"><span class="pre">Engine</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">tables</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#db.initialisation.Table" title="db.initialisation.Table"><span class="pre">Table</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#db.initialisation.set_table_identity_sequence" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
 
 </section>
 <section id="module-db.models">
@@ -262,7 +288,7 @@
 <dd><p>Bases: <a class="reference internal" href="#db.models.Base" title="db.models.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">Base</span></code></a></p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="db.models.AdministrativeArea.abbreviation">
-<span class="sig-name descname"><span class="pre">abbreviation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.AdministrativeArea.abbreviation" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">abbreviation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.AdministrativeArea.abbreviation" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -286,23 +312,18 @@
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="db.models.AdministrativeArea.geom">
-<span class="sig-name descname"><span class="pre">geom</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">WKBElement</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.AdministrativeArea.geom" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
 <dt class="sig sig-object py" id="db.models.AdministrativeArea.id">
 <span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.AdministrativeArea.id" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="db.models.AdministrativeArea.last_updated">
-<span class="sig-name descname"><span class="pre">last_updated</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">datetime</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.AdministrativeArea.last_updated" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="db.models.AdministrativeArea.last_update">
+<span class="sig-name descname"><span class="pre">last_update</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">datetime</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.AdministrativeArea.last_update" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="db.models.AdministrativeArea.last_updated_by">
-<span class="sig-name descname"><span class="pre">last_updated_by</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.AdministrativeArea.last_updated_by" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="db.models.AdministrativeArea.last_update_by">
+<span class="sig-name descname"><span class="pre">last_update_by</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.AdministrativeArea.last_update_by" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -386,13 +407,13 @@ for new <code class="xref py py-class docutils literal notranslate"><span class=
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="db.models.ConstraintCategory.last_updated">
-<span class="sig-name descname"><span class="pre">last_updated</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">datetime</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.ConstraintCategory.last_updated" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="db.models.ConstraintCategory.last_update">
+<span class="sig-name descname"><span class="pre">last_update</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">datetime</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.ConstraintCategory.last_update" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="db.models.ConstraintCategory.last_updated_by">
-<span class="sig-name descname"><span class="pre">last_updated_by</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.ConstraintCategory.last_updated_by" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="db.models.ConstraintCategory.last_update_by">
+<span class="sig-name descname"><span class="pre">last_update_by</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.ConstraintCategory.last_update_by" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -487,13 +508,13 @@ for new <code class="xref py py-class docutils literal notranslate"><span class=
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="db.models.ConstraintLayer.last_updated">
-<span class="sig-name descname"><span class="pre">last_updated</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">datetime</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.ConstraintLayer.last_updated" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="db.models.ConstraintLayer.last_update">
+<span class="sig-name descname"><span class="pre">last_update</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">datetime</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.ConstraintLayer.last_update" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="db.models.ConstraintLayer.last_updated_by">
-<span class="sig-name descname"><span class="pre">last_updated_by</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.ConstraintLayer.last_updated_by" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="db.models.ConstraintLayer.last_update_by">
+<span class="sig-name descname"><span class="pre">last_update_by</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.ConstraintLayer.last_update_by" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -543,13 +564,13 @@ for new <code class="xref py py-class docutils literal notranslate"><span class=
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="db.models.DataLicense.last_updated">
-<span class="sig-name descname"><span class="pre">last_updated</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">datetime</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.DataLicense.last_updated" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="db.models.DataLicense.last_update">
+<span class="sig-name descname"><span class="pre">last_update</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">datetime</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.DataLicense.last_update" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="db.models.DataLicense.last_updated_by">
-<span class="sig-name descname"><span class="pre">last_updated_by</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.DataLicense.last_updated_by" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="db.models.DataLicense.last_update_by">
+<span class="sig-name descname"><span class="pre">last_update_by</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.DataLicense.last_update_by" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -594,13 +615,13 @@ for new <code class="xref py py-class docutils literal notranslate"><span class=
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="db.models.DataPublisher.last_updated">
-<span class="sig-name descname"><span class="pre">last_updated</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">datetime</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.DataPublisher.last_updated" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="db.models.DataPublisher.last_update">
+<span class="sig-name descname"><span class="pre">last_update</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">datetime</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.DataPublisher.last_update" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="db.models.DataPublisher.last_updated_by">
-<span class="sig-name descname"><span class="pre">last_updated_by</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.DataPublisher.last_updated_by" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="db.models.DataPublisher.last_update_by">
+<span class="sig-name descname"><span class="pre">last_update_by</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.DataPublisher.last_update_by" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -656,13 +677,13 @@ for new <code class="xref py py-class docutils literal notranslate"><span class=
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="db.models.DevelopmentConstraint.last_updated">
-<span class="sig-name descname"><span class="pre">last_updated</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">datetime</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.DevelopmentConstraint.last_updated" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="db.models.DevelopmentConstraint.last_update">
+<span class="sig-name descname"><span class="pre">last_update</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">datetime</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.DevelopmentConstraint.last_update" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="db.models.DevelopmentConstraint.last_updated_by">
-<span class="sig-name descname"><span class="pre">last_updated_by</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.DevelopmentConstraint.last_updated_by" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="db.models.DevelopmentConstraint.last_update_by">
+<span class="sig-name descname"><span class="pre">last_update_by</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.DevelopmentConstraint.last_update_by" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -722,13 +743,13 @@ for new <code class="xref py py-class docutils literal notranslate"><span class=
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="db.models.PriorityLevel.last_updated">
-<span class="sig-name descname"><span class="pre">last_updated</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">datetime</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.PriorityLevel.last_updated" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="db.models.PriorityLevel.last_update">
+<span class="sig-name descname"><span class="pre">last_update</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">datetime</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.PriorityLevel.last_update" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="db.models.PriorityLevel.last_updated_by">
-<span class="sig-name descname"><span class="pre">last_updated_by</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.PriorityLevel.last_updated_by" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="db.models.PriorityLevel.last_update_by">
+<span class="sig-name descname"><span class="pre">last_update_by</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.PriorityLevel.last_update_by" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -740,7 +761,7 @@ for new <code class="xref py py-class docutils literal notranslate"><span class=
 
 <dl class="py function">
 <dt class="sig sig-object py" id="db.models.create_constraint_layer_table">
-<span class="sig-prename descclassname"><span class="pre">db.models.</span></span><span class="sig-name descname"><span class="pre">create_constraint_layer_table</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">constraint_layer_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geometry_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#db.enums.GeomType" title="db.enums.GeomType"><span class="pre">GeomType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">constraint_layer_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#db.models.create_constraint_layer_table" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">db.models.</span></span><span class="sig-name descname"><span class="pre">create_constraint_layer_table</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">constraint_layer_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geometry_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#db.enums.GeomType" title="db.enums.GeomType"><span class="pre">GeomType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">constraint_layer_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#db.models.create_constraint_layer_table" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
@@ -803,25 +824,9 @@ Therefore to create the partitioned tables, run this function.</p>
 </section>
 <section id="module-db.triggers">
 <span id="db-triggers-module"></span><h2>db.triggers module<a class="headerlink" href="#module-db.triggers" title="Link to this heading">#</a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="db.triggers.Table">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">db.triggers.</span></span><span class="sig-name descname"><span class="pre">Table</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">schema</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#db.triggers.Table" title="Link to this definition">#</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="db.triggers.Table.name">
-<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#db.triggers.Table.name" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="db.triggers.Table.schema">
-<span class="sig-name descname"><span class="pre">schema</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#db.triggers.Table.schema" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
 <dl class="py function">
 <dt class="sig sig-object py" id="db.triggers.create_triggers">
-<span class="sig-prename descclassname"><span class="pre">db.triggers.</span></span><span class="sig-name descname"><span class="pre">create_triggers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">conn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.sqlalchemy.org/en/20/core/connections.html#sqlalchemy.engine.Connection" title="(in SQLAlchemy v2.0)"><span class="pre">Connection</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">tables</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#db.triggers.Table" title="db.triggers.Table"><span class="pre">Table</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#db.triggers.create_triggers" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">db.triggers.</span></span><span class="sig-name descname"><span class="pre">create_triggers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">conn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.sqlalchemy.org/en/20/core/connections.html#sqlalchemy.engine.Connection" title="(in SQLAlchemy v2.0)"><span class="pre">Connection</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">tables</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#db.initialisation.Table" title="db.initialisation.Table"><span class="pre">Table</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#db.triggers.create_triggers" title="Link to this definition">#</a></dt>
 <dd><p>Function to create database triggers to update database tables with
 current time and database user when updating a table row.</p>
 </dd></dl>
@@ -896,8 +901,15 @@ current time and database user when updating a table row.</p>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-db.initialisation">db.initialisation module</a><ul>
-<li><a class="reference internal" href="#db.initialisation.initialise_db"><code class="docutils literal notranslate"><span class="pre">initialise_db()</span></code></a></li>
+<li><a class="reference internal" href="#db.initialisation.Table"><code class="docutils literal notranslate"><span class="pre">Table</span></code></a><ul>
+<li><a class="reference internal" href="#db.initialisation.Table.name"><code class="docutils literal notranslate"><span class="pre">Table.name</span></code></a></li>
+<li><a class="reference internal" href="#db.initialisation.Table.schema"><code class="docutils literal notranslate"><span class="pre">Table.schema</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#db.initialisation.initialise_constraints_tables"><code class="docutils literal notranslate"><span class="pre">initialise_constraints_tables()</span></code></a></li>
 <li><a class="reference internal" href="#db.initialisation.initialise_db_entries"><code class="docutils literal notranslate"><span class="pre">initialise_db_entries()</span></code></a></li>
+<li><a class="reference internal" href="#db.initialisation.set_constraint_layer_names"><code class="docutils literal notranslate"><span class="pre">set_constraint_layer_names()</span></code></a></li>
+<li><a class="reference internal" href="#db.initialisation.set_table_identity_sequence"><code class="docutils literal notranslate"><span class="pre">set_table_identity_sequence()</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-db.models">db.models module</a><ul>
@@ -907,10 +919,9 @@ current time and database user when updating a table row.</p>
 <li><a class="reference internal" href="#db.models.AdministrativeArea.constraint_layers"><code class="docutils literal notranslate"><span class="pre">AdministrativeArea.constraint_layers</span></code></a></li>
 <li><a class="reference internal" href="#db.models.AdministrativeArea.created"><code class="docutils literal notranslate"><span class="pre">AdministrativeArea.created</span></code></a></li>
 <li><a class="reference internal" href="#db.models.AdministrativeArea.created_by"><code class="docutils literal notranslate"><span class="pre">AdministrativeArea.created_by</span></code></a></li>
-<li><a class="reference internal" href="#db.models.AdministrativeArea.geom"><code class="docutils literal notranslate"><span class="pre">AdministrativeArea.geom</span></code></a></li>
 <li><a class="reference internal" href="#db.models.AdministrativeArea.id"><code class="docutils literal notranslate"><span class="pre">AdministrativeArea.id</span></code></a></li>
-<li><a class="reference internal" href="#db.models.AdministrativeArea.last_updated"><code class="docutils literal notranslate"><span class="pre">AdministrativeArea.last_updated</span></code></a></li>
-<li><a class="reference internal" href="#db.models.AdministrativeArea.last_updated_by"><code class="docutils literal notranslate"><span class="pre">AdministrativeArea.last_updated_by</span></code></a></li>
+<li><a class="reference internal" href="#db.models.AdministrativeArea.last_update"><code class="docutils literal notranslate"><span class="pre">AdministrativeArea.last_update</span></code></a></li>
+<li><a class="reference internal" href="#db.models.AdministrativeArea.last_update_by"><code class="docutils literal notranslate"><span class="pre">AdministrativeArea.last_update_by</span></code></a></li>
 <li><a class="reference internal" href="#db.models.AdministrativeArea.name"><code class="docutils literal notranslate"><span class="pre">AdministrativeArea.name</span></code></a></li>
 <li><a class="reference internal" href="#db.models.AdministrativeArea.parent_area"><code class="docutils literal notranslate"><span class="pre">AdministrativeArea.parent_area</span></code></a></li>
 <li><a class="reference internal" href="#db.models.AdministrativeArea.parent_area_id"><code class="docutils literal notranslate"><span class="pre">AdministrativeArea.parent_area_id</span></code></a></li>
@@ -929,8 +940,8 @@ current time and database user when updating a table row.</p>
 <li><a class="reference internal" href="#db.models.ConstraintCategory.description"><code class="docutils literal notranslate"><span class="pre">ConstraintCategory.description</span></code></a></li>
 <li><a class="reference internal" href="#db.models.ConstraintCategory.development_constraints"><code class="docutils literal notranslate"><span class="pre">ConstraintCategory.development_constraints</span></code></a></li>
 <li><a class="reference internal" href="#db.models.ConstraintCategory.id"><code class="docutils literal notranslate"><span class="pre">ConstraintCategory.id</span></code></a></li>
-<li><a class="reference internal" href="#db.models.ConstraintCategory.last_updated"><code class="docutils literal notranslate"><span class="pre">ConstraintCategory.last_updated</span></code></a></li>
-<li><a class="reference internal" href="#db.models.ConstraintCategory.last_updated_by"><code class="docutils literal notranslate"><span class="pre">ConstraintCategory.last_updated_by</span></code></a></li>
+<li><a class="reference internal" href="#db.models.ConstraintCategory.last_update"><code class="docutils literal notranslate"><span class="pre">ConstraintCategory.last_update</span></code></a></li>
+<li><a class="reference internal" href="#db.models.ConstraintCategory.last_update_by"><code class="docutils literal notranslate"><span class="pre">ConstraintCategory.last_update_by</span></code></a></li>
 <li><a class="reference internal" href="#db.models.ConstraintCategory.name"><code class="docutils literal notranslate"><span class="pre">ConstraintCategory.name</span></code></a></li>
 </ul>
 </li>
@@ -951,8 +962,8 @@ current time and database user when updating a table row.</p>
 <li><a class="reference internal" href="#db.models.ConstraintLayer.development_constraint"><code class="docutils literal notranslate"><span class="pre">ConstraintLayer.development_constraint</span></code></a></li>
 <li><a class="reference internal" href="#db.models.ConstraintLayer.development_constraint_id"><code class="docutils literal notranslate"><span class="pre">ConstraintLayer.development_constraint_id</span></code></a></li>
 <li><a class="reference internal" href="#db.models.ConstraintLayer.id"><code class="docutils literal notranslate"><span class="pre">ConstraintLayer.id</span></code></a></li>
-<li><a class="reference internal" href="#db.models.ConstraintLayer.last_updated"><code class="docutils literal notranslate"><span class="pre">ConstraintLayer.last_updated</span></code></a></li>
-<li><a class="reference internal" href="#db.models.ConstraintLayer.last_updated_by"><code class="docutils literal notranslate"><span class="pre">ConstraintLayer.last_updated_by</span></code></a></li>
+<li><a class="reference internal" href="#db.models.ConstraintLayer.last_update"><code class="docutils literal notranslate"><span class="pre">ConstraintLayer.last_update</span></code></a></li>
+<li><a class="reference internal" href="#db.models.ConstraintLayer.last_update_by"><code class="docutils literal notranslate"><span class="pre">ConstraintLayer.last_update_by</span></code></a></li>
 <li><a class="reference internal" href="#db.models.ConstraintLayer.name"><code class="docutils literal notranslate"><span class="pre">ConstraintLayer.name</span></code></a></li>
 <li><a class="reference internal" href="#db.models.ConstraintLayer.notes"><code class="docutils literal notranslate"><span class="pre">ConstraintLayer.notes</span></code></a></li>
 <li><a class="reference internal" href="#db.models.ConstraintLayer.update_cycle"><code class="docutils literal notranslate"><span class="pre">ConstraintLayer.update_cycle</span></code></a></li>
@@ -964,8 +975,8 @@ current time and database user when updating a table row.</p>
 <li><a class="reference internal" href="#db.models.DataLicense.created_by"><code class="docutils literal notranslate"><span class="pre">DataLicense.created_by</span></code></a></li>
 <li><a class="reference internal" href="#db.models.DataLicense.description"><code class="docutils literal notranslate"><span class="pre">DataLicense.description</span></code></a></li>
 <li><a class="reference internal" href="#db.models.DataLicense.id"><code class="docutils literal notranslate"><span class="pre">DataLicense.id</span></code></a></li>
-<li><a class="reference internal" href="#db.models.DataLicense.last_updated"><code class="docutils literal notranslate"><span class="pre">DataLicense.last_updated</span></code></a></li>
-<li><a class="reference internal" href="#db.models.DataLicense.last_updated_by"><code class="docutils literal notranslate"><span class="pre">DataLicense.last_updated_by</span></code></a></li>
+<li><a class="reference internal" href="#db.models.DataLicense.last_update"><code class="docutils literal notranslate"><span class="pre">DataLicense.last_update</span></code></a></li>
+<li><a class="reference internal" href="#db.models.DataLicense.last_update_by"><code class="docutils literal notranslate"><span class="pre">DataLicense.last_update_by</span></code></a></li>
 <li><a class="reference internal" href="#db.models.DataLicense.name"><code class="docutils literal notranslate"><span class="pre">DataLicense.name</span></code></a></li>
 </ul>
 </li>
@@ -976,8 +987,8 @@ current time and database user when updating a table row.</p>
 <li><a class="reference internal" href="#db.models.DataPublisher.created_by"><code class="docutils literal notranslate"><span class="pre">DataPublisher.created_by</span></code></a></li>
 <li><a class="reference internal" href="#db.models.DataPublisher.description"><code class="docutils literal notranslate"><span class="pre">DataPublisher.description</span></code></a></li>
 <li><a class="reference internal" href="#db.models.DataPublisher.id"><code class="docutils literal notranslate"><span class="pre">DataPublisher.id</span></code></a></li>
-<li><a class="reference internal" href="#db.models.DataPublisher.last_updated"><code class="docutils literal notranslate"><span class="pre">DataPublisher.last_updated</span></code></a></li>
-<li><a class="reference internal" href="#db.models.DataPublisher.last_updated_by"><code class="docutils literal notranslate"><span class="pre">DataPublisher.last_updated_by</span></code></a></li>
+<li><a class="reference internal" href="#db.models.DataPublisher.last_update"><code class="docutils literal notranslate"><span class="pre">DataPublisher.last_update</span></code></a></li>
+<li><a class="reference internal" href="#db.models.DataPublisher.last_update_by"><code class="docutils literal notranslate"><span class="pre">DataPublisher.last_update_by</span></code></a></li>
 <li><a class="reference internal" href="#db.models.DataPublisher.name"><code class="docutils literal notranslate"><span class="pre">DataPublisher.name</span></code></a></li>
 </ul>
 </li>
@@ -990,8 +1001,8 @@ current time and database user when updating a table row.</p>
 <li><a class="reference internal" href="#db.models.DevelopmentConstraint.created_by"><code class="docutils literal notranslate"><span class="pre">DevelopmentConstraint.created_by</span></code></a></li>
 <li><a class="reference internal" href="#db.models.DevelopmentConstraint.description"><code class="docutils literal notranslate"><span class="pre">DevelopmentConstraint.description</span></code></a></li>
 <li><a class="reference internal" href="#db.models.DevelopmentConstraint.id"><code class="docutils literal notranslate"><span class="pre">DevelopmentConstraint.id</span></code></a></li>
-<li><a class="reference internal" href="#db.models.DevelopmentConstraint.last_updated"><code class="docutils literal notranslate"><span class="pre">DevelopmentConstraint.last_updated</span></code></a></li>
-<li><a class="reference internal" href="#db.models.DevelopmentConstraint.last_updated_by"><code class="docutils literal notranslate"><span class="pre">DevelopmentConstraint.last_updated_by</span></code></a></li>
+<li><a class="reference internal" href="#db.models.DevelopmentConstraint.last_update"><code class="docutils literal notranslate"><span class="pre">DevelopmentConstraint.last_update</span></code></a></li>
+<li><a class="reference internal" href="#db.models.DevelopmentConstraint.last_update_by"><code class="docutils literal notranslate"><span class="pre">DevelopmentConstraint.last_update_by</span></code></a></li>
 <li><a class="reference internal" href="#db.models.DevelopmentConstraint.name"><code class="docutils literal notranslate"><span class="pre">DevelopmentConstraint.name</span></code></a></li>
 <li><a class="reference internal" href="#db.models.DevelopmentConstraint.notes"><code class="docutils literal notranslate"><span class="pre">DevelopmentConstraint.notes</span></code></a></li>
 <li><a class="reference internal" href="#db.models.DevelopmentConstraint.onshore_wind_priority_level"><code class="docutils literal notranslate"><span class="pre">DevelopmentConstraint.onshore_wind_priority_level</span></code></a></li>
@@ -1005,8 +1016,8 @@ current time and database user when updating a table row.</p>
 <li><a class="reference internal" href="#db.models.PriorityLevel.created_by"><code class="docutils literal notranslate"><span class="pre">PriorityLevel.created_by</span></code></a></li>
 <li><a class="reference internal" href="#db.models.PriorityLevel.description"><code class="docutils literal notranslate"><span class="pre">PriorityLevel.description</span></code></a></li>
 <li><a class="reference internal" href="#db.models.PriorityLevel.id"><code class="docutils literal notranslate"><span class="pre">PriorityLevel.id</span></code></a></li>
-<li><a class="reference internal" href="#db.models.PriorityLevel.last_updated"><code class="docutils literal notranslate"><span class="pre">PriorityLevel.last_updated</span></code></a></li>
-<li><a class="reference internal" href="#db.models.PriorityLevel.last_updated_by"><code class="docutils literal notranslate"><span class="pre">PriorityLevel.last_updated_by</span></code></a></li>
+<li><a class="reference internal" href="#db.models.PriorityLevel.last_update"><code class="docutils literal notranslate"><span class="pre">PriorityLevel.last_update</span></code></a></li>
+<li><a class="reference internal" href="#db.models.PriorityLevel.last_update_by"><code class="docutils literal notranslate"><span class="pre">PriorityLevel.last_update_by</span></code></a></li>
 <li><a class="reference internal" href="#db.models.PriorityLevel.name"><code class="docutils literal notranslate"><span class="pre">PriorityLevel.name</span></code></a></li>
 </ul>
 </li>
@@ -1029,11 +1040,6 @@ current time and database user when updating a table row.</p>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-db.triggers">db.triggers module</a><ul>
-<li><a class="reference internal" href="#db.triggers.Table"><code class="docutils literal notranslate"><span class="pre">Table</span></code></a><ul>
-<li><a class="reference internal" href="#db.triggers.Table.name"><code class="docutils literal notranslate"><span class="pre">Table.name</span></code></a></li>
-<li><a class="reference internal" href="#db.triggers.Table.schema"><code class="docutils literal notranslate"><span class="pre">Table.schema</span></code></a></li>
-</ul>
-</li>
 <li><a class="reference internal" href="#db.triggers.create_triggers"><code class="docutils literal notranslate"><span class="pre">create_triggers()</span></code></a></li>
 </ul>
 </li>
