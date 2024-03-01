@@ -8,6 +8,7 @@ from src.db.enums import GeomType
 class DevelopmentConstraintOutputDTO:
     id: int
     name: str
+    table_name: str
     abbreviation: str | None
 
 
@@ -28,7 +29,6 @@ class ConstraintLayerFormOptionsDTO:
 
 @attrs.define
 class ConstraintLayerInputDTO:
-    name: str
     development_constraint: DevelopmentConstraintOutputDTO
     administrative_area: AdministrativeAreaOutputDTO
     data_publisher_id: int
@@ -43,6 +43,5 @@ class ConstraintLayerInputDTO:
     geom_type: GeomType
 
 
-    @staticmethod
-    def generate_name(administrative_area: AdministrativeAreaOutputDTO, development_constraint: DevelopmentConstraintOutputDTO) -> str:
-        return slugify(f"{administrative_area.abbreviation}-{development_constraint.name}").replace("-", "_")
+    def name(self) -> str:
+        return slugify(f"{self.administrative_area.abbreviation}-{self.development_constraint.table_name}").replace("-", "_")

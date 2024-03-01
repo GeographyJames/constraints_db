@@ -52,7 +52,6 @@ class AddConstraintDlg(QDialog,  # type: ignore
         if not self.form_options:
             raise Exception
         return ConstraintLayerInputDTO(
-            name=slugify(self.LayerNameLE.text()).replace("-", "_").lower(),
             development_constraint=self.form_options.development_constraints[
                 self.DevelopmentConstraintCB.currentData()],
             administrative_area=self.form_options.administrative_areas[
@@ -76,15 +75,7 @@ class AddConstraintDlg(QDialog,  # type: ignore
         )
 
     def update_layer_name(self) -> None:
-        if not self.form_options:
-            raise Exception
-        self.LayerNameLE.setText(ConstraintLayerInputDTO.generate_name(
-            administrative_area=self.form_options.administrative_areas[
-                self.AdministrativeAreaCB.currentData()],
-            development_constraint=self.form_options.development_constraints[
-                self.DevelopmentConstraintCB.currentData()]
-
-        ))
+        self.LayerNameLE.setText(self.populate_input_dto().name())
 
     def add_layer(self) -> None:
         input_dto = self.populate_input_dto()
