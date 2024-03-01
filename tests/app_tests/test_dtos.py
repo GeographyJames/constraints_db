@@ -9,11 +9,11 @@ def test_should_retun_layer_name():
     administrative_area = AdministrativeAreaOutputDTO(
         2, "Scotland", "SCO")
     development_constraint = DevelopmentConstraintOutputDTO(
-        id=1, name="Site of Special Scientific Interest", abbreviation="SSSI", table_name="SSSI")
-    name = ConstraintLayerInputDTO.generate_name(
-        administrative_area, development_constraint)
+        id=1,
+        name="Site of Special Scientific Interest",
+        abbreviation="SSSI",
+        table_name="SSSI")
     layer = ConstraintLayerInputDTO(
-        name=name,
         administrative_area=administrative_area,
         development_constraint=development_constraint,
         data_license_id=1,
@@ -26,4 +26,4 @@ def test_should_retun_layer_name():
         data_next_updated=None,
         notes=None,
         geom_type=GeomType.MULTIPOLYGON)
-    assert layer.name == "sco_sssi"
+    assert layer.name() == "sco_sssi"
