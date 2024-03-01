@@ -6,12 +6,16 @@ from src.db.enums import GeomType
 
 
 def test_should_retun_layer_name():
+    administrative_area = AdministrativeAreaOutputDTO(
+        2, "Scotland", "SCO")
+    development_constraint = DevelopmentConstraintOutputDTO(
+        1, "Site of Special Scientific Interest", "SSSI")
+    name = ConstraintLayerInputDTO.generate_name(
+        administrative_area, development_constraint)
     layer = ConstraintLayerInputDTO(
-        development_constraint=DevelopmentConstraintOutputDTO(
-            1, "Site of Special Scientific Interest", "SSSI"),
-        administrative_area=AdministrativeAreaOutputDTO(
-            2, "Scotland", "SCO"
-        ),
+        name=name,
+        administrative_area=administrative_area,
+        development_constraint=development_constraint,
         data_license_id=1,
         data_publisher_id=1,
         data_source=None,
@@ -22,4 +26,4 @@ def test_should_retun_layer_name():
         data_next_updated=None,
         notes=None,
         geom_type=GeomType.MULTIPOLYGON)
-    assert layer.name() == "sco_sssi"
+    assert layer.name == "sco_site_of_special_scientific_interest"

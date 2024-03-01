@@ -42,17 +42,19 @@ def initialise_db_entries(conn: Connection, files_to_load: List[Path]) -> None:
             conn.execute(text(f.read()))
 
 
-def set_constraint_layer_names(engine: Engine) -> None:
+def set_constraint_layer_names(engine: Engine, layer_ids: List[int]) -> None:
     session = Session(engine)
-    for layer in session.scalars(select(ConstraintLayer).order_by(ConstraintLayer.id)):
-        area = layer.administrative_area.abbreviation
-        name = layer.development_constraint.abbreviation if layer.development_constraint.abbreviation else layer.development_constraint.name
-        layer_name = slugify(f"{area}_{name}").replace("-", "_").lower()
-        layer.name = layer_name
+    for id in layer_ids:
+        layer=session.scalar(select(ConstraintLayer).where(ConstraintLayer.id==id))
+        if layer:
+            area = layer.administrative_area.abbreviation
+            name = layer.development_constraint.name
+            layer_name = slugify(f"{area}_{name}").replace("-", "_").lower()
+            layer.name = layer_name
     session.commit()
 
 
-def set_table_identity_sequence(tables: List[Table], engine: Engine) -> None:
+def set_table_identity_sequence(engine: Engine, tables: List[Table]) -> None:
     with engine.begin() as conn:
         for table in tables:
             table_name = table.name
@@ -76,13 +78,13 @@ def initialise_constraints_tables(engine: Engine) -> None:
 if __name__ == "__main__":
     eng = engine(credentials_from_ini(Path("db_credentials.ini")), echo=True)
 
-    """
-    with eng.begin() as conn:
-        initialise_db_entries(conn, files_to_load)
+    #with eng.begin() as conn:
+    #    initialise_db_entries(conn, files_to_load)
+    
 
-    set_constraint_layer_names(eng)
+    #set_constraint_layer_names(eng, [1,2,3,11,16,17])
 
     
-    set_table_identity_sequence(tables, eng)
-    """
+    #set_table_identity_sequence(tables, eng)
+
     initialise_constraints_tables(eng)
