@@ -24,6 +24,14 @@ jobs:
     - name: Install dependencies
       run: |
         conda env update --file environment.yml --name base
+    - name: Add QGIS to Conda Path
+      run: |
+        conda_base=$(conda info --base)
+        site_packages=$/envs/constraints_dblib/site-packages
+        full_path="${conda}${site_packages}"
+        echo $conda_base
+        echo $(conda_base )
+
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
