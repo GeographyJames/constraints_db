@@ -32,19 +32,6 @@ class ShapefileProcessor:
         )
 
 
-def read_shapefile(file_path: Path) -> int:
-    if not file_path.is_file():
-        raise ShapefileError(f"{file_path} not a file.")
-    driver = ogr.GetDriverByName('ESRI Shapefile')
-    datasource = driver.Open(file_path.as_posix())
-    print(datasource)
-    if not datasource:
-        raise Exception("Could not open file")
-    layer = datasource.GetLayer()
-    feature_count = layer.GetFeatureCount()
-    return int(feature_count)
-
-
 def verify_shapefile(file_path: Path) -> ogr.DataSource:
     if not file_path.is_file():
         raise ShapefileError(f"{file_path} not a file.")
