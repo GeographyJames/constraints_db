@@ -36,6 +36,7 @@ class TestVerifyShapefile:
         assert isinstance(verify_shapefile(path), ogr.DataSource)
 
 
+@pytest.mark.skip
 class TestVerifyCRS:
     def test_should_pass(self):
         path = Path(

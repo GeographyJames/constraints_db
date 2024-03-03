@@ -4,7 +4,6 @@ from src.app.dtos import ConstraintLayerInputDTO, ConstraintLayerFormOptionsDTO
 from src.app.postgres_repo import PostGresRepo
 from PyQt5.QtCore import QDate
 from src.db.enums import GeomType
-from slugify import slugify
 
 
 class AddConstraintDlg(QDialog,  # type: ignore

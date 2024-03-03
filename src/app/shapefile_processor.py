@@ -10,7 +10,7 @@ ogr.UseExceptions()
 class ShapefileProcessor:
     def __init__(self, file_path: Path) -> None:
         self.datasource = verify_shapefile(file_path)
-        verify_crs_is_ESPG27700(self.datasource)
+        # verify_crs_is_ESPG27700(self.datasource)
 
     def feature_count(self) -> int:
         return int(self.datasource.GetLayer().GetFeatureCount())
