@@ -32,6 +32,10 @@ jobs:
         if [ -d ${CONDA}/envs/constraints_db];
           then echo "path exists"
         fi
+        if [ -d ${CONDA}/envs/constraints_db/lib];
+          then echo "path exists"
+        fi
+    - name: Install dependencies
     - name: Install dependencies
     - name: Install dependencies
       run: |
