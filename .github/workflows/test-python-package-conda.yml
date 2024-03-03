@@ -32,6 +32,10 @@ jobs:
         echo $conda_base
         site_packages=$/envs/constraints_dblib/site-packages
         full_path="${conda}${site_packages}"
+        echo $full_path
+        if [ -d $full_path ];
+          then echo "path exists"
+        fi
 
     - name: Lint with flake8
       run: |
