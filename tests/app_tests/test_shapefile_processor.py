@@ -36,16 +36,15 @@ class TestVerifyShapefile:
         assert isinstance(verify_shapefile(path), ogr.DataSource)
 
 
-@pytest.mark.skip
 class TestVerifyCRS:
     def test_should_pass(self):
         path = Path(
-            r"tests\test_data\test_shapefiles\1_valid_point_OSGB36.shp")
+            "tests/test_data/test_shapefiles/1_valid_point_OSGB36.shp")
         verify_crs_is_ESPG27700(verify_shapefile(path))
 
     def test_should_raise_exception_for_unaccepted_crs(self) -> None:
         path = Path(
-            r"tests\test_data\test_shapefiles\2_valid_polygons_WGS84.shp")
+            "tests/test_data/test_shapefiles/2_valid_polygons_WGS84.shp")
         datasource = verify_shapefile(path)
         with pytest.raises(ShapefileError, match="CRS not accepted"):
             verify_crs_is_ESPG27700(datasource)
