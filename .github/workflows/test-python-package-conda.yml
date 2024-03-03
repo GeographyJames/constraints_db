@@ -26,11 +26,12 @@ jobs:
         conda env update --file environment.yml --name base
     - name: Add QGIS to Conda Path
       run: |
+        my_p=$(pwd)
+        echo $my_p
         conda_base=$(conda info --base)
+        echo $conda_base
         site_packages=$/envs/constraints_dblib/site-packages
         full_path="${conda}${site_packages}"
-        echo $conda_base
-        echo $(conda_base )
 
     - name: Lint with flake8
       run: |
