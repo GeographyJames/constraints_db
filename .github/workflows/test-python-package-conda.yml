@@ -21,17 +21,23 @@ jobs:
       run: |
         # $CONDA is an environment variable pointing to the root of the miniconda directory
         echo $CONDA/bin >> $GITHUB_PATH
+
+    - name: Check for site packages directory
+      run: |
+        echo $CONDA
+        echo ${CONDA}/envs/costraints_db/lib/site-packages
     - name: Install dependencies
       run: |
         conda env update --file environment.yml --name base
     - name: Add QGIS to Conda Path
       run: |
+
         my_p=$(pwd)
         echo $my_p
         conda_base=$(conda info --base)
         echo $conda_base
-        site_packages=$/envs/constraints_dblib/site-packages
-        full_path="${conda}${site_packages}"
+        site_packages=$/envs/constraints_db/lib/site-packages
+        full_path=$CONDA${site_packages}
         echo $full_path
         if [ -d $full_path ];
           then echo "path exists"
