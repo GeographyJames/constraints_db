@@ -21,9 +21,39 @@ jobs:
       run: |
         # $CONDA is an environment variable pointing to the root of the miniconda directory
         echo $CONDA/bin >> $GITHUB_PATH
+
+    - name: Check for site packages directory
+      run: |
+        echo $CONDA
+        echo ${CONDA}/envs/costraints_db/lib/site-packages
+        if [ -d ${CONDA}];
+          then echo "first path exists"
+        fi
+        if [ -d ${CONDA}/envs/constraints_db];
+          then echo "second path exists"
+        fi
+        if [ -d ${CONDA}/envs/constraints_db/lib];
+          then echo "third  path exists"
+        fi
+    - name: Install dependencies
+    - name: Install dependencies
     - name: Install dependencies
       run: |
         conda env update --file environment.yml --name base
+    - name: Add QGIS to Conda Path
+      run: |
+
+        my_p=$(pwd)
+        echo $my_p
+        conda_base=$(conda info --base)
+        echo $conda_base
+        site_packages=$/envs/constraints_db/lib/site-packages
+        full_path=$CONDA${site_packages}
+        echo $full_path
+        if [ -d $full_path ];
+          then echo "path exists"
+        fi
+
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names

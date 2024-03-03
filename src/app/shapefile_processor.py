@@ -1,6 +1,8 @@
 from pathlib import Path
 from osgeo import ogr
 from .exceptions import ShapefileError
+from .dtos import ShapfileInfoDTO
+
 
 ogr.UseExceptions()
 
@@ -8,7 +10,7 @@ ogr.UseExceptions()
 class ShapefileProcessor:
     def __init__(self, file_path: Path) -> None:
         self.datasource = verify_shapefile(file_path)
-        verify_crs_is_ESPG27700(self.datasource)
+        # verify_crs_is_ESPG27700(self.datasource)
 
     def feature_count(self) -> int:
         return int(self.datasource.GetLayer().GetFeatureCount())
@@ -22,18 +24,12 @@ class ShapefileProcessor:
         return [layer_def.GetFieldDefn(i).GetName() for i in range(
             layer_def.GetFieldCount())]
 
-
-def read_shapefile(file_path: Path) -> int:
-    if not file_path.is_file():
-        raise ShapefileError(f"{file_path} not a file.")
-    driver = ogr.GetDriverByName('ESRI Shapefile')
-    datasource = driver.Open(file_path.as_posix())
-    print(datasource)
-    if not datasource:
-        raise Exception("Could not open file")
-    layer = datasource.GetLayer()
-    feature_count = layer.GetFeatureCount()
-    return int(feature_count)
+    def shapefile_info(self) -> ShapfileInfoDTO:
+        return ShapfileInfoDTO(
+            fields=self.field_names(),
+            geom_type=self.geometry_type(),
+            feature_count=self.feature_count()
+        )
 
 
 def verify_shapefile(file_path: Path) -> ogr.DataSource:
