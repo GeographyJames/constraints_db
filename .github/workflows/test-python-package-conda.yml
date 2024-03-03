@@ -27,13 +27,13 @@ jobs:
         echo $CONDA
         echo ${CONDA}/envs/costraints_db/lib/site-packages
         if [ -d ${CONDA}];
-          then echo "path exists"
+          then echo "first path exists"
         fi
         if [ -d ${CONDA}/envs/constraints_db];
-          then echo "path exists"
+          then echo "second path exists"
         fi
         if [ -d ${CONDA}/envs/constraints_db/lib];
-          then echo "path exists"
+          then echo "third  path exists"
         fi
     - name: Install dependencies
     - name: Install dependencies
