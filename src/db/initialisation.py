@@ -1,11 +1,9 @@
 from .sqlalchemy_config import engine, credentials_from_ini
 from pathlib import Path
 from sqlalchemy import text, Connection, select
-from sqlalchemy.orm import Session
 from .models import (ConstraintLayer,
                      create_constraint_layer_table,
                      create_prtitioned_tables)
-from slugify import slugify
 import attrs
 from .enums import GeomType
 
@@ -51,28 +49,6 @@ def initialise_db_entries(conn: Connection, files_to_load: list[Path]) -> None:
             conn.execute(text(f.read()))
 
 
-"""
-def set_constraint_layer_names(conn: Connection,
-                               layer_ids: None | list[int] = None,
-                               all: bool = False) -> None:
-    session = Session(engine)
-    if all:
-        layer_ids = [row.id for row in conn.scalars(
-            select(ConstraintLayer.id))]
-    if not layer_ids:
-        raise Exception("No ids provided")
-    for id in layer_ids:
-        layer = session.scalar(
-            select(ConstraintLayer).where(ConstraintLayer.id == id))
-        if layer:
-            area = layer.administrative_area.abbreviation
-            name = layer.development_constraint.name
-            layer_name = slugify(f"{area}_{name}").replace("-", "_").lower()
-            layer.name = layer_name
-    session.commit()
-"""
-
-
 def set_table_identity_sequence(conn: Connection, tables: list[Table]) -> None:
     for table in tables:
         conn.execute(text(
@@ -103,7 +79,6 @@ if __name__ == "__main__":
         create_prtitioned_tables(conn)
         grant_select(conn, tables)
         initialise_db_entries(conn, files_to_load)
-        # set_constraint_layer_names(conn, all=True)
         set_table_identity_sequence(conn, tables)
         initialise_constraints_tables(conn)
         conn.commit()
