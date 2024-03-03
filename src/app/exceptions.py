@@ -1,0 +1,2 @@
+class ShapefileError(Exception):
+    pass
