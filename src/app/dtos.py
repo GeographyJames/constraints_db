@@ -42,6 +42,14 @@ class ConstraintLayerInputDTO:
     notes: str | None
     geom_type: GeomType
 
-
     def name(self) -> str:
-        return slugify(f"{self.administrative_area.abbreviation}-{self.development_constraint.table_name}").replace("-", "_")
+        return slugify(f"{self.administrative_area.abbreviation}-"
+                       f"{self.development_constraint.table_name}"
+                       ).replace("-", "_")
+
+
+@attrs.define
+class ShapfileInfoDTO:
+    fields: list[str]
+    feature_count: int
+    geom_type: str

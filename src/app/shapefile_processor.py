@@ -1,6 +1,8 @@
 from pathlib import Path
 from osgeo import ogr
 from .exceptions import ShapefileError
+from .dtos import ShapfileInfoDTO
+
 
 ogr.UseExceptions()
 
@@ -21,6 +23,13 @@ class ShapefileProcessor:
         layer_def = self.datasource.GetLayer().GetLayerDefn()
         return [layer_def.GetFieldDefn(i).GetName() for i in range(
             layer_def.GetFieldCount())]
+
+    def shapefile_info(self) -> ShapfileInfoDTO:
+        return ShapfileInfoDTO(
+            fields=self.field_names(),
+            geom_type=self.geometry_type(),
+            feature_count=self.feature_count()
+        )
 
 
 def read_shapefile(file_path: Path) -> int:

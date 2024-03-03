@@ -6,6 +6,7 @@ import pytest
 from src.app.exceptions import ShapefileError
 from osgeo import ogr
 import attrs
+# import qgis
 
 
 class TestVerifyShapefile:
@@ -51,23 +52,25 @@ class TestVerifyCRS:
 
 @attrs.define()
 class Input:
-    path: Path
+    name: str
     feature_count: int
     geom_type: str
     field_names: list[str]
 
+    def path(self) -> Path:
+        return Path(f"tests/test_data/test_shapefiles/{self.name}.shp")
+
 
 @pytest.fixture
 def cases():
-    prefix = r"tests\test_data\test_shapefiles\\"
     return [
         Input(
-            Path(f"{prefix}2_valid_multipolygons_OSGB36.shp"),
+            "2_valid_multipolygons_OSGB36",
             2,
             "POLYGON",
             ["id", "Name", "Status", "Other"]),
         Input(
-            Path(f"{prefix}3_valid_linestrings_OSGB36.shp"),
+            "3_valid_linestrings_OSGB36",
             3,
             "LINESTRING",
             ["id", "new field"])
@@ -76,17 +79,17 @@ def cases():
 
 class TestShapefileProcessor:
 
-    def test_should_return_feature_count(self, cases):
+    def test_should_return_feature_count(self, cases: list[Input]):
         for test_case in cases:
             assert ShapefileProcessor(
-                test_case.path).feature_count() == test_case.feature_count
+                test_case.path()).feature_count() == test_case.feature_count
 
-    def test_should_return_geometry_type(self, cases):
+    def test_should_return_geometry_type(self, cases: list[Input]):
         for test_case in cases:
             assert ShapefileProcessor(
-                test_case.path).geometry_type() == test_case.geom_type
+                test_case.path()).geometry_type() == test_case.geom_type
 
-    def test_should_return_field_names(self, cases):
+    def test_should_return_field_names(self, cases: list[Input]):
         for test_case in cases:
             assert ShapefileProcessor(
-                test_case.path).field_names() == test_case.field_names
+                test_case.path()).field_names() == test_case.field_names
