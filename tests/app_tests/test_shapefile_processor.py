@@ -40,7 +40,7 @@ class TestVerifyCRS:
     def test_should_pass(self):
         path = Path(
             "tests/test_data/test_shapefiles/1_valid_point_OSGB36.shp")
-        datasource = verify_shapefile(path)
+        verify_shapefile(path)
         # verify_crs_is_ESPG27700()
 
     @pytest.mark.skip
