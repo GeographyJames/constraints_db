@@ -3,8 +3,7 @@ from osgeo import ogr
 from .exceptions import ShapefileError
 from .dtos import ShapfileInfoDTO
 
-
-# ogr.UseExceptions()
+ogr.DontUseExceptions()
 
 
 class ShapefileProcessor:
