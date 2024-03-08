@@ -52,6 +52,13 @@ jobs:
       run: |
         conda env update --file environment.yml --name base
         which qgis
+        if [ -d ${CONDA}/python ];
+          then echo "a path"
+        fi
+        if [ -d ${CONDA]/python/qgis ];
+          then echo "another path"
+        fi
+
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
