@@ -26,8 +26,9 @@ jobs:
       run: |
         echo "Hello world"
         python -c "import site; print(''.join(site.getsitepackages()))"
-        var=$(python -c "import site; print(''.join(site.getsitepackages()))")
+        site_packages=$(python -c "import site; print(''.join(site.getsitepackages()))")
         echo "$CONDA"
+        echo "$site_packages"
         if [ -d ${CONDA} ];
           then echo "first path exists"
         else
@@ -39,13 +40,13 @@ jobs:
         if [ -d ${CONDA}/lib ];
           then echo "third  path exists"
         fi
-        if [ -d ${CONDA}/lib/python312/site-packages ];
+        if [ -d ${CONDA}/lib/python3.12/site-packages ];
           then echo "fourth path exists"
         fi
         if [ -d ${CONDA}/Lib/site-packages ];
           then echo "fith path exists"
         fi
-        if [ -f ${CONDA}/lib/site-packages/conda.pth ]
+        if [ -f ${CONDA}/lib/python3.12/site-packages/conda.pth ]
           then echo "file exists"
         fi
     - name: Install dependencies
