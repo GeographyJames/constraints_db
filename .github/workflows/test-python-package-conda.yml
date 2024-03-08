@@ -33,7 +33,7 @@ jobs:
         echo "site packages directory: $site_packages_path"
         qgis_path=$(dirname $(which qgis))
         echo "qgis directory: $qigs_path"
-        touch ${site_packages}/conda.pth
+        touch ${site_packages_path}/conda.pth
         echo "${CONDA}/share" > ${site_packages}/conda.pth
 
     - name: Lint with flake8
