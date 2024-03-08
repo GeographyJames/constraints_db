@@ -30,7 +30,7 @@ jobs:
         if [ -d ${CONDA}];
           then echo "first path exists"
         else
-          "path does not exist"
+          echo "path does not exist"
         fi
         if [ -d ${CONDA}/envs/constraints_db];
           then echo "second path exists"
