@@ -24,11 +24,9 @@ jobs:
 
     - name: Check for site packages directory
       run: |
-        echo "Hello world"
-        python -c "import site; print(''.join(site.getsitepackages()))"
         site_packages=$(python -c "import site; print(''.join(site.getsitepackages()))")
-        echo "$CONDA"
-        echo "$site_packages"
+        echo "sit packages directory: $site_packages"
+        touch ${site_packages}/conda.pth
         if [ -d ${CONDA} ];
           then echo "first path exists"
         else
@@ -43,7 +41,7 @@ jobs:
         if [ -d ${CONDA}/lib/python3.12/site-packages ];
           then echo "fourth path exists"
         fi
-        if [ -d ${CONDA}/Lib/site-packages ];
+        if [ -d ${site_packages} ];
           then echo "fith path exists"
         fi
         if [ -f ${CONDA}/lib/python3.12/site-packages/conda.pth ]
