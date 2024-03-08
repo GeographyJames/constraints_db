@@ -6,9 +6,10 @@ from pathlib import Path
 import pytest
 
 
-class TestAddConstraintUI:
+app = QApplication([])
 
-    app = QApplication([])
+
+class TestAddConstraintUI:
 
     @pytest.mark.db
     def test_ui(self):

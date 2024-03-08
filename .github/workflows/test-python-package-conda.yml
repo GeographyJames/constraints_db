@@ -41,7 +41,7 @@ jobs:
         conda env update --file environment.yml --name base
 
     - name: Install PROJ
-        conda install -c conda-forge proj
+      run: conda install -c conda-forge proj
 
     - name: Add QGIS to Conda PYTHONPATH
       run: |
