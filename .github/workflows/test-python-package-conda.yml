@@ -25,8 +25,8 @@ jobs:
     - name: Check for site packages directory
       run: |
         echo "Hello world"
+        python -c "import site; print("".join(site.getsitepackages()))"
         echo "$CONDA"
-        echo "${CONDA}/envs/costraints_db/lib/site-packages"
         if [ -d ${CONDA} ];
           then echo "first path exists"
         else
@@ -38,13 +38,13 @@ jobs:
         if [ -d ${CONDA}/lib ];
           then echo "third  path exists"
         fi
-        if [ -d ${CONDA}/lib/site-packages ];
+        if [ -d ${CONDA}/lib/python312/site-packages ];
           then echo "fourth path exists"
         fi
         if [ -d ${CONDA}/Lib/site-packages ];
           then echo "fith path exists"
         fi
-        if [ -f ${CONDA}/lib/site-packages/conda.pth]
+        if [ -f ${CONDA}/lib/site-packages/conda.pth ]
           then echo "file exists"
         fi
     - name: Install dependencies
