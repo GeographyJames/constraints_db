@@ -52,10 +52,10 @@ jobs:
       run: |
         conda env update --file environment.yml --name base
         which qgis
-        if [ -d ${CONDA}/python ];
+        if [ -d ${CONDA}/share ];
           then echo "a path"
         fi
-        if [ -d ${CONDA]/python/qgis ];
+        if [ -d ${CONDA}/share/qgis ];
           then echo "another path"
         fi
 
