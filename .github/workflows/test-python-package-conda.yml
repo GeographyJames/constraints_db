@@ -31,10 +31,10 @@ jobs:
       run: |
         site_packages_path=$(python -c "import site; print(''.join(site.getsitepackages()))")
         echo "site packages directory: $site_packages_path"
-        qgis_path=$(dirname $(which qgis))
-        echo "QGIS directory: $qgis_path"
+        qgis_python_path=$(dirname $(which qgis))/../share
+        echo "QGIS python directory: $qgis_python_path"
         touch ${site_packages_path}/conda.pth
-        echo "${CONDA}/share" > ${site_packages}/conda.pth
+        echo "${CONDA}/share" > ${site_packages_path}/conda.pth
 
     - name: Lint with flake8
       run: |
