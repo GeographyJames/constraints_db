@@ -6,14 +6,12 @@ from pathlib import Path
 import pytest
 
 
-"""
-app = QApplication([])
-
-
+@pytest.mark.gui
 class TestAddConstraintUI:
+
+    app = QApplication([])
 
     @pytest.mark.db
     def test_ui(self):
         AddConstraintDlg(PostGresRepo(engine(credentials_from_ini(
             Path("db_credentials.ini")), echo=True), testing=True))
-"""
