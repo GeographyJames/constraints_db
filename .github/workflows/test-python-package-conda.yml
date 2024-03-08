@@ -28,12 +28,13 @@ jobs:
         echo "site packages directory: $site_packages"
 
         touch ${site_packages}/conda.pth
+
         if [ -d ${CONDA} ];
           then echo "first path exists"
         else
           echo "path does not exist"
         fi
-        if [ -d ${CONDA}/Library/python ];
+        if [ -d ${CONDA}/python3.12/Library/python ];
           then echo "second path exists"
         fi
         if [ -d ${CONDA}/lib ];
