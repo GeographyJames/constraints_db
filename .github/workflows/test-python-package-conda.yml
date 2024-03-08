@@ -37,18 +37,20 @@ jobs:
 
     - name: Install dependencies
       run: |
-        conda env update --file environment.yml --name base
-    - name: Add PROJ environment variable
-      run: |
-        PROJ_LIB=${CONDA}/share/proj
-        echo "Proj lib variabl: $(PROJ_LIB)"
-        export PROJ_LIB
-        echo $(proj)
-        proj_directory=$(dirname $(which proj))
-        echo "Proj directory: $proj_directory"
+        conda env update --file environment.yml --name constraints_db
+        conda activate constraints_db
+    #- name: Add PROJ environment variable
+     # run: |
+      #  PROJ_DATA=${CONDA}/share/proj
+       # echo "Proj lib variable: $(PROJ_LIB)"
+        #export PROJ_LIB
+        #mecho $(proj)
+        #proj_directory=$(dirname $(which proj))
+        #echo "Proj directory: $proj_directory"
 
     - name: Add QGIS to Conda PYTHONPATH
       run: |
+        conda activate constraints_db
         site_packages_path=$(python -c "import site; print(''.join(site.getsitepackages()))")
         echo "site packages directory: $site_packages_path"
         qgis_python_path=$(dirname $(which qgis))/../share/qgis/python
