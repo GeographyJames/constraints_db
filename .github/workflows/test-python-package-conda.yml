@@ -26,7 +26,6 @@ jobs:
       run: |
         site_packages=$(python -c "import site; print(''.join(site.getsitepackages()))")
         echo "site packages directory: $site_packages"
-        which qgis
         touch ${site_packages}/conda.pth
 
         if [ -d ${CONDA} ];
@@ -52,7 +51,7 @@ jobs:
     - name: Install dependencies
       run: |
         conda env update --file environment.yml --name base
-
+        which qgis
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
