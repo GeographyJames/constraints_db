@@ -36,8 +36,6 @@ jobs:
           then echo "third  path exists"
         fi
     - name: Install dependencies
-    - name: Install dependencies
-    - name: Install dependencies
       run: |
         conda env update --file environment.yml --name base
     - name: Add QGIS to Conda Path
