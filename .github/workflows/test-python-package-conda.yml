@@ -34,7 +34,7 @@ jobs:
         else
           echo "path does not exist"
         fi
-        if [ -d ${CONDA}/python3.12/Library/python ];
+        if [ -d ${CONDA}/Library/python ];
           then echo "second path exists"
         fi
         if [ -d ${CONDA}/lib ];
