@@ -25,7 +25,8 @@ jobs:
     - name: Check for site packages directory
       run: |
         echo "Hello world"
-        python -c "import site; print("".join(site.getsitepackages()))"
+        python -c "import site; print(''.join(site.getsitepackages()))"
+        var=$(python -c "import site; print(''.join(site.getsitepackages()))")
         echo "$CONDA"
         if [ -d ${CONDA} ];
           then echo "first path exists"
