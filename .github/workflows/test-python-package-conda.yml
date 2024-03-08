@@ -40,7 +40,7 @@ jobs:
         conda env update --file environment.yml --name base
     - name: Add PROJ_LIB environment variable
       run: |
-        PROJ_LIB=$/usr/share/proj
+        PROJ_LIB='/usr/share/proj'
         echo "Proj lib variable: $(PROJ_LIB)"
         export PROJ_LIB
         echo $(proj)
@@ -71,6 +71,7 @@ jobs:
 
     - name: Test with pytest
       run: |
+        printenv PROJ_LIB
         coverage run --source=mpl_data_cast -m pytest -v
 
     - name: Run MyPy
