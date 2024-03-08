@@ -40,7 +40,9 @@ jobs:
         conda env update --file environment.yml --name base
     - name: Add PROJ_LIB environment variable
       run: |
-        PROJ_LIB='/usr/share/proj'
+        my_var=hello
+        echo $my_var
+        PROJ_LIB=/usr/share/proj
         echo "Proj lib variable: $(PROJ_LIB)"
         export PROJ_LIB
         echo $(proj)
