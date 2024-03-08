@@ -35,7 +35,7 @@ jobs:
         echo "QGIS python directory: $qgis_python_path"
         touch ${site_packages_path}/conda.pth
         echo "${CONDA}/share" > ${site_packages_path}/conda.pth
-        echo $(python -c "import qgis; print(qgis.__version__)")
+        echo $(python -c "import qgis; print(qgis.core.Qgis.QGIS_VERSION)")
 
 
     - name: Lint with flake8
