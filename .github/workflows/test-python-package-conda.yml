@@ -26,7 +26,7 @@ jobs:
       run: |
         site_packages=$(python -c "import site; print(''.join(site.getsitepackages()))")
         echo "site packages directory: $site_packages"
-
+        which qgis
         touch ${site_packages}/conda.pth
 
         if [ -d ${CONDA} ];
@@ -34,7 +34,7 @@ jobs:
         else
           echo "path does not exist"
         fi
-        if [ -d ${CONDA}/Library/python ];
+        if [ -d ${CONDA}/Library ];
           then echo "second path exists"
         fi
         if [ -d ${CONDA}/lib ];
