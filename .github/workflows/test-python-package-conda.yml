@@ -24,10 +24,13 @@ jobs:
 
     - name: Check for site packages directory
       run: |
+        echo "Hello world"
         echo $CONDA
         echo ${CONDA}/envs/costraints_db/lib/site-packages
         if [ -d ${CONDA}];
           then echo "first path exists"
+        else
+          "path does not exist"
         fi
         if [ -d ${CONDA}/envs/constraints_db];
           then echo "second path exists"
@@ -38,19 +41,6 @@ jobs:
     - name: Install dependencies
       run: |
         conda env update --file environment.yml --name base
-    - name: Add QGIS to Conda Path
-      run: |
-
-        my_p=$(pwd)
-        echo $my_p
-        conda_base=$(conda info --base)
-        echo $conda_base
-        site_packages=$/envs/constraints_db/lib/site-packages
-        full_path=$CONDA${site_packages}
-        echo $full_path
-        if [ -d $full_path ];
-          then echo "path exists"
-        fi
 
     - name: Lint with flake8
       run: |
