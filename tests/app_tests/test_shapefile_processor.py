@@ -49,12 +49,6 @@ class TestVerifyCRS:
         with pytest.raises(ShapefileError, match="CRS not accepted"):
             verify_crs_is_ESPG27700(datasource)
 
-    def test_should_fail(self):
-        path = Path(
-            "tests/test_data/test_shapefiles/2_valid_polygons_WGS84.shp")
-        datasource = verify_shapefile(path)
-        verify_crs_is_ESPG27700(datasource)
-
 
 @attrs.define()
 class Input:
