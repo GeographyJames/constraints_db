@@ -43,7 +43,7 @@ jobs:
         my_var=hello
         echo $my_var
         PROJ_LIB=/usr/share/proj
-        echo "Proj lib variable: $(PROJ_LIB)"
+        echo "Proj lib variable: $PROJ_LIB"
         export PROJ_LIB
         echo $(proj)
         proj_directory=$(dirname $(which proj))
@@ -73,7 +73,8 @@ jobs:
 
     - name: Test with pytest
       run: |
-        printenv PROJ_LIB
+        echo "$(printenv HOME)"
+        echo "$(printenv PROJ_LIB)"
         coverage run --source=mpl_data_cast -m pytest -v
 
     - name: Run MyPy
