@@ -48,6 +48,7 @@ jobs:
         echo $(proj)
         proj_directory=$(dirname $(which proj))
         echo "Proj directory: $proj_directory"
+        echo "PROJ_LIB=usr/share/proj" >> $GITHUB_ENV
 
     - name: Add QGIS to Conda PYTHONPATH
       run: |
