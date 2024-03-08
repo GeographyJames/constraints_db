@@ -38,9 +38,9 @@ jobs:
     - name: Install dependencies
       run: |
         conda env update --file environment.yml --name base
-        echo $proj
+        echo $(proj)
         proj_directory=$(dirname $(which proj))
-        echo "Proj directory: $proj_path"
+        echo "Proj directory: $proj_directory"
 
     - name: Add QGIS to Conda PYTHONPATH
       run: |
