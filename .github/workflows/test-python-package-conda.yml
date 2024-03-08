@@ -25,14 +25,15 @@ jobs:
     - name: Check for site packages directory
       run: |
         site_packages=$(python -c "import site; print(''.join(site.getsitepackages()))")
-        echo "sit packages directory: $site_packages"
+        echo "site packages directory: $site_packages"
+
         touch ${site_packages}/conda.pth
         if [ -d ${CONDA} ];
           then echo "first path exists"
         else
           echo "path does not exist"
         fi
-        if [ -d ${CONDA}/Lib ];
+        if [ -d ${CONDA}/Library/python ];
           then echo "second path exists"
         fi
         if [ -d ${CONDA}/lib ];
@@ -44,7 +45,7 @@ jobs:
         if [ -d ${site_packages} ];
           then echo "fith path exists"
         fi
-        if [ -f ${CONDA}/lib/python3.12/site-packages/conda.pth ]
+        if [ -f ${site_packages}/conda.pth ]
           then echo "file exists"
         fi
     - name: Install dependencies
