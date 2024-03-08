@@ -4,7 +4,7 @@ from .exceptions import ShapefileError
 from .dtos import ShapfileInfoDTO
 
 
-ogr.UseExceptions()
+# ogr.UseExceptions()
 
 
 class ShapefileProcessor:
