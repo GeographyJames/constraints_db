@@ -51,7 +51,7 @@ jobs:
         echo "conda path: $CONDA"
         proj_lib=${CONDA}/share/proj
         echo "proj lib = $proj_lib"
-        echo "$PROJ_LIB=$proj_lib" >> "$GITHUB_ENV"
+        echo "PROJ_LIB=$proj_lib" >> "$GITHUB_ENV"
 
 
 
