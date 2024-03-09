@@ -37,21 +37,22 @@ jobs:
         # $CONDA is an environment variable pointing to the root of the miniconda directory
         echo $CONDA/bin >> $GITHUB_PATH
 
-    - name: Install dependencies
-      run: |
-        echo $(conda list)
-        conda env update --file environment.yml --name base
-        echo $(conda list proj)
-
     - name: Add PROJ to system path
       run: |
         echo $(proj)
         proj_directory=$(dirname $(which proj))
         echo "proj directory: $proj_directory"
         echo "conda path: $CONDA"
-        proj_lib = ${CONDA}/share/proj
+        proj_lib=${CONDA}/share/proj
         echo "proj lib = $proj_lib"
         echo "$PROJ_LIB=$proj_lib" >> "$GITHUB_ENV"
+    - name: Install dependencies
+      run: |
+        echo $(printenv PROJ_LIB)
+        echo $(conda list)
+        conda env update --file environment.yml --name base
+        echo $(conda list proj)
+
 
 
 
