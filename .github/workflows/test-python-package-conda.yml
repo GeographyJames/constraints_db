@@ -48,7 +48,7 @@ jobs:
         echo $(proj)
         proj_directory=$(dirname $(which proj))
         echo "proj directory: $proj_directory"
-        echo $proj_directory/../share/proj >> PROJ_LIB
+        echo $proj_directory/../share/proj >> $PROJ_LIB
 
 
 
@@ -76,8 +76,9 @@ jobs:
 
     - name: Test with pytest
       run: |
-        echo "$(printenv HOME)"
-        echo "$(printenv PROJ_LIB)"
+        echo "home env variable: $(printenv HOME)"
+        echo "prob_lib env variable: $(printenv PROJ_LIB)"
+        echo "here"
         coverage run --source=mpl_data_cast -m pytest -v
 
     - name: Run MyPy
