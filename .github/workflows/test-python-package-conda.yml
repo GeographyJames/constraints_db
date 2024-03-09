@@ -79,9 +79,8 @@ jobs:
 
     - name: Test with pytest
       run: |
-        echo "home env variable: $(printenv HOME)"
         echo "prob_lib env variable: $(printenv PROJ_LIB)"
-        echo "here"
+        # addintional text required for pytest to work with qt (https://stackoverflow.com/a/77480795/19307533)
         coverage run --source=mpl_data_cast -m pytest -v
 
     - name: Run MyPy
