@@ -46,7 +46,9 @@ jobs:
     - name: Check for PROJ
       run: |
         echo $proj
-        echo $PROJ_LIB
+        echo "proj environment variable PROJ_LIB: $(printenv PROJ_LIB)"
+        proj_directory=$(dirname $(which proj))
+        echo "proj directory: $proj_directory"
 
 
 
