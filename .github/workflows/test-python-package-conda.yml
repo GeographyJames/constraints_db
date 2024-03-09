@@ -11,6 +11,7 @@ jobs:
 
     env:
       # Display must be available globally for linux to know where xvfb is
+      # xfvb is required for Qt
       DISPLAY: ":99.0"
       QT_SELECT: "qt5"
 
@@ -25,6 +26,7 @@ jobs:
         python-version: '3.12'
     - name: Setup xvfb
       run: |
+        # This is required to run PyQt
         # taken from stack overflow (https://stackoverflow.com/a/77480795/19307533)
         sudo apt-get install -y xvfb libxkbcommon-x11-0 libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-randr0 libxcb-render-util0 libxcb-xinerama0 libxcb-xinput0 libxcb-xfixes0 libxcb-shape0 libglib2.0-0 libgl1-mesa-dev
         sudo apt-get install '^libxcb.*-dev' libx11-xcb-dev libglu1-mesa-dev libxrender-dev libxi-dev libxkbcommon-dev libxkbcommon-x11-dev
@@ -41,18 +43,20 @@ jobs:
         echo "proj: $(proj)"
         proj_directory=$(dirname $(which proj))
         echo "Proj directory: $proj_directory"
-        echo "$(printenv PROJ_LIB)"
-    - name: Install dependencies
-      run: |
-        conda env update --file environment.yml --name base
+        # Add proj environment variable
+        echo "PROJ_LIB=usr/share/proj" >> "$GITHUB_ENV"
 
-    - name: Add PROJ_LIB environment variable
+    - name: Check for PROJ
       run: |
         echo $(proj)
         proj_directory=$(dirname $(which proj))
         echo "Proj directory: $proj_directory"
-        echo "PROJ_LIB=usr/share/proj" >> "$GITHUB_ENV"
-
+        echo "$(printenv PROJ_LIB)"
+    - name: Install dependencies
+      run: |
+        echo $(conda list)
+        conda env update --file environment.yml --name base
+        echo $(conda list)
     - name: Add QGIS to Conda PYTHONPATH
       run: |
         site_packages_path=$(python -c "import site; print(''.join(site.getsitepackages()))")
