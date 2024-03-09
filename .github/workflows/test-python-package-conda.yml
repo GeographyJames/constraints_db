@@ -49,9 +49,9 @@ jobs:
         proj_directory=$(dirname $(which proj))
         echo "proj directory: $proj_directory"
         echo "conda path: $CONDA"
-        proj_lib=${CONDA}/share/proj
-        echo "proj lib = $proj_lib"
-        echo "PROJ_LIB=$proj_lib" >> "$GITHUB_ENV"
+        proj_data=${CONDA}/share/proj
+        echo "proj data directory = $proj_data"
+        echo "PROJ_DATA=$proj_data" >> "$GITHUB_ENV"
 
 
 
@@ -79,7 +79,7 @@ jobs:
 
     - name: Test with pytest
       run: |
-        echo "prob_lib env variable: $(printenv PROJ_LIB)"
+        echo "PROJ_DATA env variable: $(printenv PROJ_DATA)"
         # addintional text required for pytest to work with qt (https://stackoverflow.com/a/77480795/19307533)
         coverage run --source=mpl_data_cast -m pytest -v
 
