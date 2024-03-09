@@ -41,14 +41,14 @@ jobs:
       run: |
         echo $(conda list)
         conda env update --file environment.yml --name base
-        echo $(conda list)
+        echo $(conda list proj)
 
-    - name: Check for PROJ
+    - name: Check for PROJj
       run: |
-        echo $proj
-        echo "proj environment variable PROJ_LIB: $(printenv PROJ_LIB)"
+        echo $(proj)
         proj_directory=$(dirname $(which proj))
         echo "proj directory: $proj_directory"
+        echo $proj_directory/../share/proj >> PROJ_LIB
 
 
 
