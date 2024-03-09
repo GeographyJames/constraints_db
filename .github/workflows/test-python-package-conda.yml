@@ -43,12 +43,14 @@ jobs:
         conda env update --file environment.yml --name base
         echo $(conda list proj)
 
-    - name: Check for PROJj
+    - name: Add PROJ to system path
       run: |
         echo $(proj)
         proj_directory=$(dirname $(which proj))
         echo "proj directory: $proj_directory"
-        echo $proj_directory/../share/proj >> $PROJ_LIB
+        echo "conda path: $CONDA"
+        proj_lib_path=${proj_directory}/../share/proj
+        echo $proj_lib_path >> $PROJ_LIB
 
 
 
