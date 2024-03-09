@@ -49,8 +49,7 @@ jobs:
         proj_directory=$(dirname $(which proj))
         echo "proj directory: $proj_directory"
         echo "conda path: $CONDA"
-        proj_lib_path=${proj_directory}/../share/proj
-        echo $proj_lib_path >> $PROJ_LIB
+        echo $PROJ_LIB= =${proj_directory}/../share/proj >> "$GITHUB_ENV"
 
 
 
