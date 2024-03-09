@@ -36,27 +36,20 @@ jobs:
       run: |
         # $CONDA is an environment variable pointing to the root of the miniconda directory
         echo $CONDA/bin >> $GITHUB_PATH
-    - name: Install PROJ
-      run: |
-        echo "proj: $(proj)"
-        sudo apt-get install proj-bin
-        echo "proj: $(proj)"
-        proj_directory=$(dirname $(which proj))
-        echo "Proj directory: $proj_directory"
-        # Add proj environment variable
-        echo "PROJ_LIB=usr/share/proj" >> "$GITHUB_ENV"
 
-    - name: Check for PROJ
-      run: |
-        echo $(proj)
-        proj_directory=$(dirname $(which proj))
-        echo "Proj directory: $proj_directory"
-        echo "$(printenv PROJ_LIB)"
     - name: Install dependencies
       run: |
         echo $(conda list)
         conda env update --file environment.yml --name base
         echo $(conda list)
+
+    - name: Check for PROJ
+      run: |
+        echo $proj
+        echo $PROJ_LIB
+
+
+
     - name: Add QGIS to Conda PYTHONPATH
       run: |
         site_packages_path=$(python -c "import site; print(''.join(site.getsitepackages()))")
