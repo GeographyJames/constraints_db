@@ -1,7 +1,8 @@
 from pathlib import Path
 from osgeo import ogr
 from .exceptions import ShapefileError
-from .dtos import ShapfileInfoDTO
+from .dtos import ShapfileInfoDTO, ConstraintObjectInputDTO
+from src.db.enums import GeomType
 
 ogr.DontUseExceptions()
 
@@ -16,7 +17,7 @@ class ShapefileProcessor:
 
     def geometry_type(self) -> str:
         geom = self.datasource.GetLayer().GetGeomType()
-        return str(ogr.GeometryTypeToName(geom).upper().replace(" ", ""))
+        return GeomType(str(ogr.GeometryTypeToName(geom).lower().replace(" ", "")))
 
     def field_names(self) -> list[str]:
         layer_def = self.datasource.GetLayer().GetLayerDefn()
@@ -29,6 +30,16 @@ class ShapefileProcessor:
             geom_type=self.geometry_type(),
             feature_count=self.feature_count()
         )
+
+    def constraint_object_input_dto(self, name_field: str, status_field: str | None = None) -> list[ConstraintObjectInputDTO]:
+        features = []
+        for feature in self.datasource.GetLayer():
+            features.append(
+                ConstraintObjectInputDTO(
+                    name=feature.GetField(name_field),
+                    status=feature.GetField(status_field),
+                    geom=feature.GetGeometryRef().ExportToWkt(),))
+        return features
 
 
 def verify_shapefile(file_path: Path) -> ogr.DataSource:
@@ -54,6 +65,7 @@ def verify_crs_is_ESPG27700(datasource: ogr.DataSource) -> None:
 
 
 if __name__ == "__main__":
-    path = Path(r"tests\test_data\test_shapefiles\1_valid_point_OSGB36.shp")
+    path = Path(r"tests\test_data\test_shapefiles\1_valid_multipoint_OSGB36.shp")
     sp = ShapefileProcessor(path)
     print(sp.geometry_type())
+    print(sp.shapefile_info())

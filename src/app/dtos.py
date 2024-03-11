@@ -26,6 +26,11 @@ class ConstraintLayerFormOptionsDTO:
     data_publishers: dict[int, str]
     data_licenses: dict[int, str]
 
+@attrs.define
+class ConstraintObjectInputDTO:
+    name: str
+    status: str
+    geom: str
 
 @attrs.define
 class ConstraintLayerInputDTO:
@@ -41,6 +46,7 @@ class ConstraintLayerInputDTO:
     data_expires: date | None
     notes: str | None
     geom_type: GeomType
+    constraint_objects: list [ConstraintObjectInputDTO]
 
     def name(self) -> str:
         return slugify(f"{self.administrative_area.abbreviation}-"
@@ -53,3 +59,12 @@ class ShapfileInfoDTO:
     fields: list[str]
     feature_count: int
     geom_type: str
+
+    def __repr__(self) -> str:
+        return (
+            f"feature count: {self.feature_count}\n"
+            f"geometry type: {self.geom_type}\n"
+            f"fields: {(", ").join(self.fields)}"
+        )
+    
+
