@@ -17,6 +17,16 @@ class Ui_mainWindow(object):
         mainWindow.resize(640, 480)
         self.centralwidget = QtWidgets.QWidget(mainWindow)
         self.centralwidget.setObjectName("centralwidget")
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.centralwidget)
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.ConstraintsTW = QtWidgets.QTableWidget(self.centralwidget)
+        self.ConstraintsTW.setObjectName("ConstraintsTW")
+        self.ConstraintsTW.setColumnCount(0)
+        self.ConstraintsTW.setRowCount(0)
+        self.verticalLayout.addWidget(self.ConstraintsTW)
+        self.RefreshPB = QtWidgets.QPushButton(self.centralwidget)
+        self.RefreshPB.setObjectName("RefreshPB")
+        self.verticalLayout.addWidget(self.RefreshPB)
         mainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(mainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 640, 22))
@@ -38,5 +48,6 @@ class Ui_mainWindow(object):
     def retranslateUi(self, mainWindow):
         _translate = QtCore.QCoreApplication.translate
         mainWindow.setWindowTitle(_translate("mainWindow", "Constraints Database"))
+        self.RefreshPB.setText(_translate("mainWindow", "Refresh"))
         self.menuConstraints.setTitle(_translate("mainWindow", "Constraints"))
         self.actionAdd_New.setText(_translate("mainWindow", "Add New"))

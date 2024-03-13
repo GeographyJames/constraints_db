@@ -15,7 +15,7 @@ class ShapefileProcessor:
     def feature_count(self) -> int:
         return int(self.datasource.GetLayer().GetFeatureCount())
 
-    def geometry_type(self) -> str:
+    def geometry_type(self) -> GeomType:
         geom = self.datasource.GetLayer().GetGeomType()
         return GeomType(str(ogr.GeometryTypeToName(geom).lower().replace(" ", "")))
 
@@ -37,7 +37,7 @@ class ShapefileProcessor:
             features.append(
                 ConstraintObjectInputDTO(
                     name=feature.GetField(name_field),
-                    status=feature.GetField(status_field),
+                    status=feature.GetField(status_field) if status_field else None,
                     geom=feature.GetGeometryRef().ExportToWkt(),))
         return features
 

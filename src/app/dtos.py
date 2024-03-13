@@ -2,6 +2,7 @@ import attrs
 from datetime import date
 from slugify import slugify
 from src.db.enums import GeomType
+import datetime
 
 
 @attrs.define
@@ -16,7 +17,7 @@ class DevelopmentConstraintOutputDTO:
 class AdministrativeAreaOutputDTO:
     id: int
     name: str
-    abbreviation: str | None
+    abbreviation: str
 
 
 @attrs.define
@@ -26,14 +27,17 @@ class ConstraintLayerFormOptionsDTO:
     data_publishers: dict[int, str]
     data_licenses: dict[int, str]
 
+
 @attrs.define
 class ConstraintObjectInputDTO:
     name: str
-    status: str
+    status: None|str
     geom: str
+
 
 @attrs.define
 class ConstraintLayerInputDTO:
+    name: str
     development_constraint: DevelopmentConstraintOutputDTO
     administrative_area: AdministrativeAreaOutputDTO
     data_publisher_id: int
@@ -46,11 +50,12 @@ class ConstraintLayerInputDTO:
     data_expires: date | None
     notes: str | None
     geom_type: GeomType
-    constraint_objects: list [ConstraintObjectInputDTO]
+    constraint_objects: list[ConstraintObjectInputDTO]
 
-    def name(self) -> str:
-        return slugify(f"{self.administrative_area.abbreviation}-"
-                       f"{self.development_constraint.table_name}"
+    @staticmethod
+    def generate_name(admin_area_abbreviation: str, table_name: str) -> str:
+        return slugify(f"{admin_area_abbreviation}-"
+                       f"{table_name}"
                        ).replace("-", "_")
 
 
@@ -66,5 +71,27 @@ class ShapfileInfoDTO:
             f"geometry type: {self.geom_type}\n"
             f"fields: {(", ").join(self.fields)}"
         )
-    
 
+
+@attrs.define
+class ConstraintLayerInfoDTO:
+    id: int
+    layer_name: str
+    constraint: str
+    category: str
+    objects: int
+    wind_priority: int
+    solar_priority: int
+    battery_priority: int
+    area: str
+    publisher: str
+    license: None|str
+    update_cycle: None|str
+    accessed_or_created: str
+    last_updated: None|str
+    next_updated: None|str
+    expires: None|str
+    notes: None|str
+    source: None|str
+    created: str
+    created_by: str
