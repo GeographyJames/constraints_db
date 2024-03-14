@@ -13,7 +13,20 @@
   <property name="windowTitle">
    <string>Constraints Database</string>
   </property>
-  <widget class="QWidget" name="centralwidget"/>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QTableWidget" name="ConstraintsTW"/>
+    </item>
+    <item>
+     <widget class="QPushButton" name="RefreshPB">
+      <property name="text">
+       <string>Refresh</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>

@@ -6,7 +6,8 @@ import pytest
 from src.app.exceptions import ShapefileError
 from osgeo import ogr
 import attrs
-# import qgis
+from src.app.dtos import ShapfileInfoDTO
+from src.db.enums import GeomType
 
 
 class TestVerifyShapefile:
@@ -67,12 +68,12 @@ def cases():
         Input(
             "2_valid_multipolygons_OSGB36",
             2,
-            "POLYGON",
+            "polygon",
             ["id", "Name", "Status", "Other"]),
         Input(
             "3_valid_linestrings_OSGB36",
             3,
-            "LINESTRING",
+            "linestring",
             ["id", "new field"])
     ]
 
@@ -87,9 +88,21 @@ class TestShapefileProcessor:
     def test_should_return_geometry_type(self, cases: list[Input]):
         for test_case in cases:
             assert ShapefileProcessor(
-                test_case.path()).geometry_type() == test_case.geom_type
+                test_case.path()).geometry_type() == GeomType(test_case.geom_type)
 
     def test_should_return_field_names(self, cases: list[Input]):
         for test_case in cases:
             assert ShapefileProcessor(
                 test_case.path()).field_names() == test_case.field_names
+
+    def test_should_return_shapefile_info_dto(self, cases: list[Input]):
+        case = cases[0]
+        assert ShapefileProcessor(case.path()).shapefile_info() == ShapfileInfoDTO(
+            fields=case.field_names,
+            feature_count=case.feature_count,
+            geom_type=case.geom_type)
+
+    def test_should_create_constraint_object(self, cases: list[input]):
+        case = cases[0]
+        ShapefileProcessor(case.path()).constraint_object_input_dto(
+            name_field="Name", status_field="Status",)

@@ -50,15 +50,19 @@ class DevelopmentConstraint(Base):
         ForeignKey("priority_levels.id"))
     solar_priority_level_id: Mapped[int] = mapped_column(
         ForeignKey("priority_levels.id"))
+    battery_priority_level_id: Mapped[int] = mapped_column(
+        ForeignKey("priority_levels.id"), server_default="5")
+
     table_name: Mapped[str] = mapped_column(unique=True, default=name)
     constraint_category: Mapped["ConstraintCategory"] = relationship(
         back_populates="development_constraints")
     onshore_wind_priority_level: Mapped["PriorityLevel"] = relationship(
-        #        back_populates="onshore_wind_constraints",
         foreign_keys=[onshore_wind_priority_level_id])
     solar_priority_level: Mapped["PriorityLevel"] = relationship(
-        #        back_populates="solar_constraints",
         foreign_keys=[solar_priority_level_id])
+    battery_priority_level: Mapped["PriorityLevel"] = relationship(
+        foreign_keys=[battery_priority_level_id])
+
     constraint_layers: Mapped[List["ConstraintLayer"]] = relationship(
         back_populates="development_constraint")
 
@@ -229,7 +233,7 @@ def create_prtitioned_tables(conn: Connection) -> None:
     """To my current knowledge, Alembic does not support table partitioning.
     Therefore to create the partitioned tables, run this function.
     """
-    for geometry_type in GeomType:
+    for geometry_type in [GeomType.MULTILINESTRING, GeomType.MULTIPOLYGON, GeomType.POINT]:
         name = f"{constraint_objects_table.name}_{geometry_type}"
         conn.execute(text(
             f"CREATE TABLE IF NOT EXISTS {name} "

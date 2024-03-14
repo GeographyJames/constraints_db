@@ -31,7 +31,7 @@ files_to_load = [Path("priority_levels.sql"),
                  Path("data_publishers.sql"),
                  Path("development_constraints.sql"),
                  Path("administrative_areas.sql"),
-                 Path("constraint_layers.sql")
+                 #Path("constraint_layers.sql")
                  ]
 
 
