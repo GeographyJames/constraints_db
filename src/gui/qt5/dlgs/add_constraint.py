@@ -7,6 +7,8 @@ from src.db.enums import GeomType
 from src.app.shapefile_processor import ShapefileProcessor
 from pathlib import Path
 from src.app.exceptions import ShapefileError
+from .select_geom_type import SelectGeomType
+from .add_development_constraint import AddDevelopmentConstraint
 
 
 class AddConstraintDlg(QDialog,  # type: ignore
@@ -23,6 +25,8 @@ class AddConstraintDlg(QDialog,  # type: ignore
         self.AdministrativeAreaCB.currentIndexChanged.connect(
             self.update_layer_name
         )
+        self.AddDevelopmentConstraintPB.clicked.connect(
+            self.add_development_constraint)
         self.SelectShapefileQgsFileWidget.setDefaultRoot(
             r"C:\Users\jcampbell\Downloads")
         self.SelectShapefileQgsFileWidget.fileChanged.connect(
@@ -71,14 +75,7 @@ class AddConstraintDlg(QDialog,  # type: ignore
         self.LastUpdatedDE.setDate(QDate.currentDate())
         self.ExpiresDE.setDate(QDate.currentDate())
 
-    def populate_input_dto(self) -> None | ConstraintLayerInputDTO:
-        self.update_layer_name()
-        if not self.shapefile_processor:
-            QMessageBox.information(
-                self, "Select Shapefile", "No Shapefile selected")
-            return None
-        if not self.form_options:
-            raise Exception
+    def populate_input_dto(self) -> ConstraintLayerInputDTO:
         return ConstraintLayerInputDTO(
             name=self.LayerNameLE.text(),
             development_constraint=self.form_options.development_constraints[
@@ -100,18 +97,27 @@ class AddConstraintDlg(QDialog,  # type: ignore
                           if self.ExpiresCB.isChecked() else None),
             notes=(self.NotesTE.document().toPlainText()
                    if self.NotesTE.document().toPlainText() else None),
-            geom_type=self.shapefile_processor.geometry_type(),
+            geom_type=self.shapefile_processor.geometry_type(
+            ) if self.shapefile_processor else None,
             constraint_objects=self.shapefile_processor.constraint_object_input_dto(
                 name_field=self.FeatureNameCB.currentText(),
                 status_field=(self.FeatureStatusCB.currentText()
-                              if self.FeatureStatusCB.currentText() != "NONE" else None)
-            )
+                              if self.FeatureStatusCB.currentText() != "NONE" else None))
+            if self.shapefile_processor else None
 
         )
 
+    def add_development_constraint(self) -> None:
+        dlg = AddDevelopmentConstraint(repo=self.repo)
+        result = dlg.exec()
+        if result == QDialog.Accepted:
+            self.form_options = self.repo.get_constraint_layer_form_options()
+            self.DevelopmentConstraintCB.clear()
+            for constraint in self.form_options.development_constraints.values():
+                self.DevelopmentConstraintCB.addItem(
+                    constraint.name, constraint.id)
+
     def update_layer_name(self) -> None:
-        if not self.form_options:
-            raise Exception
         self.LayerNameLE.setText(ConstraintLayerInputDTO.generate_name(
             admin_area_abbreviation=self.form_options.administrative_areas[
                 self.AdministrativeAreaCB.currentData()].abbreviation,
@@ -119,11 +125,26 @@ class AddConstraintDlg(QDialog,  # type: ignore
                 self.DevelopmentConstraintCB.currentData()].table_name)
         )
 
-    def accept(self) -> None:
+    def add_table_without_objects(self) -> None:
         input_dto = self.populate_input_dto()
-
-        if not input_dto:
+        dlg = SelectGeomType(input_dto)
+        result = dlg.exec()
+        if result != QDialog.Accepted:
             return
+        self.add_layer(input_dto)
+
+    def accept(self) -> None:
+        if not self.shapefile_processor:
+            result = QMessageBox.question(
+                self, "No shapefile selected", "No Shapefile selected, do you wish to continue and just create the table with no entries?")
+            if result != QMessageBox.Yes:
+                return None
+            else:
+                self.add_table_without_objects()
+                return None
+        self.add_layer(self.populate_input_dto())
+
+    def add_layer(self, input_dto: ConstraintLayerInputDTO) -> None:
 
         msg = QMessageBox()
         msg.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
@@ -131,7 +152,8 @@ class AddConstraintDlg(QDialog,  # type: ignore
         msg.setText(
             f"Confirm details\n\n"
             f"layer name: {input_dto.name}\n"
-            f"administrativ area: {input_dto.administrative_area.name}\n")
+            f"administrativ area: {input_dto.administrative_area.name}\n"
+            f"geometry type: {input_dto.geom_type}")
         result = msg.exec()
 
         if result != QMessageBox.Ok:

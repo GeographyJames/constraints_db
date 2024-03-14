@@ -33,8 +33,11 @@ class MainWindow(QMainWindow,  # type: ignore
 
         for row_number, row in enumerate(table_info):
             for column, field_name in enumerate(field_names):
-                if getattr(row, field_name):
+                if getattr(row, field_name) == 0:
+                    self.ConstraintsTW.setItem(row_number, column, QTableWidgetItem("0"))
+                elif getattr(row, field_name):
                     self.ConstraintsTW.setItem(
+
                         row_number, column, QTableWidgetItem(str(getattr(row, field_name))))
         self.ConstraintsTW.resizeColumnsToContents()
 
