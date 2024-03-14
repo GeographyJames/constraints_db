@@ -207,6 +207,11 @@
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">db.enums.</span></span><span class="sig-name descname"><span class="pre">GeomType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#db.enums.GeomType" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">StrEnum</span></code></p>
 <dl class="py attribute">
+<dt class="sig sig-object py" id="db.enums.GeomType.LINESTRING">
+<span class="sig-name descname"><span class="pre">LINESTRING</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'linestring'</span></em><a class="headerlink" href="#db.enums.GeomType.LINESTRING" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="db.enums.GeomType.MULTILINESTRING">
 <span class="sig-name descname"><span class="pre">MULTILINESTRING</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'multilinestring'</span></em><a class="headerlink" href="#db.enums.GeomType.MULTILINESTRING" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
@@ -219,6 +224,11 @@
 <dl class="py attribute">
 <dt class="sig sig-object py" id="db.enums.GeomType.POINT">
 <span class="sig-name descname"><span class="pre">POINT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'point'</span></em><a class="headerlink" href="#db.enums.GeomType.POINT" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="db.enums.GeomType.POLYGON">
+<span class="sig-name descname"><span class="pre">POLYGON</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'polygon'</span></em><a class="headerlink" href="#db.enums.GeomType.POLYGON" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -642,6 +652,16 @@ for new <code class="xref py py-class docutils literal notranslate"><span class=
 <dd></dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="db.models.DevelopmentConstraint.battery_priority_level">
+<span class="sig-name descname"><span class="pre">battery_priority_level</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#db.models.PriorityLevel" title="db.models.PriorityLevel"><span class="pre">PriorityLevel</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.DevelopmentConstraint.battery_priority_level" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="db.models.DevelopmentConstraint.battery_priority_level_id">
+<span class="sig-name descname"><span class="pre">battery_priority_level_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.DevelopmentConstraint.battery_priority_level_id" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="db.models.DevelopmentConstraint.constraint_category">
 <span class="sig-name descname"><span class="pre">constraint_category</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="(in SQLAlchemy v2.0)"><span class="pre">Mapped</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#db.models.ConstraintCategory" title="db.models.ConstraintCategory"><span class="pre">ConstraintCategory</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#db.models.DevelopmentConstraint.constraint_category" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
@@ -893,9 +913,11 @@ current time and database user when updating a table row.</p>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
 <li><a class="reference internal" href="#module-db.enums">db.enums module</a><ul>
 <li><a class="reference internal" href="#db.enums.GeomType"><code class="docutils literal notranslate"><span class="pre">GeomType</span></code></a><ul>
+<li><a class="reference internal" href="#db.enums.GeomType.LINESTRING"><code class="docutils literal notranslate"><span class="pre">GeomType.LINESTRING</span></code></a></li>
 <li><a class="reference internal" href="#db.enums.GeomType.MULTILINESTRING"><code class="docutils literal notranslate"><span class="pre">GeomType.MULTILINESTRING</span></code></a></li>
 <li><a class="reference internal" href="#db.enums.GeomType.MULTIPOLYGON"><code class="docutils literal notranslate"><span class="pre">GeomType.MULTIPOLYGON</span></code></a></li>
 <li><a class="reference internal" href="#db.enums.GeomType.POINT"><code class="docutils literal notranslate"><span class="pre">GeomType.POINT</span></code></a></li>
+<li><a class="reference internal" href="#db.enums.GeomType.POLYGON"><code class="docutils literal notranslate"><span class="pre">GeomType.POLYGON</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -999,6 +1021,8 @@ current time and database user when updating a table row.</p>
 </li>
 <li><a class="reference internal" href="#db.models.DevelopmentConstraint"><code class="docutils literal notranslate"><span class="pre">DevelopmentConstraint</span></code></a><ul>
 <li><a class="reference internal" href="#db.models.DevelopmentConstraint.abbreviation"><code class="docutils literal notranslate"><span class="pre">DevelopmentConstraint.abbreviation</span></code></a></li>
+<li><a class="reference internal" href="#db.models.DevelopmentConstraint.battery_priority_level"><code class="docutils literal notranslate"><span class="pre">DevelopmentConstraint.battery_priority_level</span></code></a></li>
+<li><a class="reference internal" href="#db.models.DevelopmentConstraint.battery_priority_level_id"><code class="docutils literal notranslate"><span class="pre">DevelopmentConstraint.battery_priority_level_id</span></code></a></li>
 <li><a class="reference internal" href="#db.models.DevelopmentConstraint.constraint_category"><code class="docutils literal notranslate"><span class="pre">DevelopmentConstraint.constraint_category</span></code></a></li>
 <li><a class="reference internal" href="#db.models.DevelopmentConstraint.constraint_category_id"><code class="docutils literal notranslate"><span class="pre">DevelopmentConstraint.constraint_category_id</span></code></a></li>
 <li><a class="reference internal" href="#db.models.DevelopmentConstraint.constraint_layers"><code class="docutils literal notranslate"><span class="pre">DevelopmentConstraint.constraint_layers</span></code></a></li>
