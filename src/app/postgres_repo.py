@@ -3,12 +3,16 @@ from .dtos import (ConstraintLayerFormOptionsDTO,
                    AdministrativeAreaOutputDTO,
                    ConstraintLayerInputDTO,
                    ConstraintObjectInputDTO,
+                   DevelopmentConstraintInputDTO,
+                   DevelopmentConstraintFormOptions,
                    ConstraintLayerInfoDTO)
 from sqlalchemy import Engine, select, text, insert, Connection, func
 from src.db.models import (DevelopmentConstraint,
                            AdministrativeArea,
                            DataPublisher,
                            DataLicense,
+                           ConstraintCategory,
+                           PriorityLevel,
                            create_constraint_layer_table,
                            ConstraintLayer,
                            constraint_objects_table
@@ -51,7 +55,7 @@ class PostGresRepo:
                         abbreviation=row.abbreviation) for row in conn.execute(
                             select(AdministrativeArea.id,
                                    AdministrativeArea.name,
-                                   AdministrativeArea.abbreviation))},
+                                   AdministrativeArea.abbreviation).order_by(AdministrativeArea.parent_area, AdministrativeArea.name))},
                 data_publishers=self._to_dict(conn.execute(select(
                     DataPublisher.id, DataPublisher.name).order_by(
                         DataPublisher.name))),
@@ -59,6 +63,15 @@ class PostGresRepo:
                     DataLicense.id, DataLicense.name).order_by(DataLicense.name)))
             )
         return result
+    
+    def get_development_constraint_form_options(self) -> DevelopmentConstraintFormOptions:
+        with self.engine.connect() as conn:
+            result = DevelopmentConstraintFormOptions(
+                categories=self._to_dict(conn.execute(select(ConstraintCategory.id, ConstraintCategory.name))),
+                priority_levels=self._to_dict(conn.execute(select(PriorityLevel.id, PriorityLevel.name))))
+        return result
+
+
 
     def add_constraint_layer(self, layer: ConstraintLayerInputDTO) -> None:
         layer_name = layer.name
@@ -77,6 +90,8 @@ class PostGresRepo:
             notes=layer.notes
 
         )
+        if not layer.geom_type:
+            raise Exception("No geometry type provided")
         if layer.geom_type in (GeomType.MULTILINESTRING, GeomType.LINESTRING):
             geom = GeomType.MULTILINESTRING
         elif layer.geom_type in (GeomType.POLYGON, GeomType.MULTIPOLYGON):
@@ -93,11 +108,15 @@ class PostGresRepo:
                         geometry_type=geom,
                         constraint_layer_id=sql_layer.id):
                     session.execute(text(stmt))
-                self.add_constraint_object(
-                    session, layer, sql_layer.id)
+                if layer.constraint_objects:
+                    
+                    self.add_constraint_object(
+                        session, layer, sql_layer.id)
                 session.commit()
 
     def add_constraint_object(self, session: Session, layer: ConstraintLayerInputDTO, layer_id: int) -> None:
+        if not layer.constraint_objects:
+            raise Exception("no objects provided")
         for dto in layer.constraint_objects:
             stmt = text(
                 "INSERT INTO constraint_objects (name, status, constraint_layer_id, geom) "
@@ -114,7 +133,7 @@ class PostGresRepo:
 
         with Session(self.engine) as session:
             session.execute(stmt)
-            for row in session.execute(select(ConstraintLayer, subq.c.count).join(subq, ConstraintLayer.id == subq.c.constraint_layer_id)).all():
+            for row in session.execute(select(ConstraintLayer, subq.c.count).outerjoin(subq, ConstraintLayer.id == subq.c.constraint_layer_id).order_by(ConstraintLayer.name)).all():
                 layer = row[0]
                 count = row[1]
                 result.append(ConstraintLayerInfoDTO(
@@ -134,7 +153,7 @@ class PostGresRepo:
                     notes=layer.notes,
                     created=datetime.datetime.strftime(layer.created, "%d/%m/%y %H:%M:%S"),
                     created_by=layer.created_by,
-                    objects=count,
+                    objects=(count if count else 0),
                     wind_priority=layer.development_constraint.onshore_wind_priority_level.name,
                     solar_priority=layer.development_constraint.solar_priority_level.name,
                     battery_priority=layer.development_constraint.battery_priority_level.name,
@@ -143,3 +162,21 @@ class PostGresRepo:
 
                 ))
         return result
+    
+    def add_development_constraint(self, input_dto: DevelopmentConstraintInputDTO) -> None:
+        with Session(self.engine) as session:
+            session.add(DevelopmentConstraint(
+                constraint_category_id=input_dto.category_id,
+                name=input_dto.name,
+                abbreviation=input_dto.abbreviation,
+                description=input_dto.description,
+                notes=input_dto.notes,
+                onshore_wind_priority_level_id=input_dto.onshore_wind_priority_level_id,
+                solar_priority_level_id=input_dto.solar_priority_level_id,
+                battery_priority_level_id=input_dto.battery_priority_level_id,
+                table_name=input_dto.table_name
+
+            ))
+            session.commit()
+    
+

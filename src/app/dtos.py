@@ -49,8 +49,8 @@ class ConstraintLayerInputDTO:
     data_next_updated: date | None
     data_expires: date | None
     notes: str | None
-    geom_type: GeomType
-    constraint_objects: list[ConstraintObjectInputDTO]
+    geom_type: GeomType | None
+    constraint_objects: None|list[ConstraintObjectInputDTO]
 
     @staticmethod
     def generate_name(admin_area_abbreviation: str, table_name: str) -> str:
@@ -95,3 +95,21 @@ class ConstraintLayerInfoDTO:
     source: None|str
     created: str
     created_by: str
+
+
+@attrs.define
+class DevelopmentConstraintFormOptions:
+    categories: dict[int, str]
+    priority_levels: dict[int, str]
+
+@attrs.define
+class DevelopmentConstraintInputDTO:
+    name: str
+    abbreviation: str
+    table_name: str
+    category_id : int
+    onshore_wind_priority_level_id: int
+    solar_priority_level_id: int
+    battery_priority_level_id: int
+    description: None | str
+    notes: None | str
