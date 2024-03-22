@@ -55,7 +55,7 @@ class PostGresRepo:
                         abbreviation=row.abbreviation) for row in conn.execute(
                             select(AdministrativeArea.id,
                                    AdministrativeArea.name,
-                                   AdministrativeArea.abbreviation).order_by(AdministrativeArea.parent_area, AdministrativeArea.name))},
+                                   AdministrativeArea.abbreviation).order_by(AdministrativeArea.parent_area_id, AdministrativeArea.name))},
                 data_publishers=self._to_dict(conn.execute(select(
                     DataPublisher.id, DataPublisher.name).order_by(
                         DataPublisher.name))),
@@ -63,15 +63,14 @@ class PostGresRepo:
                     DataLicense.id, DataLicense.name).order_by(DataLicense.name)))
             )
         return result
-    
+
     def get_development_constraint_form_options(self) -> DevelopmentConstraintFormOptions:
         with self.engine.connect() as conn:
             result = DevelopmentConstraintFormOptions(
-                categories=self._to_dict(conn.execute(select(ConstraintCategory.id, ConstraintCategory.name))),
+                categories=self._to_dict(conn.execute(
+                    select(ConstraintCategory.id, ConstraintCategory.name))),
                 priority_levels=self._to_dict(conn.execute(select(PriorityLevel.id, PriorityLevel.name))))
         return result
-
-
 
     def add_constraint_layer(self, layer: ConstraintLayerInputDTO) -> None:
         layer_name = layer.name
@@ -109,7 +108,7 @@ class PostGresRepo:
                         constraint_layer_id=sql_layer.id):
                     session.execute(text(stmt))
                 if layer.constraint_objects:
-                    
+
                     self.add_constraint_object(
                         session, layer, sql_layer.id)
                 session.commit()
@@ -129,7 +128,7 @@ class PostGresRepo:
         result = []
         stmt = select(constraint_objects_table.c.constraint_layer_id, func.count(
             constraint_objects_table.c.id).label("count")).group_by(constraint_objects_table.c.constraint_layer_id)
-        subq = stmt.subquery() 
+        subq = stmt.subquery()
 
         with Session(self.engine) as session:
             session.execute(stmt)
@@ -146,12 +145,18 @@ class PostGresRepo:
                     license=(
                         layer.data_license.name if layer.data_license else None),
                     update_cycle=layer.update_cycle,
-                    accessed_or_created=datetime.datetime.strftime(layer.data_accessed_or_created, "%d/%m/%y"),
-                    last_updated=datetime.datetime.strftime(layer.data_last_updated, "%d/%m/%y") if layer.data_last_updated else None,
-                    next_updated=datetime.datetime.strftime(layer.data_next_updated, "%d/%m/%y")if layer.data_next_updated else None,
-                    expires=datetime.datetime.strftime(layer.data_expires, "%d/%m/%y")if layer.data_expires else None,
-                    notes=layer.notes,
-                    created=datetime.datetime.strftime(layer.created, "%d/%m/%y %H:%M:%S"),
+                    accessed_or_created=datetime.datetime.strftime(
+                        layer.data_accessed_or_created, "%d/%m/%y"),
+                    last_updated=datetime.datetime.strftime(
+                        layer.data_last_updated, "%d/%m/%y") if layer.data_last_updated else None,
+                    next_updated=datetime.datetime.strftime(
+                        layer.data_next_updated, "%d/%m/%y")if layer.data_next_updated else None,
+                    expires=datetime.datetime.strftime(
+                        layer.data_expires, "%d/%m/%y")if layer.data_expires else None,
+                    layer_notes=layer.notes,
+                    constraint_notes=layer.development_constraint.notes,
+                    created=datetime.datetime.strftime(
+                        layer.created, "%d/%m/%y %H:%M:%S"),
                     created_by=layer.created_by,
                     objects=(count if count else 0),
                     wind_priority=layer.development_constraint.onshore_wind_priority_level.name,
@@ -162,7 +167,7 @@ class PostGresRepo:
 
                 ))
         return result
-    
+
     def add_development_constraint(self, input_dto: DevelopmentConstraintInputDTO) -> None:
         with Session(self.engine) as session:
             session.add(DevelopmentConstraint(
@@ -178,5 +183,3 @@ class PostGresRepo:
 
             ))
             session.commit()
-    
-

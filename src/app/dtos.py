@@ -91,7 +91,8 @@ class ConstraintLayerInfoDTO:
     last_updated: None|str
     next_updated: None|str
     expires: None|str
-    notes: None|str
+    layer_notes: None|str
+    constraint_notes: None | str
     source: None|str
     created: str
     created_by: str

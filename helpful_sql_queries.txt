@@ -1,0 +1,6 @@
+INSERT INTO constraint_objects (name, constraint_layer_id, geom)
+       (SELECT 'NR roads 220m buffer', 
+		       20,
+	           ST_MULTI((ST_DUMP(ST_UNION(ST_BUFFER(geom, 220)))).geom)
+		  FROM staging.nr_roads
+		 WHERE class IN ('Motorway', 'A Road', 'B Road', 'Classified Unnumbered', 'Unclassified'))
