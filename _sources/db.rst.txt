@@ -36,6 +36,14 @@ db.models module
    :undoc-members:
    :show-inheritance:
 
+db.os\_admin\_areas module
+--------------------------
+
+.. automodule:: db.os_admin_areas
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 db.sqlalchemy\_config module
 ----------------------------
 
