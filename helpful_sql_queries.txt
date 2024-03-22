@@ -4,3 +4,18 @@ INSERT INTO constraint_objects (name, constraint_layer_id, geom)
 	           ST_MULTI((ST_DUMP(ST_UNION(ST_BUFFER(geom, 220)))).geom)
 		  FROM staging.nr_roads
 		 WHERE class IN ('Motorway', 'A Road', 'B Road', 'Classified Unnumbered', 'Unclassified'))
+
+Command line query to execute shp2pgsql
+shp2pgsql -s 27700 -I -D "C:\path\to\shapefile.shp" staging.vmd_railway_lines | psql -U EU\jcampbell -d edf-re-uk -h defslp-pgs01
+
+SELECT com.id,
+       com.name,
+	   com.status,
+	   com.constraint_layer_id,
+	   cl.name as constraint_layer,
+	   com.geom
+  FROM constraint_objects_multipolygon com
+
+  JOIN constraint_layers cl ON cl.id = com.constraint_layer_id
+   WHERE ST_INTERSECTS(geom, (SELECT ST_BUFFER(st_geomfromtext('POINT(174737 624738)', 27700), 30000)))
+   OR ST_INTERSECTS(geom, (SELECT ST_BUFFER(st_geomfromtext('POINT(187158 718813)', 27700), 30000)))
